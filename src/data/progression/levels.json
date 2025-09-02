@@ -1,0 +1,92 @@
+{
+  "levels": [
+    {
+      "id": "rookie-level",
+      "name": "Rookie",
+      "description": "Just getting started with NFL basics",
+      "pointsRequired": 0,
+      "pointsToNext": 100,
+      "color": "#9CA3AF",
+      "icon": "🏃",
+      "rewards": {
+        "unlocks": ["basic-lessons"],
+        "features": ["progress-tracking", "basic-quizzes"]
+      }
+    },
+    {
+      "id": "intermediate-level", 
+      "name": "Fan",
+      "description": "Understanding the fundamentals",
+      "pointsRequired": 100,
+      "pointsToNext": 250,
+      "color": "#10B981",
+      "icon": "📚",
+      "rewards": {
+        "unlocks": ["strategy-lessons", "advanced-quizzes"],
+        "features": ["lesson-bookmarks", "progress-dashboard"]
+      }
+    },
+    {
+      "id": "advanced-level",
+      "name": "Analyst", 
+      "description": "Seeing the game like a coach",
+      "pointsRequired": 350,
+      "pointsToNext": 400,
+      "color": "#3B82F6",
+      "icon": "🧠",
+      "rewards": {
+        "unlocks": ["coaching-concepts", "situational-football"],
+        "features": ["detailed-analytics", "custom-study-plans"]
+      }
+    },
+    {
+      "id": "expert-level",
+      "name": "Expert",
+      "description": "Deep football knowledge and strategy",
+      "pointsRequired": 750,
+      "pointsToNext": 500,
+      "color": "#8B5CF6", 
+      "icon": "🏆",
+      "rewards": {
+        "unlocks": ["pro-concepts", "historical-analysis"],
+        "features": ["expert-discussions", "content-creation"]
+      }
+    },
+    {
+      "id": "master-level",
+      "name": "Master",
+      "description": "NFL mastery - you could coach!",
+      "pointsRequired": 1250,
+      "pointsToNext": null,
+      "color": "#F59E0B",
+      "icon": "👑",
+      "rewards": {
+        "unlocks": ["all-content"],
+        "features": ["mentor-status", "exclusive-content", "community-leadership"]
+      }
+    }
+  ],
+  "pointSources": {
+    "lessonCompleted": 10,
+    "quizPassed": 15, 
+    "perfectQuiz": 25,
+    "badgeEarned": 50,
+    "streakBonus": 5,
+    "dailyLogin": 2,
+    "firstTry": 10
+  },
+  "streakSystem": {
+    "description": "Earn bonus points for consecutive days of learning",
+    "bonusMultiplier": {
+      "3": 1.2,
+      "7": 1.5, 
+      "14": 2.0,
+      "30": 3.0
+    },
+    "streakRewards": {
+      "7": "consistent-learner-badge",
+      "30": "dedication-master-badge", 
+      "100": "legendary-streak-badge"
+    }
+  }
+}

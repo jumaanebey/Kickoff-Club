@@ -1,0 +1,79 @@
+{
+  "id": "quarterback-101",
+  "title": "Quarterback 101",
+  "subtitle": "The Field General Who Runs Every Play", 
+  "duration": 90,
+  "difficulty": "beginner",
+  "category": "positions",
+  "order": 3,
+  "prerequisites": ["how-downs-work"],
+  "unlocks": ["offensive-line-protection", "receivers-vs-coverage"],
+  "badges": ["qb-expert"],
+  "preview": {
+    "What you'll learn": [
+      "Why QBs touch the ball on every play",
+      "Reading defenses before the snap",
+      "The difference between pocket passers and scramblers"
+    ],
+    "Key concepts": ["quarterback", "pocket", "audible", "scramble"]
+  },
+  "script": {
+    "hook": "The quarterback touches the ball on every single offensive play. But there's way more happening than just throwing passes. Let's break down football's most important position.",
+    "sections": [
+      {
+        "timestamp": "0:00-0:25",
+        "title": "The Play Starts Here",
+        "content": "Every offensive play begins with the QB receiving the snap from the center. From that moment, they have about 2-4 seconds to either hand the ball off, throw it, or scramble before the defense reaches them."
+      },
+      {
+        "timestamp": "0:25-0:50",
+        "title": "Pre-Snap Reading",
+        "content": "Watch a QB before the play starts - they're scanning the defense, counting players, identifying potential blitzes. They might even change the entire play by calling an 'audible' if they see something the defense is showing."
+      },
+      {
+        "timestamp": "0:50-1:15", 
+        "title": "Decision Making Under Pressure",
+        "content": "Once the ball is snapped, QBs are reading the defense in real-time. Which receiver is getting open? Is the pocket collapsing? Should they throw it away to avoid a sack? Every decision happens in split seconds."
+      },
+      {
+        "timestamp": "1:15-1:30",
+        "title": "Different Styles",
+        "content": "Some QBs are 'pocket passers' who stay protected and throw with precision. Others are 'dual-threat' QBs who can hurt you with their legs too. Both styles can be effective, just in different ways."
+      }
+    ]
+  },
+  "quiz": {
+    "id": "quarterback-101-quiz",
+    "question": "A quarterback sees the defense showing blitz before the snap. What's their best option?",
+    "options": [
+      "Always run the play as called",
+      "Call an audible to change to a quicker passing play", 
+      "Take a timeout to talk to the coach",
+      "Hand the ball off no matter what"
+    ],
+    "correctIndex": 1,
+    "explanation": "Good quarterbacks read the defense and adjust. If they see a blitz coming, calling an audible to a quick slant or screen pass can beat the pressure and potentially result in a big gain.",
+    "encouragement": "You're thinking like a field general! Reading the defense is crucial."
+  },
+  "keyTerms": [
+    {
+      "term": "Audible",
+      "definition": "When the QB changes the play at the line of scrimmage based on what they see from the defense"
+    },
+    {
+      "term": "Pocket",
+      "definition": "The protected area behind the offensive line where the QB stands to throw"
+    },
+    {
+      "term": "Blitz",
+      "definition": "When extra defenders rush the quarterback beyond the normal pass rush"
+    },
+    {
+      "term": "Scramble", 
+      "definition": "When the QB runs with the ball, usually to escape pressure"
+    }
+  ],
+  "videoUrl": "/assets/lessons/quarterback-101.mp4", 
+  "thumbnailUrl": "/assets/thumbnails/quarterback-101.jpg",
+  "captionsUrl": "/assets/captions/quarterback-101.vtt"
+}

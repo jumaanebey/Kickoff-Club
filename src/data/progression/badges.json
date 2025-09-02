@@ -1,0 +1,118 @@
+{
+  "badges": [
+    {
+      "id": "downs-starter",
+      "name": "Downs Starter", 
+      "description": "Master the 4-down system that drives every play",
+      "icon": "🏈",
+      "color": "#E6B85C",
+      "requirements": {
+        "lessons": ["how-downs-work"],
+        "quizzes": ["how-downs-work-quiz"],
+        "minimumScore": 100
+      },
+      "unlocks": ["rookie-level"],
+      "rarity": "common"
+    },
+    {
+      "id": "touchdown-expert", 
+      "name": "Touchdown Expert",
+      "description": "Know everything about football's most exciting scoring play",
+      "icon": "🎯", 
+      "color": "#FF9AA2",
+      "requirements": {
+        "lessons": ["scoring-touchdowns"],
+        "quizzes": ["scoring-touchdowns-quiz"], 
+        "minimumScore": 100
+      },
+      "unlocks": ["scoring-specialist"],
+      "rarity": "common"
+    },
+    {
+      "id": "qb-expert",
+      "name": "QB Expert", 
+      "description": "Understand the field general who runs every play",
+      "icon": "🎖️",
+      "color": "#CDE7D9", 
+      "requirements": {
+        "lessons": ["quarterback-101"],
+        "quizzes": ["quarterback-101-quiz"],
+        "minimumScore": 100
+      },
+      "unlocks": ["position-specialist"],
+      "rarity": "common"
+    },
+    {
+      "id": "rookie-graduate",
+      "name": "Rookie Graduate",
+      "description": "Completed all beginner lessons with flying colors",
+      "icon": "🏆",
+      "color": "#E6B85C",
+      "requirements": {
+        "badges": ["first-down-expert", "touchdown-expert", "qb-expert"],
+        "minimumScore": 90
+      },
+      "unlocks": ["intermediate-level"],
+      "rarity": "rare"
+    },
+    {
+      "id": "perfect-score",
+      "name": "Perfect Score",
+      "description": "Aced a quiz without getting a single question wrong",
+      "icon": "⭐",
+      "color": "#FF9AA2",
+      "requirements": {
+        "perfectQuizzes": 1
+      },
+      "unlocks": ["perfectionist-track"],
+      "rarity": "uncommon"
+    },
+    {
+      "id": "speed-learner",
+      "name": "Speed Learner", 
+      "description": "Completed 3 lessons in under 10 minutes",
+      "icon": "⚡",
+      "color": "#CDE7D9",
+      "requirements": {
+        "timeLimit": 600,
+        "lessonsCompleted": 3
+      },
+      "unlocks": ["advanced-track"],
+      "rarity": "uncommon"
+    },
+    {
+      "id": "nfl-scholar",
+      "name": "NFL Scholar",
+      "description": "Earned every available badge in the system",
+      "icon": "🎓",
+      "color": "#0B2545", 
+      "requirements": {
+        "allBadges": true
+      },
+      "unlocks": ["expert-level"],
+      "rarity": "legendary"
+    }
+  ],
+  "rarityLevels": {
+    "common": {
+      "color": "#9CA3AF",
+      "description": "Foundation badges every learner earns"
+    },
+    "uncommon": { 
+      "color": "#10B981",
+      "description": "Achievement badges for dedicated learners"
+    },
+    "rare": {
+      "color": "#3B82F6", 
+      "description": "Milestone badges for significant progress"
+    },
+    "epic": {
+      "color": "#8B5CF6",
+      "description": "Challenge badges for exceptional performance"  
+    },
+    "legendary": {
+      "color": "#F59E0B",
+      "description": "Ultimate badges for true NFL experts"
+    }
+  }
+}
