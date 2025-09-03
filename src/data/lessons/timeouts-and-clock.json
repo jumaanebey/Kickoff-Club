@@ -1,0 +1,95 @@
+{
+  "id": "timeouts-and-clock",
+  "title": "Timeouts & Clock Management",
+  "subtitle": "How Teams Control Time to Win Games",
+  "duration": 90,
+  "difficulty": "intermediate",
+  "category": "strategy",
+  "order": 6,
+  "prerequisites": ["how-downs-work"],
+  "unlocks": ["two-minute-drill", "advanced-strategy"],
+  "badges": ["clock-master", "strategy-student"],
+  "preview": {
+    "What you'll learn": [
+      "How the game clock works and when it stops",
+      "Strategic use of timeouts",
+      "The crucial two-minute warning"
+    ],
+    "Key concepts": ["game clock", "play clock", "timeout", "two-minute warning", "clock management"]
+  },
+  "script": {
+    "hook": "In football, time is everything. Master the clock, and you control the game. Let's learn how teams manipulate time to their advantage.",
+    "sections": [
+      {
+        "timestamp": "0:03-0:18",
+        "title": "Two Clocks Running",
+        "content": "Football has two clocks: the game clock (60 minutes of play) and the play clock (40 seconds to start each play). The game clock stops for incomplete passes, out of bounds, and timeouts. Otherwise, it keeps ticking.",
+        "onScreen": "dual clock display: game clock vs play clock with examples"
+      },
+      {
+        "timestamp": "0:18-0:33",
+        "title": "Each Team's Three Timeouts",
+        "content": "Teams get three timeouts per half - use them or lose them. Timeouts stop the clock for strategic planning, rest players, or save precious seconds in close games. They're like pause buttons you can only press three times.",
+        "onScreen": "timeout indicators depleting + '3 per half' visual"
+      },
+      {
+        "timestamp": "0:33-0:48",
+        "title": "Clock Stoppage Rules",
+        "content": "The clock stops for: incomplete passes, running out of bounds, scoring plays, and penalties. In the last 2 minutes of each half, the clock also stops briefly on first downs to move the chains.",
+        "onScreen": "clock stopping scenarios animated checklist"
+      },
+      {
+        "timestamp": "0:48-1:05",
+        "title": "Two-Minute Warning",
+        "content": "At exactly 2:00 left in each half, play automatically stops - it's like a free timeout for both teams. This is when games get intense. Teams switch to hurry-up offense, spike balls to stop the clock, and use timeouts strategically.",
+        "onScreen": "2:00 timer + 'TWO-MINUTE WARNING' alert + strategy shift visual"
+      },
+      {
+        "timestamp": "1:05-1:20",
+        "title": "Clock Strategy Examples",
+        "content": "Leading teams run the ball to keep the clock moving and burn opponent timeouts. Trailing teams pass more (stops clock on incompletions), use sidelines, and save timeouts for their final drive. It's chess with seconds.",
+        "onScreen": "split strategy: 'Leading: run clock' vs 'Trailing: save clock'"
+      },
+      {
+        "timestamp": "1:20-1:30",
+        "title": "Quick Recap",
+        "content": "Two clocks control the game. Three timeouts per half are precious. Clock stops on incompletions and out of bounds. Master these rules to understand late-game drama.",
+        "onScreen": "clock management formula + strategic summary"
+      }
+    ]
+  },
+  "quiz": {
+    "id": "timeouts-and-clock-quiz",
+    "question": "Your team is losing by 3 points with 1:30 left. You have 2 timeouts and the ball at midfield. What's your clock strategy?",
+    "options": [
+      "Run the ball to control possession",
+      "Use both timeouts immediately to plan",
+      "Pass to the sidelines and save timeouts for defense",
+      "Let the clock run down before scoring"
+    ],
+    "correctIndex": 2,
+    "explanation": "Perfect strategy! Passing to sidelines stops the clock naturally on incompletions or when receivers get out of bounds. Save those timeouts - you might need them if the other team gets the ball back.",
+    "encouragement": "You're thinking like a coach! Clock management wins close games."
+  },
+  "keyTerms": [
+    {
+      "term": "Game Clock",
+      "definition": "The main timer counting down from 15:00 each quarter (60 minutes total)"
+    },
+    {
+      "term": "Play Clock",
+      "definition": "40-second timer between plays - teams must snap the ball before it expires"
+    },
+    {
+      "term": "Two-Minute Warning",
+      "definition": "Automatic timeout when exactly 2:00 remains in each half"
+    },
+    {
+      "term": "Spike",
+      "definition": "Intentionally throwing the ball into the ground to stop the clock"
+    }
+  ],
+  "videoUrl": "/assets/lessons/timeouts-and-clock.mp4",
+  "thumbnailUrl": "/assets/thumbnails/timeouts-and-clock.jpg",
+  "captionsUrl": "/assets/captions/timeouts-and-clock.vtt"
+}

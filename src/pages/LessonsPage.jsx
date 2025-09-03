@@ -40,7 +40,7 @@ export default function LessonsPage() {
               Your Learning Journey
             </h1>
             <p className="text-xl text-secondary-200 max-w-2xl mx-auto">
-              Master NFL fundamentals with bite-sized lessons designed for complete beginners
+              Master professional football fundamentals with bite-sized lessons designed for complete beginners
             </p>
           </div>
 

@@ -81,8 +81,275 @@
       "rarity": "uncommon"
     },
     {
+      "id": "streak-starter",
+      "name": "Streak Starter",
+      "description": "Complete lessons on 3 consecutive days",
+      "icon": "🔥",
+      "color": "#F59E0B",
+      "requirements": {
+        "streakDays": 3
+      },
+      "unlocks": ["streak-rewards"],
+      "rarity": "uncommon"
+    },
+    {
+      "id": "week-warrior", 
+      "name": "Week Warrior",
+      "description": "Maintain a 7-day learning streak",
+      "icon": "🗓️",
+      "color": "#EF4444",
+      "requirements": {
+        "streakDays": 7
+      },
+      "unlocks": ["weekly-challenges"],
+      "rarity": "rare"
+    },
+    {
+      "id": "consistency-champion",
+      "name": "Consistency Champion", 
+      "description": "Learn something every day for 30 days straight",
+      "icon": "💎",
+      "color": "#8B5CF6",
+      "requirements": {
+        "streakDays": 30
+      },
+      "unlocks": ["master-level"],
+      "rarity": "epic"
+    },
+    {
+      "id": "scenario-solver",
+      "name": "Scenario Solver",
+      "description": "Successfully complete 10 game scenario challenges",
+      "icon": "🧩",
+      "color": "#10B981",
+      "requirements": {
+        "scenariosPassed": 10,
+        "minimumAccuracy": 80
+      },
+      "unlocks": ["advanced-scenarios"],
+      "rarity": "uncommon"
+    },
+    {
+      "id": "clutch-performer",
+      "name": "Clutch Performer",
+      "description": "Get perfect scores on 5 different scenario challenges",
+      "icon": "⭐",
+      "color": "#F59E0B",
+      "requirements": {
+        "perfectScenarios": 5
+      },
+      "unlocks": ["clutch-challenges"],
+      "rarity": "rare"
+    },
+    {
+      "id": "fundamentals-graduate",
+      "name": "Fundamentals Graduate",
+      "description": "Complete the entire Fundamentals learning track",
+      "icon": "🏈",
+      "color": "#CDE7D9",
+      "requirements": {
+        "tracksCompleted": ["fundamentals"]
+      },
+      "unlocks": ["intermediate-tracks"],
+      "rarity": "common"
+    },
+    {
+      "id": "offensive-coordinator",
+      "name": "Offensive Coordinator",
+      "description": "Master offensive strategy and concepts",
+      "icon": "⚡",
+      "color": "#E6B85C",
+      "requirements": {
+        "tracksCompleted": ["offensive-strategy"]
+      },
+      "unlocks": ["coordinator-challenges"],
+      "rarity": "rare"
+    },
+    {
+      "id": "defensive-coordinator",
+      "name": "Defensive Coordinator", 
+      "description": "Understand defensive schemes and coverage",
+      "icon": "🛡️",
+      "color": "#FF9AA2",
+      "requirements": {
+        "tracksCompleted": ["defensive-concepts"]
+      },
+      "unlocks": ["defensive-challenges"],
+      "rarity": "rare"
+    },
+    {
+      "id": "position-expert",
+      "name": "Position Expert",
+      "description": "Know every position and their responsibilities",
+      "icon": "👥",
+      "color": "#FCE8E4",
+      "requirements": {
+        "tracksCompleted": ["positions-deep-dive"]
+      },
+      "unlocks": ["position-challenges"],
+      "rarity": "rare"
+    },
+    {
+      "id": "football-strategist",
+      "name": "Football Strategist",
+      "description": "Master advanced strategy and situational football",
+      "icon": "🧠",
+      "color": "#0B2545",
+      "requirements": {
+        "tracksCompleted": ["advanced-strategy"]
+      },
+      "unlocks": ["strategist-challenges"],
+      "rarity": "epic"
+    },
+    {
+      "id": "football-analyst", 
+      "name": "Football Analyst",
+      "description": "Develop expert-level analysis and prediction skills",
+      "icon": "📊",
+      "color": "#8B5CF6",
+      "requirements": {
+        "tracksCompleted": ["expert-analysis"]
+      },
+      "unlocks": ["analyst-tools"],
+      "rarity": "epic"
+    },
+    {
+      "id": "speed-demon",
+      "name": "Speed Demon",
+      "description": "Complete any lesson in under 60 seconds",
+      "icon": "💨",
+      "color": "#10B981", 
+      "requirements": {
+        "fastestLessonTime": 60
+      },
+      "unlocks": ["speed-challenges"],
+      "rarity": "uncommon"
+    },
+    {
+      "id": "quiz-master",
+      "name": "Quiz Master",
+      "description": "Answer 100 quiz questions correctly",
+      "icon": "🎯",
+      "color": "#3B82F6",
+      "requirements": {
+        "correctAnswers": 100
+      },
+      "unlocks": ["master-quizzes"],
+      "rarity": "rare"
+    },
+    {
+      "id": "perfectionist",
+      "name": "Perfectionist",
+      "description": "Get perfect scores on 10 different quizzes",
+      "icon": "💯",
+      "color": "#F59E0B",
+      "requirements": {
+        "perfectQuizzes": 10
+      },
+      "unlocks": ["perfectionist-challenges"],
+      "rarity": "epic"
+    },
+    {
+      "id": "comeback-kid",
+      "name": "Comeback Kid",
+      "description": "Return after 30 days away and complete a lesson",
+      "icon": "🎭",
+      "color": "#8B5CF6",
+      "requirements": {
+        "returnAfterDays": 30
+      },
+      "unlocks": ["welcome-back-bonuses"],
+      "rarity": "uncommon"
+    },
+    {
+      "id": "early-bird",
+      "name": "Early Bird",
+      "description": "Complete lessons before 8 AM on 5 different days",
+      "icon": "🌅",
+      "color": "#F59E0B",
+      "requirements": {
+        "earlyMorningLessons": 5,
+        "beforeHour": 8
+      },
+      "unlocks": ["morning-challenges"],
+      "rarity": "uncommon"
+    },
+    {
+      "id": "night-owl",
+      "name": "Night Owl",
+      "description": "Complete lessons after 10 PM on 5 different days",
+      "icon": "🦉", 
+      "color": "#8B5CF6",
+      "requirements": {
+        "lateMidnightLessons": 5,
+        "afterHour": 22
+      },
+      "unlocks": ["night-challenges"],
+      "rarity": "uncommon"
+    },
+    {
+      "id": "weekend-warrior",
+      "name": "Weekend Warrior", 
+      "description": "Complete 10 lessons on weekends",
+      "icon": "🏖️",
+      "color": "#10B981",
+      "requirements": {
+        "weekendLessons": 10
+      },
+      "unlocks": ["weekend-bonuses"],
+      "rarity": "uncommon"
+    },
+    {
+      "id": "social-learner",
+      "name": "Social Learner",
+      "description": "Share your progress with friends 5 times",
+      "icon": "📱",
+      "color": "#3B82F6",
+      "requirements": {
+        "socialShares": 5
+      },
+      "unlocks": ["social-features"],
+      "rarity": "common"
+    },
+    {
+      "id": "marathon-runner",
+      "name": "Marathon Runner",
+      "description": "Complete 20 lessons in a single day",
+      "icon": "🏃‍♂️",
+      "color": "#EF4444",
+      "requirements": {
+        "lessonsInOneDay": 20
+      },
+      "unlocks": ["endurance-challenges"],
+      "rarity": "epic"
+    },
+    {
+      "id": "all-star",
+      "name": "All-Star",
+      "description": "Reach level 50 through consistent learning",
+      "icon": "⭐",
+      "color": "#F59E0B",
+      "requirements": {
+        "minimumLevel": 50
+      },
+      "unlocks": ["all-star-privileges"],
+      "rarity": "epic"
+    },
+    {
+      "id": "hall-of-fame",
+      "name": "Hall of Fame",
+      "description": "Reach level 100 - true mastery achieved",
+      "icon": "🏛️",
+      "color": "#F59E0B",
+      "requirements": {
+        "minimumLevel": 100
+      },
+      "unlocks": ["hall-of-fame-status"],
+      "rarity": "legendary"
+    },
+    {
       "id": "nfl-scholar",
-      "name": "NFL Scholar",
+      "name": "football Scholar",
       "description": "Earned every available badge in the system",
       "icon": "🎓",
       "color": "#0B2545", 
@@ -112,7 +379,7 @@
     },
     "legendary": {
       "color": "#F59E0B",
-      "description": "Ultimate badges for true NFL experts"
+      "description": "Ultimate badges for true football experts"
     }
   }
 }

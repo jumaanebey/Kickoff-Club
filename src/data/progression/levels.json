@@ -3,7 +3,7 @@
     {
       "id": "rookie-level",
       "name": "Rookie",
-      "description": "Just getting started with NFL basics",
+      "description": "Just getting started with football basics",
       "pointsRequired": 0,
       "pointsToNext": 100,
       "color": "#9CA3AF",
@@ -55,7 +55,7 @@
     {
       "id": "master-level",
       "name": "Master",
-      "description": "NFL mastery - you could coach!",
+      "description": "football mastery - you could coach!",
       "pointsRequired": 1250,
       "pointsToNext": null,
       "color": "#F59E0B",

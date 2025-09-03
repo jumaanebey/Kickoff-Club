@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { loadProgress, getUserStats, exportProgress, resetProgress } from '../utils/progressTracker'
-import { getLevelByPoints, badges } from '../data/lessonsIndex'
+import { getLevelByPoints } from '../data/lessonsIndex'
+import { badges } from '../data/achievements'
 
 export default function ProfilePage() {
   const [progress, setProgress] = useState(loadProgress())

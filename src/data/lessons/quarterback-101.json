@@ -21,24 +21,34 @@
     "hook": "The quarterback touches the ball on every single offensive play. But there's way more happening than just throwing passes. Let's break down football's most important position.",
     "sections": [
       {
-        "timestamp": "0:00-0:25",
+        "timestamp": "0:03-0:20",
         "title": "The Play Starts Here",
-        "content": "Every offensive play begins with the QB receiving the snap from the center. From that moment, they have about 2-4 seconds to either hand the ball off, throw it, or scramble before the defense reaches them."
+        "content": "Every offensive play begins with the QB receiving the snap from the center. From that moment, they have about 2-4 seconds to either hand the ball off, throw it, or scramble before the defense reaches them.",
+        "onScreen": "slow-motion snap sequence + '2-4 SECONDS TO DECIDE' timer"
       },
       {
-        "timestamp": "0:25-0:50",
+        "timestamp": "0:20-0:42",
         "title": "Pre-Snap Reading",
-        "content": "Watch a QB before the play starts - they're scanning the defense, counting players, identifying potential blitzes. They might even change the entire play by calling an 'audible' if they see something the defense is showing."
+        "content": "Watch a QB before the play starts - they're scanning the defense, counting players, identifying potential blitzes. They might even change the entire play by calling an 'audible' if they see something the defense is showing.",
+        "onScreen": "QB eyes scanning defense + 'AUDIBLE!' callout graphic"
       },
       {
-        "timestamp": "0:50-1:15", 
+        "timestamp": "0:42-1:08", 
         "title": "Decision Making Under Pressure",
-        "content": "Once the ball is snapped, QBs are reading the defense in real-time. Which receiver is getting open? Is the pocket collapsing? Should they throw it away to avoid a sack? Every decision happens in split seconds."
+        "content": "Once the ball is snapped, QBs are reading the defense in real-time. Which receiver is getting open? Is the pocket collapsing? Should they throw it away to avoid a sack? Every decision happens in split seconds.",
+        "onScreen": "split-second decisions: throw/run/escape arrows + pressure clock"
       },
       {
-        "timestamp": "1:15-1:30",
+        "timestamp": "1:08-1:25",
         "title": "Different Styles",
-        "content": "Some QBs are 'pocket passers' who stay protected and throw with precision. Others are 'dual-threat' QBs who can hurt you with their legs too. Both styles can be effective, just in different ways."
+        "content": "Some QBs are 'pocket passers' who stay protected and throw with precision. Others are 'dual-threat' QBs who can hurt you with their legs too. Both styles can be effective, just in different ways.",
+        "onScreen": "side-by-side: pocket passer vs scrambling QB highlights"
+      },
+      {
+        "timestamp": "1:25-1:30",
+        "title": "Quick Recap",
+        "content": "Remember: QBs are the field generals. They read, decide, and execute - all under pressure.",
+        "onScreen": "'FIELD GENERAL' badge + CTA"
       }
     ]
   },

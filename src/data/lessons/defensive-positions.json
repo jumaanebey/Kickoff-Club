@@ -1,0 +1,195 @@
+{
+  "id": "defensive-positions", 
+  "title": "Defensive Positions Explained",
+  "description": "Learn about defensive positions and how they stop the offense",
+  "duration": 115,
+  "difficulty": "beginner",
+  "category": "positions", 
+  "thumb": "/images/lessons/defensive-positions.jpg",
+  "videoUrl": "/videos/lessons/defensive-positions.mp4",
+  "prerequisites": ["offensive-positions"],
+  "topics": ["defense", "positions", "linebacker", "cornerback", "safety"],
+  "content": {
+    "sections": [
+      {
+        "type": "introduction",
+        "title": "Meet the Defense", 
+        "content": "The defense tries to stop the offense from scoring. They have 11 players with different jobs - let's learn about each position.",
+        "visual": {
+          "type": "formation-diagram",
+          "formation": "basic-defense", 
+          "highlightPositions": ["DL", "LB", "CB", "S"]
+        }
+      },
+      {
+        "type": "position-breakdown",
+        "title": "Defensive Line (DL)",
+        "content": "The big guys up front who rush the quarterback and stop running plays.",
+        "details": [
+          "Usually 3-4 players on the line",
+          "Rush the quarterback on pass plays", 
+          "Stop running backs at the line",
+          "Include Defensive Ends (DE) and Defensive Tackles (DT)"
+        ],
+        "visual": {
+          "type": "player-highlight",
+          "position": "DL",
+          "actions": ["pass-rush", "run-stop", "tackle"]
+        }
+      },
+      {
+        "type": "position-breakdown",
+        "title": "Linebackers (LB)", 
+        "content": "The middle level of defense - they cover running backs and tight ends while also helping stop the run.",
+        "details": [
+          "Usually 3-4 linebackers on the field",
+          "Cover running backs and tight ends",
+          "Help stop running plays",
+          "Can rush the quarterback or drop into coverage"
+        ],
+        "visual": {
+          "type": "player-highlight", 
+          "position": "LB",
+          "actions": ["cover", "tackle", "rush", "defend"]
+        }
+      },
+      {
+        "type": "position-breakdown",
+        "title": "Cornerbacks (CB)",
+        "content": "These are the fast defenders who cover wide receivers and defend against passes.",
+        "details": [
+          "Usually 2-3 cornerbacks on the field",
+          "Cover wide receivers man-to-man",
+          "Defend against pass attempts", 
+          "Need great speed and agility"
+        ],
+        "visual": {
+          "type": "coverage-diagram",
+          "coverage": "man-to-man",
+          "matchups": ["CB vs WR"]
+        }
+      },
+      {
+        "type": "position-breakdown", 
+        "title": "Safeties (S)",
+        "content": "The last line of defense - they help with deep passes and provide run support.",
+        "details": [
+          "Usually 2 safeties: Free Safety (FS) and Strong Safety (SS)",
+          "Free Safety covers deep passes",
+          "Strong Safety helps with run support",
+          "Both can cover receivers and tight ends"
+        ],
+        "visual": {
+          "type": "player-highlight",
+          "position": "S", 
+          "actions": ["deep-coverage", "run-support", "tackle"]
+        }
+      },
+      {
+        "type": "concept-explanation",
+        "title": "Defensive Levels",
+        "content": "Defense works in three levels: the line (rush and stop runs), linebackers (middle coverage), and secondary (deep coverage).",
+        "visual": {
+          "type": "level-diagram",
+          "levels": [
+            {"name": "Defensive Line", "depth": "0-2 yards", "role": "Rush & Run Stop"},
+            {"name": "Linebackers", "depth": "3-8 yards", "role": "Middle Coverage"},
+            {"name": "Secondary", "depth": "8+ yards", "role": "Pass Coverage"}
+          ]
+        }
+      },
+      {
+        "type": "summary",
+        "title": "Defense Wins Games",
+        "content": "Each defensive position has a specific role, but they all work together to stop the offense and get the ball back for their team.",
+        "keyTakeaways": [
+          "DL rushes QB and stops runs up front", 
+          "LB covers middle areas and supports run defense",
+          "CB covers receivers and defends passes",
+          "S provides deep help and run support"
+        ]
+      }
+    ]
+  },
+  "quiz": {
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple-choice", 
+        "question": "Which defensive position primarily covers wide receivers?",
+        "options": [
+          "Linebacker",
+          "Defensive End",
+          "Cornerback", 
+          "Safety"
+        ],
+        "correct": 2,
+        "explanation": "Cornerbacks are the primary defenders who cover wide receivers and defend against passes."
+      },
+      {
+        "id": "q2",
+        "type": "multiple-choice",
+        "question": "What is the main job of the defensive line?",
+        "options": [
+          "Cover receivers",
+          "Rush QB and stop runs",
+          "Call defensive plays", 
+          "Intercept passes"
+        ],
+        "correct": 1,
+        "explanation": "The defensive line's main jobs are to rush the quarterback and stop running plays at the line."
+      },
+      {
+        "id": "q3",
+        "type": "multiple-choice",
+        "question": "How many levels does the defense typically have?", 
+        "options": [
+          "Two",
+          "Three",
+          "Four",
+          "Five"
+        ],
+        "correct": 1,
+        "explanation": "Defense has three levels: defensive line, linebackers, and secondary (cornerbacks and safeties)."
+      },
+      {
+        "id": "q4",
+        "type": "true-false",
+        "question": "Linebackers only defend against the pass.",
+        "options": ["True", "False"],
+        "correct": 1,
+        "explanation": "False. Linebackers both defend against passes and help stop running plays."
+      }
+    ]
+  },
+  "interactiveElements": [
+    {
+      "type": "defensive-scheme-builder",
+      "title": "Build Your Defense", 
+      "description": "Set up a defense to stop different offensive plays",
+      "scenarios": ["3rd and long", "goal line", "2-minute drill"]
+    },
+    {
+      "type": "coverage-matcher",
+      "title": "Match the Coverage",
+      "description": "Match defensive players to their coverage responsibilities", 
+      "coverages": ["man-to-man", "zone", "cover-2", "cover-3"]
+    }
+  ],
+  "achievements": [
+    {
+      "id": "defensive-coordinator", 
+      "name": "Defensive Coordinator",
+      "description": "Complete the defensive positions lesson",
+      "icon": "🛡️",
+      "points": 100
+    },
+    {
+      "id": "shutdown-corner",
+      "name": "Shutdown Corner", 
+      "description": "Perfect score on defensive positions quiz",
+      "icon": "🔒", 
+      "points": 150
+    }
+  ]
+}

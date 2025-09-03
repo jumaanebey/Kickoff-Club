@@ -1,6 +1,15 @@
+/* Import mobile enhancements */
+@import './styles/mobile-enhancements.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* CSS Custom Properties for dynamic theming */
+:root {
+  --animation-duration: 200ms;
+  --base-font-size: 1rem;
+}
 
 html, body, #root { height: 100%; }
 
@@ -10,6 +19,131 @@ body {
   color: #171717;
   line-height: 1.6;
   font-weight: 400;
+  font-size: var(--base-font-size);
+}
+
+/* Accessibility enhancements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus,
+.focus\:not-sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* High contrast mode */
+.high-contrast {
+  --tw-bg-gray-50: #000000;
+  --tw-bg-white: #000000;
+  --tw-text-gray-900: #ffffff;
+  --tw-text-gray-700: #ffffff;
+  --tw-text-gray-600: #ffffff;
+  --tw-border-gray-200: #ffffff;
+  --tw-bg-accent-600: #ffff00;
+  --tw-text-accent-600: #000000;
+}
+
+.high-contrast * {
+  background-color: black !important;
+  color: white !important;
+  border-color: white !important;
+}
+
+.high-contrast button,
+.high-contrast .btn-primary,
+.high-contrast .btn-secondary {
+  background-color: yellow !important;
+  color: black !important;
+  border: 2px solid white !important;
+}
+
+.high-contrast a {
+  color: yellow !important;
+  text-decoration: underline !important;
+}
+
+/* Screen reader optimizations */
+.screen-reader-mode * {
+  font-family: sans-serif !important;
+  line-height: 1.8 !important;
+}
+
+.screen-reader-mode img:not([alt]) {
+  display: none;
+}
+
+.screen-reader-mode [aria-hidden="true"] {
+  display: none !important;
+}
+
+/* Focus indicators for keyboard navigation */
+*:focus {
+  outline: 2px solid #e6b85c !important;
+  outline-offset: 2px !important;
+  border-radius: 4px !important;
+}
+
+/* Skip link styling */
+#skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #e6b85c;
+  color: #0b2545;
+  padding: 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+#skip-link:focus {
+  top: 6px;
+}
+
+/* Animation respecting user preferences */
+* {
+  animation-duration: var(--animation-duration) !important;
+  transition-duration: var(--animation-duration) !important;
+}
+
+/* Custom animations for accessibility toolbar */
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down var(--animation-duration) ease-out;
+}
+
+/* Keyboard navigation styles */
+.keyboard-user *:focus {
+  outline: 3px solid #e6b85c !important;
+  outline-offset: 3px !important;
 }
 
 @layer base {

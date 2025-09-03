@@ -1,0 +1,99 @@
+{
+  "id": "special-teams-basics",
+  "title": "Special Teams Explained",
+  "subtitle": "The Hidden Third of Football - Kicks, Punts, and Returns",
+  "duration": 90,
+  "difficulty": "intermediate",
+  "category": "positions",
+  "order": 7,
+  "prerequisites": ["scoring-touchdowns", "field-layout-basics"],
+  "unlocks": ["advanced-special-teams", "field-position-strategy"],
+  "badges": ["special-teams-specialist", "complete-player"],
+  "preview": {
+    "What you'll learn": [
+      "The three phases of football (offense, defense, special teams)",
+      "Kickoffs, punts, and field goals",
+      "Why special teams wins championships"
+    ],
+    "Key concepts": ["kickoff", "punt", "field goal", "return", "special teams"]
+  },
+  "script": {
+    "hook": "They say football is three games in one: offense, defense, and special teams. That third one? It decides more games than you'd think.",
+    "sections": [
+      {
+        "timestamp": "0:03-0:18",
+        "title": "The Third Phase",
+        "content": "Special teams handle all kicking plays: kickoffs to start drives, punts to flip field position, field goals to score, and extra points after touchdowns. These units feature specialists who only play these crucial moments.",
+        "onScreen": "three-way split: OFFENSE | DEFENSE | SPECIAL TEAMS with examples"
+      },
+      {
+        "timestamp": "0:18-0:33",
+        "title": "Kickoffs - Starting Fresh",
+        "content": "Games start with a kickoff from the 35-yard line. The kicker boots it deep, the receiving team catches and returns it. Where they're tackled determines field position. Great returns can swing momentum instantly.",
+        "onScreen": "kickoff formation + return path animation"
+      },
+      {
+        "timestamp": "0:33-0:48",
+        "title": "Punting - The Position Battle",
+        "content": "On 4th down, teams usually punt - kicking the ball away to make the opponent start farther back. The punter drops the ball and kicks it before it hits the ground. Good punts pin opponents deep; bad ones give them great field position.",
+        "onScreen": "punt trajectory + 'coffin corner' placement visual"
+      },
+      {
+        "timestamp": "0:48-1:03",
+        "title": "Field Goals - Three Point Attempts",
+        "content": "When teams can't score touchdowns but are close enough (usually within 50 yards), they attempt field goals. The kicker must send the ball through the uprights - those tall yellow posts. Distance and wind make this harder than it looks.",
+        "onScreen": "field goal attempt angles + success rates by distance chart"
+      },
+      {
+        "timestamp": "1:03-1:18",
+        "title": "Hidden Impact Players",
+        "content": "Special teams features unique positions: place kicker, punter, long snapper (snaps for kicks), holder (holds for field goals), returners (catch and run back kicks), and gunners (first ones downfield on punts). Each role is specialized.",
+        "onScreen": "special teams position grid with role descriptions"
+      },
+      {
+        "timestamp": "1:18-1:30",
+        "title": "Why It Matters",
+        "content": "Special teams accounts for 30% of plays but can determine 100% of outcomes. Blocked punts, missed field goals, and touchdown returns are game-changers. Never underestimate the kicking game!",
+        "onScreen": "'SPECIAL TEAMS WINS GAMES' + famous game-winning kicks montage"
+      }
+    ]
+  },
+  "quiz": {
+    "id": "special-teams-quiz",
+    "question": "It's 4th & 8 from the opponent's 35-yard line. Your team is up by 2 points with 3 minutes left. What's the best special teams decision?",
+    "options": [
+      "Attempt a 52-yard field goal",
+      "Punt to pin them deep",
+      "Try a fake punt",
+      "Go for the first down"
+    ],
+    "correctIndex": 0,
+    "explanation": "Good call! A 52-yard field goal is makeable for football kickers. If successful, you go up by 5 points (requiring a touchdown to beat you). Missing still leaves them at their 35 - not much different from a punt.",
+    "encouragement": "You understand special teams strategy! Field position and score determine these crucial decisions."
+  },
+  "keyTerms": [
+    {
+      "term": "Kickoff",
+      "definition": "A kick from the 35-yard line that starts each half and follows scoring plays"
+    },
+    {
+      "term": "Punt",
+      "definition": "A kick where the ball is dropped and kicked before hitting the ground, used to change possession"
+    },
+    {
+      "term": "Field Goal",
+      "definition": "A 3-point scoring attempt by kicking the ball through the uprights"
+    },
+    {
+      "term": "Touchback",
+      "definition": "When a kickoff or punt goes into the end zone and isn't returned, starting at the 25-yard line"
+    },
+    {
+      "term": "Coffin Corner",
+      "definition": "A punt aimed at landing out of bounds near the opponent's goal line"
+    }
+  ],
+  "videoUrl": "/assets/lessons/special-teams-basics.mp4",
+  "thumbnailUrl": "/assets/thumbnails/special-teams-basics.jpg",
+  "captionsUrl": "/assets/captions/special-teams-basics.vtt"
+}

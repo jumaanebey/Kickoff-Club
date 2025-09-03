@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { useRouter } from '../hooks/useRouter'
 
 export default function Nav() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { navigate, currentRoute } = useRouter()
 
   return (
     <nav className="bg-white/95 backdrop-blur-md border-b border-primary-100 sticky top-0 z-50">
@@ -20,24 +22,62 @@ export default function Nav() {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-1">
-              <a 
-                href="/" 
-                className="text-secondary-100 hover:text-accent-600 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50"
+              <button 
+                onClick={() => navigate('/')}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
+                  currentRoute.path === '/' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
+                }`}
               >
                 Home
-              </a>
-              <a 
-                href="/lessons" 
-                className="text-secondary-100 hover:text-accent-600 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50"
+              </button>
+              <button 
+                onClick={() => navigate('/lessons')}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
+                  currentRoute.path === '/lessons' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
+                }`}
               >
                 Lessons
-              </a>
-              <a 
-                href="/profile" 
-                className="text-secondary-100 hover:text-accent-600 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50"
+              </button>
+              <button 
+                onClick={() => navigate('/tracks')}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
+                  currentRoute.path === '/tracks' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
+                }`}
+              >
+                Learning Tracks
+              </button>
+              <button 
+                onClick={() => navigate('/demo')}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
+                  currentRoute.path === '/demo' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
+                }`}
+              >
+                Demo
+              </button>
+              <button 
+                onClick={() => navigate('/assessment')}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
+                  currentRoute.path === '/assessment' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
+                }`}
+              >
+                Assessment
+              </button>
+              <button 
+                onClick={() => navigate('/community')}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
+                  currentRoute.path === '/community' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
+                }`}
+              >
+                Community
+              </button>
+              <button 
+                onClick={() => navigate('/profile')}
+                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
+                  currentRoute.path === '/profile' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
+                }`}
               >
                 Profile
-              </a>
+              </button>
             </div>
           </div>
 
@@ -73,24 +113,62 @@ export default function Nav() {
       {isMenuOpen && (
         <div className="md:hidden animate-slide-down">
           <div className="px-4 pt-2 pb-4 space-y-2 bg-white border-t border-primary-100">
-            <a
-              href="/"
-              className="text-secondary-100 hover:text-accent-600 hover:bg-primary-50 block px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200"
+            <button
+              onClick={() => {navigate('/'); setIsMenuOpen(false)}}
+              className={`block w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                currentRoute.path === '/' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600 hover:bg-primary-50'
+              }`}
             >
               Home
-            </a>
-            <a
-              href="/lessons"
-              className="text-secondary-100 hover:text-accent-600 hover:bg-primary-50 block px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200"
+            </button>
+            <button
+              onClick={() => {navigate('/lessons'); setIsMenuOpen(false)}}
+              className={`block w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                currentRoute.path === '/lessons' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600 hover:bg-primary-50'
+              }`}
             >
               Lessons
-            </a>
-            <a
-              href="/profile"
-              className="text-secondary-100 hover:text-accent-600 hover:bg-primary-50 block px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200"
+            </button>
+            <button
+              onClick={() => {navigate('/tracks'); setIsMenuOpen(false)}}
+              className={`block w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                currentRoute.path === '/tracks' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600 hover:bg-primary-50'
+              }`}
+            >
+              Learning Tracks
+            </button>
+            <button
+              onClick={() => {navigate('/demo'); setIsMenuOpen(false)}}
+              className={`block w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                currentRoute.path === '/demo' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600 hover:bg-primary-50'
+              }`}
+            >
+              Demo
+            </button>
+            <button
+              onClick={() => {navigate('/assessment'); setIsMenuOpen(false)}}
+              className={`block w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                currentRoute.path === '/assessment' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600 hover:bg-primary-50'
+              }`}
+            >
+              Assessment
+            </button>
+            <button
+              onClick={() => {navigate('/community'); setIsMenuOpen(false)}}
+              className={`block w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                currentRoute.path === '/community' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600 hover:bg-primary-50'
+              }`}
+            >
+              Community
+            </button>
+            <button
+              onClick={() => {navigate('/profile'); setIsMenuOpen(false)}}
+              className={`block w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                currentRoute.path === '/profile' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600 hover:bg-primary-50'
+              }`}
             >
               Profile
-            </a>
+            </button>
             <div className="pt-2">
               <button className="btn-primary w-full text-sm">
                 Start Learning

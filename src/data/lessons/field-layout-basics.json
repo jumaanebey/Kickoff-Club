@@ -1,0 +1,91 @@
+{
+  "id": "field-layout-basics",
+  "title": "Field Layout Basics",
+  "subtitle": "Understanding the 120-Yard Battlefield",
+  "duration": 90,
+  "difficulty": "beginner",
+  "category": "basic-rules",
+  "order": 4,
+  "prerequisites": ["how-downs-work"],
+  "unlocks": ["offensive-strategy-101"],
+  "badges": ["field-expert"],
+  "preview": {
+    "What you'll learn": [
+      "Why the field is exactly 120 yards long",
+      "Hash marks, yard lines, and field zones",
+      "End zones and their special rules"
+    ],
+    "Key concepts": ["field dimensions", "hash marks", "end zone", "red zone"]
+  },
+  "script": {
+    "hook": "Every football field looks the same for good reason. 120 yards of precisely marked territory that creates the game's strategy.",
+    "sections": [
+      {
+        "timestamp": "0:03-0:16",
+        "title": "The 120-Yard Layout",
+        "content": "Football fields are 120 yards total: 100 yards of playing field plus two 10-yard end zones. This isn't random - it creates perfect balance between offense and defense.",
+        "onScreen": "aerial field view + '100 yards + 20 yards end zones = 120 total'"
+      },
+      {
+        "timestamp": "0:16-0:32",
+        "title": "Yard Lines and Numbers",
+        "content": "The big numbers you see go from 10 to 50 to 10, not 10 to 100. They show distance to the nearest goal line. When you're at the 30, you're 30 yards from scoring - no matter which direction.",
+        "onScreen": "field numbers animation showing 50-40-30-20-10 progression"
+      },
+      {
+        "timestamp": "0:32-0:48",
+        "title": "Hash Marks Matter",
+        "content": "Those small lines every yard are hash marks. They determine where plays start - always between the hashes if the previous play ended outside them. This keeps plays in the middle third of the field.",
+        "onScreen": "hash marks highlighted + ball placement demonstration"
+      },
+      {
+        "timestamp": "0:48-1:04",
+        "title": "The Red Zone",
+        "content": "The 'red zone' isn't painted red - it's the area within 20 yards of the goal line. Offenses score touchdowns about 60% of the time here, which is why announcers get excited when teams enter it.",
+        "onScreen": "red zone highlighted + '20 yards to TD = red zone'"
+      },
+      {
+        "timestamp": "1:04-1:20",
+        "title": "Goal Line Rules",
+        "content": "The goal line is special - it's technically part of the end zone. This means if any part of the ball breaks the plane above that line, it's a touchdown instantly, even if the player gets tackled.",
+        "onScreen": "goal line cross-section + ball breaking plane animation"
+      },
+      {
+        "timestamp": "1:20-1:30",
+        "title": "Quick Recap",
+        "content": "Remember: 120 yards total, numbers show distance to score, hash marks center the action, red zone means scoring territory.",
+        "onScreen": "field overview + key measurements summary"
+      }
+    ]
+  },
+  "quiz": {
+    "id": "field-layout-quiz",
+    "question": "A team has the ball at their own 35-yard line. How many yards do they need to travel to score a touchdown?",
+    "options": [
+      "35 yards",
+      "65 yards",
+      "85 yards",
+      "100 yards"
+    ],
+    "correctIndex": 1,
+    "explanation": "If they're at their own 35-yard line, they need to travel 65 yards to reach the opponent's goal line (35 + 30 + 30 + 20 + 10 = 65 from their 35 to the opponent's end zone).",
+    "encouragement": "Great spatial thinking! Understanding field position is crucial for following strategy."
+  },
+  "keyTerms": [
+    {
+      "term": "Hash Marks",
+      "definition": "Small yard markers that determine where plays can start on each down"
+    },
+    {
+      "term": "Red Zone",
+      "definition": "The area within 20 yards of the goal line where teams are likely to score"
+    },
+    {
+      "term": "Goal Line",
+      "definition": "The line that separates the field from the end zone - breaking this plane scores points"
+    }
+  ],
+  "videoUrl": "/assets/lessons/field-layout-basics.mp4",
+  "thumbnailUrl": "/assets/thumbnails/field-layout-basics.jpg",
+  "captionsUrl": "/assets/captions/field-layout-basics.vtt"
+}

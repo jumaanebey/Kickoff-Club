@@ -1,5 +1,6 @@
 // User progress tracking with localStorage
 import { getLessonById, getBadgeById, getLevelByPoints, pointSources } from '../data/lessonsIndex.js'
+import { badges, checkBadgeRequirement, getNextBadgeRecommendations } from '../data/achievements.js'
 
 const STORAGE_KEY = 'kickoff-club-progress'
 
@@ -36,7 +37,16 @@ const defaultProgress = {
   achievements: {
     streakRecords: [],
     milestones: [], // special achievement records
-    personalBests: {} // { category: value }
+    personalBests: {}, // { category: value }
+    perfectQuizStreak: 0, // consecutive perfect quiz scores
+    timeBasedLearning: { lateNight: false, earlyMorning: false },
+    interactiveUsage: { fieldDiagram: false, scoringSimulator: false, scenarios: false },
+    sessionRecords: { maxLessonsInSession: 0, currentSession: 0 }
+  },
+  tracks: {
+    completed: [],
+    inProgress: {},
+    unlocked: []
   }
 }
 
@@ -57,7 +67,8 @@ export const loadProgress = () => {
       lessons: { ...defaultProgress.lessons, ...progress.lessons },
       quizzes: { ...defaultProgress.quizzes, ...progress.quizzes },
       badges: { ...defaultProgress.badges, ...progress.badges },
-      achievements: { ...defaultProgress.achievements, ...progress.achievements }
+      achievements: { ...defaultProgress.achievements, ...progress.achievements },
+      tracks: { ...defaultProgress.tracks, ...progress.tracks }
     }
   } catch (error) {
     console.error('Failed to load progress:', error)
@@ -149,11 +160,27 @@ export const completeQuiz = (progress, quizId, score) => {
 
 // Check and award badges
 export const checkBadgeProgress = (progress) => {
-  const badges = getBadgeById() // This will need updating when we have the full badge system
-  // Badge checking logic will be implemented when we integrate with the badge system
+  const newBadges = []
+  
+  // Check all badges for new achievements
+  Object.values(badges).forEach(badge => {
+    const alreadyEarned = progress.badges.earned.some(earned => earned.badgeId === badge.id)
+    
+    if (!alreadyEarned && checkBadgeRequirement(progress, badge)) {
+      const earnedBadge = {
+        badgeId: badge.id,
+        earnedAt: new Date().toISOString(),
+        points: badge.points
+      }
+      
+      progress.badges.earned.push(earnedBadge)
+      progress = awardPoints(progress, badge.points, 'badgeEarned')
+      newBadges.push(badge)
+    }
+  })
   
   saveProgress(progress)
-  return progress
+  return { ...progress, newBadges }
 }
 
 // Update daily streak
@@ -238,4 +265,108 @@ export const importProgress = (exportedData) => {
 export const resetProgress = () => {
   localStorage.removeItem(STORAGE_KEY)
   return defaultProgress
+}
+
+// Track interactive component usage
+export const trackInteractiveUsage = (progress, component, action = 'used') => {
+  if (!progress.achievements.interactiveUsage) {
+    progress.achievements.interactiveUsage = {}
+  }
+  
+  progress.achievements.interactiveUsage[component] = true
+  
+  // Award points for first time usage
+  progress = awardPoints(progress, 5, 'interactiveEngagement')
+  
+  saveProgress(progress)
+  return checkBadgeProgress(progress)
+}
+
+// Track time-based learning patterns
+export const trackLearningTime = (progress) => {
+  const hour = new Date().getHours()
+  
+  if (!progress.achievements.timeBasedLearning) {
+    progress.achievements.timeBasedLearning = {}
+  }
+  
+  // Late night learning (midnight to 6 AM)
+  if (hour >= 0 && hour < 6) {
+    progress.achievements.timeBasedLearning.lateNight = true
+  }
+  
+  // Early morning learning (5 AM to 7 AM)  
+  if (hour >= 5 && hour < 7) {
+    progress.achievements.timeBasedLearning.earlyMorning = true
+  }
+  
+  saveProgress(progress)
+  return checkBadgeProgress(progress)
+}
+
+// Track session length and lesson completion streaks
+export const trackSessionProgress = (progress) => {
+  if (!progress.achievements.sessionRecords) {
+    progress.achievements.sessionRecords = { maxLessonsInSession: 0, currentSession: 0 }
+  }
+  
+  progress.achievements.sessionRecords.currentSession += 1
+  
+  if (progress.achievements.sessionRecords.currentSession > progress.achievements.sessionRecords.maxLessonsInSession) {
+    progress.achievements.sessionRecords.maxLessonsInSession = progress.achievements.sessionRecords.currentSession
+    
+    // Update personal bests
+    if (!progress.achievements.personalBests) {
+      progress.achievements.personalBests = {}
+    }
+    progress.achievements.personalBests.singleSession = progress.achievements.sessionRecords.maxLessonsInSession
+  }
+  
+  saveProgress(progress)
+  return checkBadgeProgress(progress)
+}
+
+// End session (call when user navigates away or after timeout)
+export const endSession = (progress) => {
+  if (progress.achievements.sessionRecords) {
+    progress.achievements.sessionRecords.currentSession = 0
+  }
+  saveProgress(progress)
+  return progress
+}
+
+// Track perfect quiz streak
+export const trackPerfectQuizStreak = (progress, score) => {
+  if (score === 100) {
+    progress.achievements.perfectQuizStreak = (progress.achievements.perfectQuizStreak || 0) + 1
+  } else {
+    progress.achievements.perfectQuizStreak = 0
+  }
+  
+  saveProgress(progress)
+  return checkBadgeProgress(progress)
+}
+
+// Get badge recommendations for user
+export const getProgressData = () => {
+  const progress = loadProgress()
+  return {
+    ...progress,
+    nextBadges: getNextBadgeRecommendations(progress),
+    earnedBadgeDetails: progress.badges.earned.map(earned => ({
+      ...earned,
+      badge: badges[earned.badgeId]
+    }))
+  }
+}
+
+// Complete track
+export const completeTrack = (progress, trackId) => {
+  if (!progress.tracks.completed.includes(trackId)) {
+    progress.tracks.completed.push(trackId)
+    progress = awardPoints(progress, 100, 'trackCompleted')
+  }
+  
+  saveProgress(progress)
+  return checkBadgeProgress(progress)
 }

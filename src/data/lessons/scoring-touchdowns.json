@@ -21,24 +21,34 @@
     "hook": "Everyone knows touchdowns are worth 6 points, right? Actually, that's just the beginning. Let's break down football's most exciting scoring play.",
     "sections": [
       {
-        "timestamp": "0:00-0:20",
+        "timestamp": "0:03-0:18",
         "title": "Getting Into The End Zone",
-        "content": "A touchdown happens when any part of the ball crosses the goal line while your team has possession. It doesn't matter if the player's body is in - only the ball needs to break the plane of that white line."
+        "content": "A touchdown happens when any part of the ball crosses the goal line while your team has possession. It doesn't matter if the player's body is in - only the ball needs to break the plane of that white line.",
+        "onScreen": "animated ball crossing goal line + 'BALL BREAKS PLANE = TOUCHDOWN'"
       },
       {
-        "timestamp": "0:20-0:45", 
+        "timestamp": "0:18-0:35", 
         "title": "The 6-Point Rule",
-        "content": "Touchdowns are worth exactly 6 points, not 7. That 7th point everyone talks about? That's separate - it comes from the extra point attempt that happens right after every touchdown."
+        "content": "Touchdowns are worth exactly 6 points, not 7. That 7th point everyone talks about? That's separate - it comes from the extra point attempt that happens right after every touchdown.",
+        "onScreen": "scoreboard: 'TOUCHDOWN = 6 pts' then '+1 EXTRA POINT = 7 total'"
       },
       {
-        "timestamp": "0:45-1:10",
+        "timestamp": "0:35-0:58",
         "title": "Bonus Round Choices",
-        "content": "After every touchdown, teams get one play from the 2-yard line. They can kick an extra point (almost automatic, worth 1 point) or try a 2-point conversion by running or passing it in (harder, but worth 2 points)."
+        "content": "After every touchdown, teams get one play from the 2-yard line. They can kick an extra point - almost automatic, worth 1 point - or try a 2-point conversion by running or passing it in. Harder, but worth 2 points.",
+        "onScreen": "split screen: extra point kick vs 2-point conversion attempt"
       },
       {
-        "timestamp": "1:10-1:30",
+        "timestamp": "0:58-1:18",
         "title": "Strategic Thinking",
-        "content": "Most teams take the safe 1-point kick to make it 7 total. But late in games, you'll see desperate teams go for 2 to tie or take the lead. It's risk vs reward in its purest form."
+        "content": "Most teams take the safe 1-point kick to make it 7 total. But late in games, you'll see desperate teams go for 2 to tie or take the lead. It's risk vs reward in its purest form.",
+        "onScreen": "game clock: 'LATE GAME' + decision tree: 'Need 2 to tie? GO FOR IT!'"
+      },
+      {
+        "timestamp": "1:18-1:30",
+        "title": "Quick Recap",
+        "content": "Remember: touchdown equals 6 points, then you choose your bonus. Most go for the easy extra point, but smart coaches know when to risk it all for 2.",
+        "onScreen": "formula: 'TD (6) + Choice (1 or 2) = 7 or 8 points' + CTA"
       }
     ]
   },

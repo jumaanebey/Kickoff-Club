@@ -1,0 +1,95 @@
+{
+  "id": "understanding-penalties",
+  "title": "Understanding Penalties",
+  "subtitle": "Yellow Flags, Yardage, and Why Rules Matter",
+  "duration": 90,
+  "difficulty": "intermediate",
+  "category": "advanced-rules",
+  "order": 5,
+  "prerequisites": ["how-downs-work", "field-layout-basics"],
+  "unlocks": ["referee-signals", "strategy-advanced"],
+  "badges": ["penalty-expert", "rules-master"],
+  "preview": {
+    "What you'll learn": [
+      "What yellow flags mean and why they're thrown",
+      "Common penalties and their yardage costs",
+      "How penalties can change game momentum"
+    ],
+    "Key concepts": ["penalty", "yellow flag", "false start", "holding", "pass interference"]
+  },
+  "script": {
+    "hook": "See that yellow flag flying? Someone broke a rule. Let's decode what penalties mean and why they're game-changers.",
+    "sections": [
+      {
+        "timestamp": "0:03-0:15",
+        "title": "The Yellow Flag System",
+        "content": "When a referee sees a rule violation, they throw a yellow flag. The play usually continues, then refs huddle to decide the penalty. It's like getting a ticket - you broke a rule, now there's a consequence.",
+        "onScreen": "yellow flag animation + 'PENALTY = rule violation'"
+      },
+      {
+        "timestamp": "0:15-0:30",
+        "title": "Common 5-Yard Penalties",
+        "content": "False start - offense moves before the snap. Offside - defense crosses the line early. Delay of game - taking too long to start a play. These are minor violations that cost 5 yards.",
+        "onScreen": "split screen: false start, offside, delay of game animations"
+      },
+      {
+        "timestamp": "0:30-0:45",
+        "title": "Major 10-15 Yard Penalties",
+        "content": "Holding - illegally grabbing a player, costs 10 yards. Unnecessary roughness - hitting too hard or late, 15 yards. Pass interference can be huge - the ball moves to where the foul happened.",
+        "onScreen": "holding grip + roughness hit + interference examples"
+      },
+      {
+        "timestamp": "0:45-1:00",
+        "title": "Accept or Decline",
+        "content": "Here's the twist - the team that didn't commit the penalty can decline it. If you gained 20 yards but the defense was offside for 5, you'd decline and keep your 20-yard gain. It's strategic choice.",
+        "onScreen": "decision tree: 'Accept penalty' vs 'Decline and keep play result'"
+      },
+      {
+        "timestamp": "1:00-1:15",
+        "title": "Automatic First Downs",
+        "content": "Some defensive penalties don't just add yards - they give automatic first downs. Defensive holding, pass interference, roughing the passer. These keep drives alive even on 3rd & long.",
+        "onScreen": "chain crew moving + 'AUTOMATIC 1ST DOWN' indicator"
+      },
+      {
+        "timestamp": "1:15-1:30",
+        "title": "Quick Recap",
+        "content": "Yellow flag means penalty. Minor fouls cost 5 yards, major ones 10-15 or more. Teams can decline penalties, and some give automatic first downs. Penalties change games!",
+        "onScreen": "penalty summary chart + key takeaways"
+      }
+    ]
+  },
+  "quiz": {
+    "id": "understanding-penalties-quiz",
+    "question": "The offense gains 8 yards on a play, but the defense committed a 5-yard offside penalty. What should the offense do?",
+    "options": [
+      "Accept the penalty and replay the down with 5 extra yards",
+      "Decline the penalty and keep the 8-yard gain",
+      "Both penalties offset, replay the down",
+      "The play doesn't count at all"
+    ],
+    "correctIndex": 1,
+    "explanation": "Smart choice! Since the offense gained 8 yards (more than the 5-yard penalty would give), they should decline the penalty and keep their bigger gain.",
+    "encouragement": "You understand penalty strategy! Knowing when to accept or decline is crucial."
+  },
+  "keyTerms": [
+    {
+      "term": "Penalty",
+      "definition": "A rule violation that results in yardage loss or gain depending on who committed it"
+    },
+    {
+      "term": "False Start",
+      "definition": "When an offensive player moves before the ball is snapped (5-yard penalty)"
+    },
+    {
+      "term": "Holding",
+      "definition": "Illegally grabbing or restraining an opponent (10-yard penalty)"
+    },
+    {
+      "term": "Pass Interference",
+      "definition": "Illegally preventing a receiver from catching the ball (spot foul or 15 yards)"
+    }
+  ],
+  "videoUrl": "/assets/lessons/understanding-penalties.mp4",
+  "thumbnailUrl": "/assets/thumbnails/understanding-penalties.jpg",
+  "captionsUrl": "/assets/captions/understanding-penalties.vtt"
+}

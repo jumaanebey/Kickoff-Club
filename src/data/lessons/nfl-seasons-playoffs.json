@@ -1,0 +1,205 @@
+{
+  "id": "nfl-seasons-playoffs",
+  "title": "football Season & Playoff Structure", 
+  "description": "Learn how the football season works and how teams make the playoffs",
+  "duration": 140,
+  "difficulty": "intermediate",
+  "category": "basic-rules",
+  "thumb": "/images/lessons/playoffs.jpg", 
+  "videoUrl": "/videos/lessons/playoffs.mp4",
+  "prerequisites": ["how-downs-work"],
+  "topics": ["season", "playoffs", "super-bowl", "schedule", "standings"],
+  "content": {
+    "sections": [
+      {
+        "type": "introduction",
+        "title": "The football Year",
+        "content": "The football season is more than just games - it's a journey from August to February with regular season, playoffs, and the Super Bowl.",
+        "visual": {
+          "type": "timeline", 
+          "events": ["Preseason", "Regular Season", "Playoffs", "Super Bowl"]
+        }
+      },
+      {
+        "type": "concept-explanation",
+        "title": "Regular Season Structure",
+        "content": "Each football team plays 17 regular season games over 18 weeks, with one bye week for rest.",
+        "details": [
+          "32 teams divided into 2 conferences (AFC and NFC)",
+          "Each conference has 4 divisions with 4 teams each", 
+          "Teams play 17 games from September to January",
+          "Games are mostly on Sundays, with some Thursday and Monday games"
+        ],
+        "visual": {
+          "type": "conference-structure",
+          "conferences": {
+            "AFC": ["East", "North", "South", "West"],
+            "NFC": ["East", "North", "South", "West"]
+          }
+        }
+      },
+      {
+        "type": "concept-explanation", 
+        "title": "How Teams Make the Playoffs",
+        "content": "Only 14 of the 32 football teams make the playoffs - 7 from each conference based on their regular season record.",
+        "details": [
+          "4 division winners automatically qualify",
+          "3 'wild card' teams with best records among non-winners",
+          "Teams are seeded 1-7 based on record and tiebreakers",
+          "Higher seeds get home field advantage"
+        ],
+        "visual": {
+          "type": "playoff-bracket-structure",
+          "rounds": ["Wild Card", "Divisional", "Conference Championship", "Super Bowl"]
+        }
+      },
+      {
+        "type": "concept-explanation",
+        "title": "Playoff Format", 
+        "content": "The playoffs are single elimination - lose and you're out! It's a 4-round tournament leading to the Super Bowl.",
+        "details": [
+          "Wild Card Round: Seeds 2-7 play (1 seed gets bye)",
+          "Divisional Round: Winners vs top seeds",
+          "Conference Championships: AFC and NFC title games", 
+          "Super Bowl: AFC champion vs NFC champion"
+        ],
+        "visual": {
+          "type": "bracket-diagram",
+          "structure": "single-elimination",
+          "rounds": 4
+        }
+      },
+      {
+        "type": "concept-explanation",
+        "title": "The Super Bowl",
+        "content": "The Super Bowl is the football championship game - the biggest sporting event in America held on the first Sunday in February.",
+        "details": [
+          "Most watched TV event of the year",
+          "Held at a neutral site chosen years in advance", 
+          "Winner gets the Lombardi Trophy",
+          "Features elaborate halftime show and expensive commercials"
+        ],
+        "visual": {
+          "type": "super-bowl-facts",
+          "stats": {
+            "viewership": "100+ million",
+            "commercialCost": "$7 million per 30 seconds",
+            "location": "Neutral site"
+          }
+        }
+      },
+      {
+        "type": "concept-explanation",
+        "title": "Draft and Offseason",
+        "content": "After the Super Bowl, teams prepare for next season with the football Draft, free agency, and training camp.", 
+        "details": [
+          "football Draft: Teams select college players (7 rounds)",
+          "Free Agency: Players can sign with new teams",
+          "Training Camp: Teams practice and cut to final roster",
+          "Preseason: Practice games before regular season"
+        ],
+        "visual": {
+          "type": "offseason-timeline",
+          "events": ["Draft", "Free Agency", "Training Camp", "Preseason"]
+        }
+      },
+      {
+        "type": "summary",
+        "title": "The Complete football Experience",
+        "content": "The football season is a year-long cycle of competition, with the ultimate goal being a Super Bowl championship.",
+        "keyTakeaways": [
+          "17 regular season games determine playoff seeding",
+          "14 teams make playoffs (7 per conference)", 
+          "Single elimination playoffs lead to Super Bowl",
+          "Season runs from September to February"
+        ]
+      }
+    ]
+  },
+  "quiz": {
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple-choice",
+        "question": "How many regular season games does each football team play?",
+        "options": [
+          "16 games",
+          "17 games", 
+          "18 games",
+          "20 games"
+        ],
+        "correct": 1,
+        "explanation": "Each football team plays 17 regular season games over 18 weeks (with one bye week)."
+      },
+      {
+        "id": "q2",
+        "type": "multiple-choice", 
+        "question": "How many teams from each conference make the playoffs?",
+        "options": [
+          "6 teams",
+          "7 teams",
+          "8 teams", 
+          "10 teams"
+        ],
+        "correct": 1,
+        "explanation": "7 teams from each conference (AFC and NFC) make the playoffs, for a total of 14 playoff teams."
+      },
+      {
+        "id": "q3",
+        "type": "multiple-choice",
+        "question": "What type of tournament are the football playoffs?",
+        "options": [
+          "Round robin",
+          "Double elimination", 
+          "Single elimination",
+          "Best of 3 series"
+        ],
+        "correct": 2,
+        "explanation": "football playoffs are single elimination - if you lose one game, your season is over."
+      },
+      {
+        "id": "q4",
+        "type": "multiple-choice",
+        "question": "When is the Super Bowl typically played?", 
+        "options": [
+          "Last Sunday in January",
+          "First Sunday in February",
+          "Second Sunday in February",
+          "First Sunday in March"
+        ],
+        "correct": 1,
+        "explanation": "The Super Bowl is played on the first Sunday in February each year."
+      }
+    ]
+  },
+  "interactiveElements": [
+    {
+      "type": "playoff-bracket-builder",
+      "title": "Build the Bracket",
+      "description": "Set up a playoff bracket and predict the winners",
+      "features": ["team-selection", "score-prediction", "upset-tracker"]
+    },
+    {
+      "type": "schedule-analyzer", 
+      "title": "Strength of Schedule",
+      "description": "Analyze different team schedules and predict records",
+      "tools": ["difficulty-rating", "win-loss-predictor"]
+    }
+  ],
+  "achievements": [
+    {
+      "id": "playoff-expert",
+      "name": "Playoff Expert",
+      "description": "Master the football season and playoff structure",
+      "icon": "🏆", 
+      "points": 125
+    },
+    {
+      "id": "bracket-buster",
+      "name": "Bracket Buster",
+      "description": "Perfect score on season/playoffs quiz",
+      "icon": "📊",
+      "points": 175
+    }
+  ]
+}

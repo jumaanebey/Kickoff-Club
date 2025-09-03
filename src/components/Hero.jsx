@@ -16,7 +16,7 @@ export default function Hero({ onStart }) {
           <div className="text-center lg:text-left animate-fade-in">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-100 text-secondary-100 text-sm font-medium mb-6">
               <span className="mr-2">🏈</span>
-              New to NFL? We've got you covered
+              New to pro football? We've got you covered
             </div>
             
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-secondary-100 leading-tight mb-6">
@@ -27,7 +27,7 @@ export default function Hero({ onStart }) {
             </h1>
             
             <p className="text-xl text-secondary-200 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Bite-size lessons that turn NFL chaos into "I totally get it now." 
+              Bite-size lessons that turn pro football chaos into "I totally get it now." 
               Start with a 90-second explainer that actually makes sense.
             </p>
             

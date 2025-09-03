@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Assessment Debug Test</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .debug-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>NFL Assessment Debug Test</h1>
+    
+    <div class="debug-section">
+        <h2>Server Status</h2>
+        <div id="server-status">Checking...</div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>Assessment Page Test</h2>
+        <div id="assessment-test">Testing...</div>
+    </div>
+    
+    <div class="debug-section">
+        <h2>Component Loading Test</h2>
+        <div id="component-test">Testing...</div>
+    </div>
+
+    <script>
+        // Test server connectivity
+        fetch('http://localhost:5179/')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('server-status').innerHTML = 
+                    '<span class="success">✓ Server is running on port 5179</span>';
+            })
+            .catch(error => {
+                document.getElementById('server-status').innerHTML = 
+                    '<span class="error">✗ Server connection failed: ' + error.message + '</span>';
+            });
+
+        // Test assessment page
+        fetch('http://localhost:5179/assessment')
+            .then(response => response.text())
+            .then(data => {
+                if (data.includes('root')) {
+                    document.getElementById('assessment-test').innerHTML = 
+                        '<span class="success">✓ Assessment page loads HTML correctly</span>';
+                } else {
+                    document.getElementById('assessment-test').innerHTML = 
+                        '<span class="error">✗ Assessment page HTML structure incorrect</span>';
+                }
+            })
+            .catch(error => {
+                document.getElementById('assessment-test').innerHTML = 
+                    '<span class="error">✗ Assessment page failed to load: ' + error.message + '</span>';
+            });
+
+        // Test component structure
+        setTimeout(() => {
+            const issues = [];
+            
+            // Test basic React setup
+            if (typeof React === 'undefined') {
+                issues.push('React not available');
+            }
+            
+            if (typeof ReactDOM === 'undefined') {
+                issues.push('ReactDOM not available');
+            }
+            
+            if (issues.length === 0) {
+                document.getElementById('component-test').innerHTML = 
+                    '<span class="success">✓ Basic React environment is working</span>';
+            } else {
+                document.getElementById('component-test').innerHTML = 
+                    '<span class="error">✗ Issues found: ' + issues.join(', ') + '</span>';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

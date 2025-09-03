@@ -1,0 +1,197 @@
+{
+  "id": "offensive-positions",
+  "title": "Offensive Positions Explained",
+  "description": "Learn about the key offensive positions and what each player does",
+  "duration": 120,
+  "difficulty": "beginner",
+  "category": "positions",
+  "thumb": "/images/lessons/offensive-positions.jpg",
+  "videoUrl": "/videos/lessons/offensive-positions.mp4",
+  "prerequisites": ["field-layout-basics"],
+  "topics": ["offense", "positions", "quarterback", "running-back", "wide-receiver"],
+  "content": {
+    "sections": [
+      {
+        "type": "introduction",
+        "title": "Meet the Offense",
+        "content": "The offense is the team with the ball trying to score. Let's meet the key players and understand what each position does.",
+        "visual": {
+          "type": "formation-diagram",
+          "formation": "basic-offense",
+          "highlightPositions": ["QB", "RB", "WR", "TE", "OL"]
+        }
+      },
+      {
+        "type": "position-breakdown",
+        "title": "The Quarterback (QB)",
+        "content": "The quarterback is like the field general - they get the ball on every play and decide what to do with it.",
+        "details": [
+          "Throws passes to receivers",
+          "Hands off the ball to running backs", 
+          "Makes quick decisions under pressure",
+          "Calls plays and audibles at the line"
+        ],
+        "visual": {
+          "type": "player-highlight",
+          "position": "QB",
+          "actions": ["pass", "handoff", "scramble"]
+        }
+      },
+      {
+        "type": "position-breakdown", 
+        "title": "Running Backs (RB)",
+        "content": "Running backs are the workhorses who carry the ball and catch passes out of the backfield.",
+        "details": [
+          "Carry the ball on running plays",
+          "Catch short passes from the QB",
+          "Block for the quarterback",
+          "Must be fast and tough"
+        ],
+        "visual": {
+          "type": "player-highlight",
+          "position": "RB", 
+          "actions": ["run", "catch", "block"]
+        }
+      },
+      {
+        "type": "position-breakdown",
+        "title": "Wide Receivers (WR)",
+        "content": "These are the speed demons who run precise routes to catch passes downfield.",
+        "details": [
+          "Run specific pass routes",
+          "Catch passes from the quarterback", 
+          "Create separation from defenders",
+          "Need great hands and speed"
+        ],
+        "visual": {
+          "type": "route-diagram",
+          "routes": ["slant", "out", "post", "go"]
+        }
+      },
+      {
+        "type": "position-breakdown",
+        "title": "Tight Ends (TE)", 
+        "content": "Tight ends are versatile players who can both block like linemen and catch like receivers.",
+        "details": [
+          "Block on running plays",
+          "Catch passes over the middle",
+          "Usually bigger than wide receivers",
+          "Hybrid blocker/receiver role"
+        ],
+        "visual": {
+          "type": "player-highlight",
+          "position": "TE",
+          "actions": ["block", "catch", "route"]
+        }
+      },
+      {
+        "type": "position-breakdown",
+        "title": "Offensive Line (OL)",
+        "content": "The big guys up front who protect the quarterback and create holes for running backs.",
+        "details": [
+          "5 players: Center, 2 Guards, 2 Tackles",
+          "Protect the quarterback from rushers",
+          "Block defenders on running plays", 
+          "Usually the biggest players on the team"
+        ],
+        "visual": {
+          "type": "line-formation",
+          "positions": ["LT", "LG", "C", "RG", "RT"]
+        }
+      },
+      {
+        "type": "summary",
+        "title": "Working Together",
+        "content": "All 11 offensive players must work together on every play. Each position has a specific job, but they all depend on each other to move the ball and score points.",
+        "keyTakeaways": [
+          "QB leads the offense and handles the ball",
+          "RB carries the ball and catches short passes",
+          "WR run routes and catch passes downfield", 
+          "TE blocks and catches passes",
+          "OL protects QB and blocks for RB"
+        ]
+      }
+    ]
+  },
+  "quiz": {
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple-choice",
+        "question": "Who touches the ball on every offensive play?",
+        "options": [
+          "Running Back",
+          "Quarterback", 
+          "Wide Receiver",
+          "Center"
+        ],
+        "correct": 1,
+        "explanation": "The quarterback receives the snap on every play and decides whether to throw, hand off, or run."
+      },
+      {
+        "id": "q2", 
+        "type": "multiple-choice",
+        "question": "What is the main job of the offensive line?",
+        "options": [
+          "Catch passes",
+          "Run with the ball",
+          "Protect the QB and block",
+          "Call plays"
+        ],
+        "correct": 2,
+        "explanation": "The offensive line's main job is to protect the quarterback and create holes for running backs."
+      },
+      {
+        "id": "q3",
+        "type": "multiple-choice", 
+        "question": "Which position is known for running precise pass routes?",
+        "options": [
+          "Tight End",
+          "Running Back", 
+          "Wide Receiver",
+          "Center"
+        ],
+        "correct": 2,
+        "explanation": "Wide receivers are known for running precise routes to get open and catch passes."
+      },
+      {
+        "id": "q4",
+        "type": "true-false",
+        "question": "Tight ends can both block and catch passes.",
+        "options": ["True", "False"],
+        "correct": 0,
+        "explanation": "Tight ends are versatile players who both block like linemen and catch passes like receivers."
+      }
+    ]
+  },
+  "interactiveElements": [
+    {
+      "type": "formation-builder",
+      "title": "Build Your Offense", 
+      "description": "Drag players to their correct positions in a basic offensive formation",
+      "positions": ["QB", "RB", "WR1", "WR2", "TE", "LT", "LG", "C", "RG", "RT"]
+    },
+    {
+      "type": "route-runner",
+      "title": "Run the Route",
+      "description": "Help the wide receiver run the correct route to get open",
+      "routes": ["slant", "out", "comeback", "post"]
+    }
+  ],
+  "achievements": [
+    {
+      "id": "position-master",
+      "name": "Position Master", 
+      "description": "Complete the offensive positions lesson",
+      "icon": "🏈",
+      "points": 100
+    },
+    {
+      "id": "perfect-quiz",
+      "name": "Offensive Genius",
+      "description": "Get 100% on the offensive positions quiz", 
+      "icon": "🎯",
+      "points": 150
+    }
+  ]
+}
