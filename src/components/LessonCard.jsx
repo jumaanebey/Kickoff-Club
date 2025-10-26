@@ -21,11 +21,6 @@ export default function LessonCard({ lesson, onClick }) {
           </div>
         </div>
 
-        {/* Duration Badge */}
-        <div className="absolute top-3 right-3 bg-gray-900/80 text-white px-2 py-1 rounded-lg text-xs font-medium backdrop-blur-sm">
-          {lesson.duration}s
-        </div>
-
         {/* Difficulty Badge */}
         <div className="absolute top-3 left-3 bg-primary-100 text-primary-700 px-2 py-1 rounded-lg text-xs font-medium">
           Beginner

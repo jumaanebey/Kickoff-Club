@@ -47,12 +47,12 @@ export default function DiscussionForums() {
     {
       id: 'general',
       title: '💬 General Discussion',
-      description: 'General NFL talk, questions, and conversations',
+      description: 'General football talk, questions, and conversations',
       category: 'general',
       topicsCount: 1247,
       postsCount: 8934,
       lastActivity: {
-        user: 'NFLFanatic2024',
+        user: 'footballFanatic2024',
         time: '2 minutes ago',
         topic: 'Best rookie performances this season?'
       },
@@ -61,7 +61,7 @@ export default function DiscussionForums() {
     {
       id: 'rules-questions',
       title: '❓ Rules & Regulations',
-      description: 'Ask questions about NFL rules and get expert answers',
+      description: 'Ask questions about football rules and get expert answers',
       category: 'learning',
       topicsCount: 892,
       postsCount: 5467,
@@ -162,7 +162,7 @@ export default function DiscussionForums() {
     const basePosts = [
       {
         id: 1,
-        title: 'Welcome to the NFL Learning Community! 📋',
+        title: 'Welcome to the football Learning Community! 📋',
         author: {
           username: 'KickoffClubModerator',
           displayName: 'Moderator Team',
@@ -181,7 +181,7 @@ export default function DiscussionForums() {
 
 **Getting Started:**
 • Introduce yourself in the General Discussion
-• Check out the Beginner Corner if you're new to NFL
+• Check out the Beginner Corner if you're new to football
 • Use the search function before posting questions
 
 Happy learning! 🏈`,
@@ -205,7 +205,7 @@ Happy learning! 🏈`,
           id: 2,
           title: 'Best rookie performances this season? 🌟',
           author: {
-            username: 'NFLFanatic2024',
+            username: 'footballFanatic2024',
             displayName: 'Mike Johnson',
             avatar: '🏈',
             level: 'expert-level',
@@ -379,7 +379,7 @@ Happy learning! 🏈`,
           <div className="text-4xl mb-4">💬</div>
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Join the Discussion</h2>
           <p className="text-gray-600 mb-6">
-            Create an account to participate in our community forums, ask questions, and share your NFL knowledge!
+            Create an account to participate in our community forums, ask questions, and share your football knowledge!
           </p>
           <button className="btn-primary">
             Create Account
@@ -398,7 +398,7 @@ Happy learning! 🏈`,
             💬 Discussion Forums
           </h1>
           <p className="text-xl text-gray-600">
-            Connect with fellow learners and share your NFL knowledge
+            Connect with fellow learners and share your football knowledge
           </p>
         </div>
         

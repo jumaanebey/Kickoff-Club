@@ -28,7 +28,7 @@ function SimpleTestPage() {
       </div>
 
       <div className="card border-2 border-sage-200 bg-sage-50">
-        <h3 className="text-xl font-bold text-secondary-100 mb-4">🏈 NFL Fundamentals Track</h3>
+        <h3 className="text-xl font-bold text-secondary-100 mb-4">🏈 football Fundamentals Track</h3>
         <p className="text-secondary-200 mb-4">
           Master the essential concepts that make football work. Perfect for complete beginners.
         </p>

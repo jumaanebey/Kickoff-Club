@@ -187,7 +187,7 @@ export default function ProfilePage() {
             <div className="text-center">
               <h2 className="text-2xl font-bold text-secondary-100 mb-2">Your Badge Collection</h2>
               <p className="text-secondary-200">
-                Earn badges by completing lessons and mastering NFL concepts
+                Earn badges by completing lessons and mastering football concepts
               </p>
             </div>
 

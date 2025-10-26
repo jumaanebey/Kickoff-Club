@@ -1,5 +1,5 @@
 // Adaptive loading component with accessibility
-import React from 'react'
+import React, { memo } from 'react'
 
 const LoadingSpinner = ({ size = 'medium', message = 'Loading...', minimal = false }) => {
   const sizeClasses = {
@@ -44,4 +44,4 @@ const LoadingSpinner = ({ size = 'medium', message = 'Loading...', minimal = fal
   )
 }
 
-export default LoadingSpinner
+export default memo(LoadingSpinner)

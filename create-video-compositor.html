@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kickoff Club Video Compositor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #1a1a1a;
+            color: white;
+            min-height: 100vh;
+        }
+
+        .compositor {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            height: 100vh;
+        }
+
+        .controls {
+            background: #2a2a2a;
+            padding: 20px;
+            border-right: 1px solid #444;
+            overflow-y: auto;
+        }
+
+        .preview {
+            position: relative;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            aspect-ratio: 16/9;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .synthesia-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+        }
+
+        .graphics-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .control-section {
+            margin-bottom: 30px;
+        }
+
+        .control-section h3 {
+            margin-bottom: 15px;
+            color: #4ECDC4;
+            border-bottom: 2px solid #4ECDC4;
+            padding-bottom: 5px;
+        }
+
+        .control-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            background: #444;
+            border: 1px solid #666;
+            border-radius: 4px;
+            color: white;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #4ECDC4;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #45B7D1;
+        }
+
+        .export-btn {
+            background: #FF6B35;
+        }
+
+        .export-btn:hover {
+            background: #E85A4F;
+        }
+
+        .timeline {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            height: 80px;
+            background: rgba(0,0,0,0.8);
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .timeline-track {
+            position: relative;
+            height: 8px;
+            background: #444;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-progress {
+            height: 100%;
+            background: #4ECDC4;
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.1s;
+        }
+
+        .timeline-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .timeline-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #666;
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .timeline-btn:hover {
+            background: #777;
+        }
+
+        .play-btn {
+            background: #4ECDC4 !important;
+        }
+
+        .instructions {
+            background: #333;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        #synthesia-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="compositor">
+        <div class="controls">
+            <div class="control-section">
+                <h3>📹 Synthesia Video</h3>
+                <div class="control-group">
+                    <label>Upload your Synthesia video:</label>
+                    <input type="file" id="synthesia-upload" accept="video/*">
+                </div>
+                <div class="control-group">
+                    <label>Or use test video:</label>
+                    <button onclick="loadTestVideo()">Load Test Video</button>
+                </div>
+            </div>
+
+            <div class="control-section">
+                <h3>🎨 Graphics Overlay</h3>
+                <div class="control-group">
+                    <label>Football Field Opacity:</label>
+                    <input type="range" id="field-opacity" min="0" max="100" value="70">
+                </div>
+                <div class="control-group">
+                    <label>Text Size:</label>
+                    <input type="range" id="text-size" min="50" max="200" value="100">
+                </div>
+                <div class="control-group">
+                    <label>Animation Speed:</label>
+                    <input type="range" id="animation-speed" min="50" max="200" value="100">
+                </div>
+                <button onclick="toggleGraphics()">Toggle Graphics</button>
+                <button onclick="previewOverlay()">Preview Overlay</button>
+            </div>
+
+            <div class="control-section">
+                <h3>⚙️ Timing Controls</h3>
+                <div class="control-group">
+                    <label>4 Downs Text (5s):</label>
+                    <input type="range" id="four-downs-timing" min="0" max="20" value="5" step="0.5">
+                </div>
+                <div class="control-group">
+                    <label>Field Animation (2s):</label>
+                    <input type="range" id="field-timing" min="0" max="20" value="2" step="0.5">
+                </div>
+                <div class="control-group">
+                    <label>Fresh Downs (30s):</label>
+                    <input type="range" id="fresh-downs-timing" min="20" max="40" value="30" step="0.5">
+                </div>
+                <button onclick="syncTiming()">Sync with Audio</button>
+            </div>
+
+            <div class="control-section">
+                <h3>🎬 Export</h3>
+                <button class="export-btn" onclick="startRecording()">🔴 Start Recording</button>
+                <button onclick="stopRecording()">⏹️ Stop Recording</button>
+                <button onclick="downloadVideo()">💾 Download Video</button>
+            </div>
+
+            <div class="instructions">
+                <strong>Instructions:</strong><br>
+                1. Upload your Synthesia green screen video<br>
+                2. Adjust graphics overlay settings<br>
+                3. Fine-tune timing controls<br>
+                4. Record the composite video<br>
+                5. Download your final YouTube-style video!
+            </div>
+        </div>
+
+        <div class="preview">
+            <div class="video-container">
+                <div class="synthesia-layer">
+                    <video id="synthesia-video" style="display: none;"></video>
+                    <div id="placeholder">Upload Synthesia video to begin</div>
+                </div>
+                
+                <iframe id="graphics-overlay" 
+                        src="create-motion-graphics-overlay.html" 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0"
+                        style="pointer-events: none; opacity: 0.8;">
+                </iframe>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-track">
+                    <div class="timeline-progress" id="timeline-progress"></div>
+                </div>
+                <div class="timeline-controls">
+                    <button class="timeline-btn" onclick="seek(-10)">⏪</button>
+                    <button class="timeline-btn" onclick="seek(-5)">⏮</button>
+                    <button class="timeline-btn play-btn" onclick="togglePlay()" id="play-btn">▶️</button>
+                    <button class="timeline-btn" onclick="seek(5)">⏭</button>
+                    <button class="timeline-btn" onclick="seek(10)">⏩</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="status" id="status">Ready to composite</div>
+
+    <script>
+        class VideoCompositor {
+            constructor() {
+                this.video = null;
+                this.isPlaying = false;
+                this.isRecording = false;
+                this.mediaRecorder = null;
+                this.recordedChunks = [];
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                // File upload
+                document.getElementById('synthesia-upload').addEventListener('change', (e) => {
+                    this.loadVideo(e.target.files[0]);
+                });
+
+                // Control updates
+                document.getElementById('field-opacity').addEventListener('input', (e) => {
+                    this.updateGraphicsOpacity(e.target.value);
+                });
+
+                document.getElementById('text-size').addEventListener('input', (e) => {
+                    this.updateTextSize(e.target.value);
+                });
+
+                document.getElementById('animation-speed').addEventListener('input', (e) => {
+                    this.updateAnimationSpeed(e.target.value);
+                });
+
+                // Timing controls
+                ['four-downs-timing', 'field-timing', 'fresh-downs-timing'].forEach(id => {
+                    document.getElementById(id).addEventListener('input', (e) => {
+                        this.updateTiming(id, e.target.value);
+                    });
+                });
+            }
+
+            loadVideo(file) {
+                if (!file) return;
+
+                const video = document.getElementById('synthesia-video');
+                const placeholder = document.getElementById('placeholder');
+                
+                video.src = URL.createObjectURL(file);
+                video.style.display = 'block';
+                placeholder.style.display = 'none';
+                
+                video.addEventListener('loadedmetadata', () => {
+                    this.video = video;
+                    this.updateStatus('Video loaded successfully');
+                });
+
+                video.addEventListener('timeupdate', () => {
+                    this.updateTimeline();
+                });
+            }
+
+            loadTestVideo() {
+                const video = document.getElementById('synthesia-video');
+                const placeholder = document.getElementById('placeholder');
+                
+                // Create a test pattern
+                placeholder.innerHTML = `
+                    <div style="text-align: center; padding: 40px;">
+                        <h2 style="color: white; margin-bottom: 20px;">Test Video Mode</h2>
+                        <p style="color: #ccc;">Simulating Synthesia presenter</p>
+                        <div style="width: 200px; height: 250px; background: rgba(255,255,255,0.1); margin: 20px auto; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 48px;">👩‍🏫</div>
+                    </div>
+                `;
+                
+                this.updateStatus('Test mode activated');
+            }
+
+            updateGraphicsOpacity(value) {
+                const overlay = document.getElementById('graphics-overlay');
+                overlay.style.opacity = value / 100;
+            }
+
+            updateTextSize(value) {
+                // Send message to overlay iframe to update text size
+                try {
+                    const overlay = document.getElementById('graphics-overlay');
+                    overlay.contentWindow.postMessage({
+                        type: 'updateTextSize',
+                        value: value
+                    }, '*');
+                } catch (e) {
+                    console.log('Could not communicate with overlay iframe');
+                }
+            }
+
+            updateAnimationSpeed(value) {
+                try {
+                    const overlay = document.getElementById('graphics-overlay');
+                    overlay.contentWindow.postMessage({
+                        type: 'updateAnimationSpeed', 
+                        value: value
+                    }, '*');
+                } catch (e) {
+                    console.log('Could not communicate with overlay iframe');
+                }
+            }
+
+            updateTiming(controlId, value) {
+                const timingMap = {
+                    'four-downs-timing': 'fourDownsDelay',
+                    'field-timing': 'fieldDelay', 
+                    'fresh-downs-timing': 'freshDownsDelay'
+                };
+
+                try {
+                    const overlay = document.getElementById('graphics-overlay');
+                    overlay.contentWindow.postMessage({
+                        type: 'updateTiming',
+                        property: timingMap[controlId],
+                        value: parseFloat(value)
+                    }, '*');
+                } catch (e) {
+                    console.log('Could not communicate with overlay iframe');
+                }
+
+                this.updateStatus(`Updated ${controlId}: ${value}s`);
+            }
+
+            toggleGraphics() {
+                const overlay = document.getElementById('graphics-overlay');
+                overlay.style.display = overlay.style.display === 'none' ? 'block' : 'none';
+            }
+
+            previewOverlay() {
+                window.open('create-motion-graphics-overlay.html', '_blank');
+            }
+
+            syncTiming() {
+                if (!this.video) {
+                    this.updateStatus('Please load a video first');
+                    return;
+                }
+
+                // Auto-sync timing based on video duration
+                const duration = this.video.duration;
+                if (duration > 0) {
+                    document.getElementById('four-downs-timing').value = duration * 0.1;
+                    document.getElementById('field-timing').value = duration * 0.04;  
+                    document.getElementById('fresh-downs-timing').value = duration * 0.6;
+                    
+                    this.updateStatus('Timing synced to video duration');
+                }
+            }
+
+            togglePlay() {
+                if (!this.video) {
+                    this.loadTestVideo();
+                    return;
+                }
+
+                if (this.video.paused) {
+                    this.video.play();
+                    this.isPlaying = true;
+                    document.getElementById('play-btn').textContent = '⏸️';
+                } else {
+                    this.video.pause();
+                    this.isPlaying = false;
+                    document.getElementById('play-btn').textContent = '▶️';
+                }
+            }
+
+            seek(seconds) {
+                if (!this.video) return;
+                
+                this.video.currentTime = Math.max(0, Math.min(
+                    this.video.duration, 
+                    this.video.currentTime + seconds
+                ));
+            }
+
+            updateTimeline() {
+                if (!this.video) return;
+
+                const progress = (this.video.currentTime / this.video.duration) * 100;
+                document.getElementById('timeline-progress').style.width = progress + '%';
+            }
+
+            async startRecording() {
+                try {
+                    const container = document.querySelector('.video-container');
+                    
+                    // Use getDisplayMedia to capture the composite video
+                    const stream = await navigator.mediaDevices.getDisplayMedia({
+                        video: { mediaSource: 'screen' },
+                        audio: false
+                    });
+
+                    this.mediaRecorder = new MediaRecorder(stream);
+                    this.recordedChunks = [];
+
+                    this.mediaRecorder.ondataavailable = (event) => {
+                        if (event.data.size > 0) {
+                            this.recordedChunks.push(event.data);
+                        }
+                    };
+
+                    this.mediaRecorder.onstop = () => {
+                        this.createDownload();
+                    };
+
+                    this.mediaRecorder.start();
+                    this.isRecording = true;
+                    this.updateStatus('🔴 Recording... Click the video area to start');
+
+                } catch (err) {
+                    console.error('Error starting recording:', err);
+                    this.updateStatus('❌ Could not start recording');
+                }
+            }
+
+            stopRecording() {
+                if (this.mediaRecorder && this.isRecording) {
+                    this.mediaRecorder.stop();
+                    this.isRecording = false;
+                    this.updateStatus('Recording stopped');
+                }
+            }
+
+            createDownload() {
+                const blob = new Blob(this.recordedChunks, { type: 'video/webm' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'kickoff-club-football-downs-final.webm';
+                a.click();
+                
+                URL.revokeObjectURL(url);
+                this.updateStatus('✅ Video downloaded!');
+            }
+
+            downloadVideo() {
+                if (this.recordedChunks.length > 0) {
+                    this.createDownload();
+                } else {
+                    this.updateStatus('No recording available');
+                }
+            }
+
+            updateStatus(message) {
+                document.getElementById('status').textContent = message;
+                console.log('Status:', message);
+            }
+        }
+
+        // Global functions for buttons
+        const compositor = new VideoCompositor();
+
+        function togglePlay() { compositor.togglePlay(); }
+        function seek(seconds) { compositor.seek(seconds); }
+        function toggleGraphics() { compositor.toggleGraphics(); }
+        function previewOverlay() { compositor.previewOverlay(); }
+        function syncTiming() { compositor.syncTiming(); }
+        function loadTestVideo() { compositor.loadTestVideo(); }
+        function startRecording() { compositor.startRecording(); }
+        function stopRecording() { compositor.stopRecording(); }
+        function downloadVideo() { compositor.downloadVideo(); }
+
+        // Initialize
+        compositor.updateStatus('Video compositor ready');
+    </script>
+</body>
+</html>

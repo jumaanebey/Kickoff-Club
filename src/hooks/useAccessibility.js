@@ -167,7 +167,7 @@ export const useSEO = () => {
     
     // Update document title
     if (title) {
-      document.title = `${title} | Kickoff Club - Learn NFL Football`
+      document.title = `${title} | Kickoff Club - Learn football Football`
     }
     
     // Update or create meta tags

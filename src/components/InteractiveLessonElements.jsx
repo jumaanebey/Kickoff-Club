@@ -418,7 +418,7 @@ export const InteractiveScoringCalculator = ({ lessonId, onScoreUpdate }) => {
   return (
     <div className=\"interactive-scoring-calculator bg-white rounded-2xl p-6 shadow-lg border border-gray-200\">
       <div className=\"text-center mb-6\">
-        <h3 className=\"text-lg font-semibold text-gray-900 mb-2\">NFL Scoring System</h3>
+        <h3 className=\"text-lg font-semibold text-gray-900 mb-2\">football Scoring System</h3>
         <p className=\"text-sm text-gray-600\">Learn how different plays contribute to the final score</p>
       </div>
       

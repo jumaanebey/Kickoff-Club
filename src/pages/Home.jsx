@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react'
 import { useApp } from '../context/AppContext'
 import { usePerformanceMonitor } from '../hooks/usePerformance'
+import { useSimpleRouter } from '../App'
 import Hero from '../components/Hero'
 import LessonCard from '../components/LessonCard'
 import AdaptiveRecommendations from '../components/AdaptiveRecommendations'
@@ -10,6 +11,7 @@ import { trackEvent } from '../analytics'
 export default function Home({ adaptiveSettings }) {
   const { state, actions } = useApp()
   const { recordInteraction } = usePerformanceMonitor()
+  const { navigate } = useSimpleRouter()
   const isReturningUser = state.user.progress && state.user.progress.lessons.completed.length > 0
   
   // Personalized lesson recommendations
@@ -36,14 +38,14 @@ export default function Home({ adaptiveSettings }) {
     })
     
     recordInteraction('lesson_start_click', performance.now() - startTime)
-    window.location.href = `/lesson/${targetLesson.id}`
+    navigate(`/lesson/${targetLesson.id}`)
   }
 
   function goToLessons() {
     const startTime = performance.now()
     trackEvent('navigation', { destination: 'lessons', source: 'home_cta' })
     recordInteraction('lessons_navigation', performance.now() - startTime)
-    window.location.href = '/lessons'
+    navigate('/lessons')
   }
   
   // Track page view with user context
@@ -58,7 +60,7 @@ export default function Home({ adaptiveSettings }) {
 
   return (
     <div>
-      <Hero onStart={start}/>
+      <Hero onStart={start} navigate={navigate}/>
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Dynamic personalized content based on user type */}
         <div className="text-center mb-12">
@@ -85,10 +87,10 @@ export default function Home({ adaptiveSettings }) {
           ) : (
             <>
               <h2 className="text-3xl font-bold text-secondary-100 mb-4">
-                Start Your Professional Football Journey
+                Welcome to Kickoff Club ⚡
               </h2>
               <p className="text-xl text-secondary-200 mb-8">
-                Master the basics with our bite-sized lessons designed for complete beginners
+                Join the Kickoff Club community — thousands of fans mastering professional football fundamentals through our video lessons
               </p>
             </>
           )}
@@ -113,7 +115,7 @@ export default function Home({ adaptiveSettings }) {
               </svg>
               Start Here - Perfect for Beginners
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 gap-6 mb-8 max-w-3xl mx-auto">
               {recommendedLessons.map((lesson, index) => (
                 <div key={lesson.id} className="relative">
                   {index === 0 && (
@@ -133,7 +135,7 @@ export default function Home({ adaptiveSettings }) {
                         source: 'home_featured'
                       })
                       recordInteraction('lesson_card_click', performance.now() - startTime)
-                      window.location.href = `/lesson/${lesson.id}`
+                      navigate(`/lesson/${lesson.id}`)
                     }}
                     className={index === 0 ? 'ring-2 ring-accent-300 shadow-lg scale-105' : ''}
                   />
@@ -159,16 +161,16 @@ export default function Home({ adaptiveSettings }) {
             )}
             <h3 className="text-2xl font-bold text-secondary-100">
               {isReturningUser 
-                ? `Continue your professional football mastery journey!` 
-                : `Ready to become a professional football expert?`
+                ? `Continue your Kickoff Club mastery journey!` 
+                : `Ready to join the Kickoff Club elite?`
               }
             </h3>
           </div>
           
           <p className="text-secondary-200 mb-6">
             {isReturningUser 
-              ? `You're on ${state.user.progress.stats.currentLevel?.replace('-level', '') || 'rookie'} level with ${state.user.progress.stats.totalPoints || 0} points. Keep the momentum going!`
-              : `Join thousands of fans who've gone from confused to confident`
+              ? `You're on ${state.user.progress.stats.currentLevel?.replace('-level', '') || 'rookie'} level with ${state.user.progress.stats.totalPoints || 0} points. Keep your Kickoff Club momentum going!`
+              : `Join thousands of Kickoff Club members who've gone from confused to confident`
             }
           </p>
           
@@ -197,7 +199,7 @@ export default function Home({ adaptiveSettings }) {
             <button 
               onClick={() => {
                 trackEvent('navigation', { destination: 'profile', source: 'home_cta' })
-                window.location.href = '/profile'
+                navigate('/profile')
               }}
               className="btn-secondary transform hover:scale-105 transition-all duration-200 flex items-center justify-center"
             >

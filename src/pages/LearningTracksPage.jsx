@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react'
 import { getProgressData } from '../utils/progressTracker'
+import { useSimpleRouter } from '../App'
 
 const LearningTracksPage = () => {
   const [progress, setProgress] = useState(getProgressData())
+  const { navigate } = useSimpleRouter()
 
   return (
     <div className="max-w-6xl mx-auto p-6">
       {/* Header */}
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold text-secondary-100 mb-4">
-          Learning Tracks
+          Kickoff Club Learning Tracks
         </h1>
         <p className="text-xl text-secondary-300 max-w-2xl mx-auto">
-          Structured pathways to master professional football concepts. Start with Fundamentals and work your way up to Expert Analysis.
+          Join thousands of Kickoff Club members on structured pathways to master professional football concepts. Start with Fundamentals and work your way up to Expert Analysis.
         </p>
       </div>
 
@@ -73,12 +75,12 @@ const LearningTracksPage = () => {
                   <span className="w-6 h-6 bg-sage-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">1</span>
                   <span className="font-medium">How Downs Work</span>
                 </div>
-                <a 
-                  href="/lesson/how-downs-work"
+                <button 
+                  onClick={() => navigate('/lesson/how-downs-work')}
                   className="bg-sage-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-sage-600 transition-colors"
                 >
                   Start Lesson
-                </a>
+                </button>
               </div>
               
               <div className="flex items-center justify-between p-3 bg-white rounded-lg">
@@ -86,12 +88,12 @@ const LearningTracksPage = () => {
                   <span className="w-6 h-6 bg-sage-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">2</span>
                   <span className="font-medium">Scoring Touchdowns</span>
                 </div>
-                <a 
-                  href="/lesson/scoring-touchdowns"
+                <button 
+                  onClick={() => navigate('/lesson/scoring-touchdowns')}
                   className="bg-sage-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-sage-600 transition-colors"
                 >
                   Start Lesson
-                </a>
+                </button>
               </div>
               
               <div className="flex items-center justify-between p-3 bg-white rounded-lg">
@@ -99,12 +101,12 @@ const LearningTracksPage = () => {
                   <span className="w-6 h-6 bg-sage-500 text-white rounded-full flex items-center justify-center text-xs font-bold mr-3">3</span>
                   <span className="font-medium">Quarterback 101</span>
                 </div>
-                <a 
-                  href="/lesson/quarterback-101"
+                <button 
+                  onClick={() => navigate('/lesson/quarterback-101')}
                   className="bg-sage-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-sage-600 transition-colors"
                 >
                   Start Lesson
-                </a>
+                </button>
               </div>
             </div>
           </div>

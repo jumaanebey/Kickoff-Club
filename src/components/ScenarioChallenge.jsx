@@ -131,7 +131,7 @@ const ScenarioChallenge = ({ scenario, onComplete, className = '' }) => {
         {
           id: 'field-goal',
           text: 'Attempt 62-yard field goal',
-          explanation: 'Impossible! Most NFL kickers max out around 55-60 yards.',
+          explanation: 'Impossible! Most football kickers max out around 55-60 yards.',
           points: 0,
           isCorrect: false
         }

@@ -8,5 +8,9 @@ export function trackEvent(name, payload = {}) {
       window.dataLayer.push({ event: name, ...payload })
     }
   } catch (e) { /* ignore */ }
-  console.info('[ANALYTICS]', name, payload)
+  
+  // Only log in development
+  if (process.env.NODE_ENV === 'development') {
+    console.info('[ANALYTICS]', name, payload)
+  }
 }

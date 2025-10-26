@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Downs Motion Graphics Overlay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: rgba(0, 255, 0, 1); /* Green screen for chroma key */
+            font-family: 'Arial Black', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .overlay-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background: transparent;
+        }
+
+        /* Football Field Graphics */
+        .football-field {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to right, 
+                #228B22 0%, #228B22 10%, 
+                #32CD32 10%, #32CD32 20%,
+                #228B22 20%, #228B22 30%,
+                #32CD32 30%, #32CD32 40%,
+                #228B22 40%, #228B22 50%,
+                #32CD32 50%, #32CD32 60%,
+                #228B22 60%, #228B22 70%,
+                #32CD32 70%, #32CD32 80%,
+                #228B22 80%, #228B22 90%,
+                #32CD32 90%, #32CD32 100%
+            );
+            opacity: 0;
+            animation: fieldSlideUp 1s ease-out 2s forwards;
+        }
+
+        .yard-lines {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+        }
+
+        .yard-line {
+            position: absolute;
+            width: 3px;
+            height: 100%;
+            background: white;
+            opacity: 0;
+        }
+
+        .yard-line:nth-child(1) { left: 10%; animation: lineAppear 0.5s ease-out 2.5s forwards; }
+        .yard-line:nth-child(2) { left: 20%; animation: lineAppear 0.5s ease-out 2.7s forwards; }
+        .yard-line:nth-child(3) { left: 30%; animation: lineAppear 0.5s ease-out 2.9s forwards; }
+        .yard-line:nth-child(4) { left: 40%; animation: lineAppear 0.5s ease-out 3.1s forwards; }
+        .yard-line:nth-child(5) { left: 50%; animation: lineAppear 0.5s ease-out 3.3s forwards; }
+        .yard-line:nth-child(6) { left: 60%; animation: lineAppear 0.5s ease-out 3.5s forwards; }
+        .yard-line:nth-child(7) { left: 70%; animation: lineAppear 0.5s ease-out 3.7s forwards; }
+        .yard-line:nth-child(8) { left: 80%; animation: lineAppear 0.5s ease-out 3.9s forwards; }
+        .yard-line:nth-child(9) { left: 90%; animation: lineAppear 0.5s ease-out 4.1s forwards; }
+
+        /* Yellow First Down Line */
+        .first-down-line {
+            position: absolute;
+            bottom: 0;
+            left: 40%;
+            width: 4px;
+            height: 200px;
+            background: #FFFF00;
+            box-shadow: 0 0 20px #FFFF00;
+            opacity: 0;
+            animation: yellowLineGlow 1s ease-out 8s forwards;
+        }
+
+        .first-down-line-2 {
+            position: absolute;
+            bottom: 0;
+            left: 70%;
+            width: 4px;
+            height: 200px;
+            background: #FFFF00;
+            box-shadow: 0 0 20px #FFFF00;
+            opacity: 0;
+            animation: yellowLineGlow 1s ease-out 35s forwards;
+        }
+
+        /* Down and Distance Display */
+        .down-distance {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 36px;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .down-1st { animation: downAppear 1s ease-out 12s forwards; }
+        .down-2nd { animation: downUpdate 1s ease-out 18s forwards; }
+        .down-3rd { animation: downUpdate 1s ease-out 24s forwards; }
+
+        /* Big Text Overlays */
+        .big-text {
+            position: absolute;
+            font-size: 72px;
+            font-weight: 900;
+            text-align: center;
+            width: 100%;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.7);
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        .four-downs {
+            top: 20%;
+            color: #FF6B35;
+            animation: bigTextPop 1.5s ease-out 5s forwards;
+        }
+
+        .ten-yards {
+            top: 35%;
+            color: #4ECDC4;
+            animation: bigTextPop 1.5s ease-out 6.5s forwards;
+        }
+
+        .fresh-downs {
+            top: 25%;
+            color: #45B7D1;
+            font-size: 96px;
+            animation: celebrationPop 2s ease-out 30s forwards;
+        }
+
+        .crunch-time {
+            top: 30%;
+            color: #FF0000;
+            animation: urgentBlink 2s ease-out 22s forwards;
+        }
+
+        /* Play Animation */
+        .player-dot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #FF4757;
+            bottom: 100px;
+        }
+
+        .offense-player {
+            left: 20%;
+            animation: playerRun 2s ease-out 14s forwards;
+        }
+
+        .defense-player {
+            left: 35%;
+            background: #3742FA;
+            animation: playerDefend 2s ease-out 14.5s forwards;
+        }
+
+        .football {
+            position: absolute;
+            width: 15px;
+            height: 30px;
+            background: #8B4513;
+            border-radius: 50%;
+            bottom: 110px;
+            left: 20%;
+            opacity: 0;
+            animation: footballThrow 1.5s ease-out 19s forwards;
+        }
+
+        /* Strategy Doors */
+        .strategy-doors {
+            position: absolute;
+            bottom: 250px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 50px;
+            opacity: 0;
+            animation: doorsAppear 1s ease-out 40s forwards;
+        }
+
+        .door {
+            width: 150px;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform: scale(0.8);
+            animation: doorPop 0.5s ease-out calc(40s + var(--delay)) forwards;
+        }
+
+        .door:nth-child(1) { --delay: 0.3s; background: linear-gradient(135deg, #FF6B6B, #FF8E53); }
+        .door:nth-child(2) { --delay: 0.6s; background: linear-gradient(135deg, #4ECDC4, #44A08D); }
+        .door:nth-child(3) { --delay: 0.9s; background: linear-gradient(135deg, #45B7D1, #96C93D); }
+
+        /* Score Animation */
+        .score-popup {
+            position: absolute;
+            top: 40%;
+            right: 100px;
+            font-size: 48px;
+            color: #00FF00;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0) rotate(-10deg);
+            animation: scorePopup 1s ease-out 32s forwards;
+        }
+
+        /* Animations */
+        @keyframes fieldSlideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 0.7; }
+        }
+
+        @keyframes lineAppear {
+            from { opacity: 0; transform: scaleY(0); }
+            to { opacity: 1; transform: scaleY(1); }
+        }
+
+        @keyframes yellowLineGlow {
+            from { opacity: 0; transform: scaleX(0); }
+            to { opacity: 1; transform: scaleX(1); }
+        }
+
+        @keyframes bigTextPop {
+            0% { opacity: 0; transform: scale(0.5) rotate(-5deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(2deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        @keyframes celebrationPop {
+            0% { opacity: 0; transform: scale(0.3); }
+            30% { opacity: 1; transform: scale(1.3); }
+            60% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes urgentBlink {
+            0%, 100% { opacity: 1; }
+            25%, 75% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes downAppear {
+            from { opacity: 0; transform: scale(0.8) translateY(-20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes downUpdate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); background: #FF6B35; }
+            100% { transform: scale(1); background: rgba(0, 0, 0, 0.8); }
+        }
+
+        @keyframes playerRun {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(150px); }
+        }
+
+        @keyframes playerDefend {
+            0% { transform: translateX(0) scale(1); }
+            50% { transform: translateX(-30px) scale(1.2); }
+            100% { transform: translateX(-10px) scale(1); }
+        }
+
+        @keyframes footballThrow {
+            0% { opacity: 0; transform: translateX(0) translateY(0) rotate(0deg); }
+            30% { opacity: 1; }
+            100% { opacity: 1; transform: translateX(300px) translateY(-50px) rotate(720deg); }
+        }
+
+        @keyframes doorsAppear {
+            from { opacity: 0; transform: translateX(-50%) translateY(50px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        @keyframes doorPop {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
+        }
+
+        @keyframes scorePopup {
+            0% { opacity: 0; transform: scale(0) rotate(-10deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(5deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        /* Progress Indicator */
+        .progress-bar {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF6B35, #F7931E);
+            width: 0%;
+            animation: progressFill 50s linear 0s forwards;
+        }
+
+        @keyframes progressFill {
+            to { width: 100%; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .big-text { font-size: 48px; }
+            .down-distance { font-size: 24px; }
+            .door { width: 120px; height: 160px; font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay-container">
+        <!-- Football Field -->
+        <div class="football-field"></div>
+        <div class="yard-lines">
+            <div class="yard-line"></div>
+            <div class="yard-line"></div>
+            <div class="yard-line"></div>
+            <div class="yard-line"></div>
+            <div class="yard-line"></div>
+            <div class="yard-line"></div>
+            <div class="yard-line"></div>
+            <div class="yard-line"></div>
+            <div class="yard-line"></div>
+        </div>
+
+        <!-- First Down Lines -->
+        <div class="first-down-line"></div>
+        <div class="first-down-line-2"></div>
+
+        <!-- Big Text Overlays -->
+        <div class="big-text four-downs">4 DOWNS</div>
+        <div class="big-text ten-yards">10 YARDS</div>
+        <div class="big-text fresh-downs">FRESH DOWNS!</div>
+        <div class="big-text crunch-time">CRUNCH TIME!</div>
+
+        <!-- Down and Distance -->
+        <div class="down-distance down-1st">1st & 7</div>
+        <div class="down-distance down-2nd" style="opacity: 0;">2nd & 2</div>
+        <div class="down-distance down-3rd" style="opacity: 0;">3rd & Goal</div>
+
+        <!-- Player Animation -->
+        <div class="player-dot offense-player"></div>
+        <div class="player-dot defense-player"></div>
+        <div class="football"></div>
+
+        <!-- Strategy Doors -->
+        <div class="strategy-doors">
+            <div class="door">PUNT<br>Play Safe</div>
+            <div class="door">FIELD GOAL<br>3 Points</div>
+            <div class="door">GO FOR IT<br>Risk It All</div>
+        </div>
+
+        <!-- Score Popup -->
+        <div class="score-popup">TOUCHDOWN! 🏈</div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
+    <script>
+        // Add interactive elements and timing controls
+        class MotionGraphicsController {
+            constructor() {
+                this.currentTime = 0;
+                this.isPlaying = false;
+                this.animations = [];
+                this.setupControls();
+            }
+
+            setupControls() {
+                // Add keyboard controls for preview
+                document.addEventListener('keydown', (e) => {
+                    switch(e.code) {
+                        case 'Space':
+                            this.togglePlayback();
+                            e.preventDefault();
+                            break;
+                        case 'ArrowLeft':
+                            this.seek(-5);
+                            break;
+                        case 'ArrowRight':
+                            this.seek(5);
+                            break;
+                        case 'KeyR':
+                            this.restart();
+                            break;
+                    }
+                });
+
+                // Update progress display
+                setInterval(() => {
+                    if (this.isPlaying) {
+                        this.currentTime += 0.1;
+                        this.updateDisplay();
+                    }
+                }, 100);
+            }
+
+            togglePlayback() {
+                this.isPlaying = !this.isPlaying;
+                console.log(this.isPlaying ? 'Playing' : 'Paused');
+            }
+
+            seek(seconds) {
+                this.currentTime = Math.max(0, this.currentTime + seconds);
+                this.updateDisplay();
+            }
+
+            restart() {
+                this.currentTime = 0;
+                this.updateDisplay();
+                // Restart all animations
+                document.querySelectorAll('*').forEach(el => {
+                    el.style.animation = 'none';
+                    el.offsetHeight; // Trigger reflow
+                    el.style.animation = null;
+                });
+            }
+
+            updateDisplay() {
+                // Update progress bar to match current time
+                const progressBar = document.querySelector('.progress-fill');
+                const progress = Math.min(100, (this.currentTime / 50) * 100);
+                progressBar.style.width = progress + '%';
+            }
+
+            // Export timeline for video editing
+            exportTimeline() {
+                const timeline = {
+                    duration: 50,
+                    keyframes: [
+                        { time: 2, event: 'Football field slides up' },
+                        { time: 2.5, event: 'Yard lines appear sequentially' },
+                        { time: 5, event: '4 DOWNS text pops in' },
+                        { time: 6.5, event: '10 YARDS text pops in' },
+                        { time: 8, event: 'First yellow line glows' },
+                        { time: 12, event: '1st & 7 display appears' },
+                        { time: 14, event: 'Player animations begin' },
+                        { time: 18, event: 'Down updates to 2nd & 2' },
+                        { time: 19, event: 'Football throw animation' },
+                        { time: 22, event: 'CRUNCH TIME blinks urgently' },
+                        { time: 24, event: 'Down updates to 3rd & Goal' },
+                        { time: 30, event: 'FRESH DOWNS celebration' },
+                        { time: 32, event: 'Touchdown score popup' },
+                        { time: 35, event: 'Second yellow line appears' },
+                        { time: 40, event: 'Strategy doors appear' },
+                        { time: 50, event: 'Animation complete' }
+                    ]
+                };
+                
+                console.log('Timeline exported:', timeline);
+                return timeline;
+            }
+        }
+
+        // Initialize the controller
+        const controller = new MotionGraphicsController();
+
+        // Add visual feedback
+        const instructions = document.createElement('div');
+        instructions.style.cssText = `
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            z-index: 1000;
+        `;
+        instructions.innerHTML = `
+            <strong>Controls:</strong><br>
+            SPACE: Play/Pause<br>
+            ← →: Seek ±5s<br>
+            R: Restart
+        `;
+        document.body.appendChild(instructions);
+    </script>
+</body>
+</html>

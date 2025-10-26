@@ -28,7 +28,7 @@ export default function SocialSharingEnhanced({ achievement, lesson, customConte
           return {
             title: `🏆 New Achievement Unlocked!`,
             text: `Just earned "${achievement.name}" on Kickoff Club! ${achievement.reason || ''}`,
-            hashtags: ['NFL', 'Learning', 'Achievement', 'KickoffClub'],
+            hashtags: ['football', 'Learning', 'Achievement', 'KickoffClub'],
             emoji: achievement.icon || '🏆',
             image: generateAchievementImage(achievement)
           }
@@ -39,8 +39,8 @@ export default function SocialSharingEnhanced({ achievement, lesson, customConte
         if (lesson) {
           return {
             title: `📚 Lesson Complete!`,
-            text: `Just finished "${lesson.title}" on Kickoff Club! Learning NFL has never been this engaging.`,
-            hashtags: ['NFLEducation', 'Learning', 'KickoffClub'],
+            text: `Just finished "${lesson.title}" on Kickoff Club! Learning football has never been this engaging.`,
+            hashtags: ['footballEducation', 'Learning', 'KickoffClub'],
             emoji: '📚',
             image: generateLessonImage(lesson)
           }
@@ -50,8 +50,8 @@ export default function SocialSharingEnhanced({ achievement, lesson, customConte
       case 'streak':
         return {
           title: `🔥 ${baseStats.streak}-Day Learning Streak!`,
-          text: `I'm on fire! ${baseStats.streak} days straight of NFL learning on Kickoff Club. Who else is building their football knowledge?`,
-          hashtags: ['LearningStreak', 'NFL', 'Consistency', 'KickoffClub'],
+          text: `I'm on fire! ${baseStats.streak} days straight of football learning on Kickoff Club. Who else is building their football knowledge?`,
+          hashtags: ['LearningStreak', 'football', 'Consistency', 'KickoffClub'],
           emoji: '🔥',
           image: generateStreakImage(baseStats.streak)
         }
@@ -59,25 +59,25 @@ export default function SocialSharingEnhanced({ achievement, lesson, customConte
       case 'level-up':
         return {
           title: `📈 Level Up! Now ${baseStats.level}!`,
-          text: `Just reached ${baseStats.level} level on Kickoff Club with ${baseStats.totalPoints} total points! The NFL learning journey continues!`,
-          hashtags: ['LevelUp', 'NFL', 'Progress', 'KickoffClub'],
+          text: `Just reached ${baseStats.level} level on Kickoff Club with ${baseStats.totalPoints} total points! The football learning journey continues!`,
+          hashtags: ['LevelUp', 'football', 'Progress', 'KickoffClub'],
           emoji: '📈',
           image: generateLevelImage(baseStats.level)
         }
 
       case 'custom':
         return customContent || {
-          title: '🏈 Learning NFL with Kickoff Club!',
-          text: 'Join me in mastering NFL football the fun way!',
-          hashtags: ['NFL', 'Learning', 'KickoffClub'],
+          title: '🏈 Learning football with Kickoff Club!',
+          text: 'Join me in mastering football football the fun way!',
+          hashtags: ['football', 'Learning', 'KickoffClub'],
           emoji: '🏈'
         }
 
       default:
         return {
-          title: '🏈 Learning NFL Football!',
-          text: `I'm learning NFL football on Kickoff Club! ${baseStats.lessonsCompleted} lessons completed and counting!`,
-          hashtags: ['NFL', 'Learning', 'KickoffClub'],
+          title: '🏈 Learning football Football!',
+          text: `I'm learning football football on Kickoff Club! ${baseStats.lessonsCompleted} lessons completed and counting!`,
+          hashtags: ['football', 'Learning', 'KickoffClub'],
           emoji: '🏈'
         }
     }
@@ -283,7 +283,7 @@ export default function SocialSharingEnhanced({ achievement, lesson, customConte
           📢 Share Your Progress
         </h3>
         <p className="text-gray-600">
-          Show off your NFL learning achievements and inspire others!
+          Show off your football learning achievements and inspire others!
         </p>
       </div>
 
@@ -388,7 +388,7 @@ export default function SocialSharingEnhanced({ achievement, lesson, customConte
       <div className="mt-6 p-4 bg-gradient-to-r from-sage-50 to-blush-50 rounded-lg border border-sage-200">
         <h5 className="font-bold text-gray-900 mb-2">🎁 Why Share?</h5>
         <ul className="text-sm text-gray-700 space-y-1">
-          <li>• Inspire friends to learn about NFL</li>
+          <li>• Inspire friends to learn about football</li>
           <li>• Build accountability for your learning</li>
           <li>• Celebrate your achievements</li>
           <li>• Help grow the learning community</li>

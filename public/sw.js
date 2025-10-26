@@ -41,7 +41,9 @@ const PRECACHE_RESOURCES = [
 
 // Install event - precache essential resources
 self.addEventListener('install', event => {
-  console.log('SW: Installing service worker')
+  if (process.env.NODE_ENV === 'development') {
+    console.log('SW: Installing service worker')
+  }
   
   event.waitUntil(
     caches.open(STATIC_CACHE)

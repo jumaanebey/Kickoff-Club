@@ -1,26 +1,23 @@
 import React, { useState } from 'react'
 
 const InteractiveFieldDiagram = () => {
-  const [selectedYardLine, setSelectedYardLine] = useState(25)
+  const [ballPosition, setBallPosition] = useState(75) // Start at 25 yard line (75 yards from goal)
   const [down, setDown] = useState(1)
-  const [distance, setDistance] = useState(10)
-  const [showExplanation, setShowExplanation] = useState(false)
+  const [yardsToGo, setYardsToGo] = useState(10)
+  const [showCelebration, setShowCelebration] = useState(false)
+  const [gameOver, setGameOver] = useState(false)
 
-  const getDownsExplanation = () => {
-    if (down === 4) {
-      if (distance <= 2) {
-        return "4th & short - Teams often go for it!"
-      } else if (selectedYardLine <= 35) {
-        return "4th & long in field goal range - Likely a kick attempt"
-      } else {
-        return "4th & long - Time to punt and flip field position"
-      }
-    } else if (distance > 7) {
-      return `${down}${getOrdinalSuffix(down)} & long - Expect a passing play`
-    } else if (distance <= 3) {
-      return `${down}${getOrdinalSuffix(down)} & short - Run or quick pass likely`
+  const getSimpleExplanation = () => {
+    if (gameOver) return "Game over! The other team gets the ball now."
+    
+    if (down === 1) {
+      return "1st Down - You have 4 chances to go 10 yards! 💪"
+    } else if (down === 2) {
+      return `2nd Down - ${4-down+1} more chances to get ${yardsToGo} yards 📊`
+    } else if (down === 3) {
+      return `3rd Down - Only ${4-down+1} more chance! Need ${yardsToGo} yards 😰`
     } else {
-      return `${down}${getOrdinalSuffix(down)} & ${distance} - Balanced down, many options`
+      return "4th Down - This is your LAST chance! ⚡"
     }
   }
 
@@ -32,160 +29,167 @@ const InteractiveFieldDiagram = () => {
   }
 
   const moveForward = (yards) => {
-    const newPosition = selectedYardLine - yards
+    if (gameOver) return
+    
+    const newPosition = ballPosition - yards
+    
+    // Touchdown!
     if (newPosition <= 0) {
-      alert("🏈 TOUCHDOWN! You reached the end zone!")
-      setSelectedYardLine(25)
-      setDown(1)
-      setDistance(10)
+      setBallPosition(0)
+      setShowCelebration(true)
+      setTimeout(() => {
+        resetGame()
+        setShowCelebration(false)
+      }, 3000)
       return
     }
     
-    setSelectedYardLine(newPosition)
+    setBallPosition(newPosition)
     
-    if (yards >= distance) {
+    // Did we get a first down?
+    if (yards >= yardsToGo) {
       setDown(1)
-      setDistance(10)
-      setShowExplanation(true)
+      setYardsToGo(10)
+      setShowCelebration(true)
+      setTimeout(() => setShowCelebration(false), 2000)
     } else {
       const newDown = down + 1
       if (newDown > 4) {
-        alert("Turnover on downs! The other team gets the ball.")
-        setSelectedYardLine(100 - newPosition)
-        setDown(1)
-        setDistance(10)
+        // Turnover!
+        setGameOver(true)
+        setTimeout(() => {
+          resetGame()
+          setGameOver(false)
+        }, 3000)
       } else {
         setDown(newDown)
-        setDistance(distance - yards)
+        setYardsToGo(yardsToGo - yards)
       }
     }
   }
 
-  const resetField = () => {
-    setSelectedYardLine(25)
+  const resetGame = () => {
+    setBallPosition(75) // Start at 25 yard line
     setDown(1)
-    setDistance(10)
-    setShowExplanation(false)
+    setYardsToGo(10)
+    setShowCelebration(false)
+    setGameOver(false)
   }
 
   return (
-    <div className="bg-white rounded-lg p-6 shadow-lg border border-sage-200">
-      <div className="text-center mb-6">
-        <h3 className="text-xl font-bold text-secondary-100 mb-2">
-          🏈 Interactive Field Diagram
+    <div className="bg-gradient-to-br from-blush-50 to-sage-50 rounded-2xl p-8 shadow-lg border-2 border-blush-200">
+      <div className="text-center mb-8">
+        <h3 className="text-2xl font-bold text-secondary-100 mb-3">
+          ⚡ Learn the 4-Down System
         </h3>
-        <p className="text-secondary-300">
-          Click to move the ball and see how downs work in real situations
+        <p className="text-lg text-secondary-200 max-w-md mx-auto">
+          Move the ball forward and see how football's "4 chances" system works! 💜
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Field Visualization */}
-        <div className="space-y-4">
-          <div className="relative bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-4 overflow-hidden">
-            {/* Yard lines */}
-            <div className="relative h-16 border-t-2 border-white">
-              {[0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].map(yard => (
-                <div 
-                  key={yard}
-                  className="absolute h-full border-l border-white opacity-60"
-                  style={{ left: `${yard}%` }}
-                >
-                  <span className="absolute -top-6 -ml-2 text-xs text-white font-bold">
-                    {yard === 0 ? 'TD' : yard === 100 ? 'TD' : 50 - Math.abs(yard - 50)}
-                  </span>
-                </div>
-              ))}
+        {/* Simple Field Visualization */}
+        <div className="space-y-6">
+          <div className="relative bg-gradient-to-r from-green-400 to-green-500 rounded-2xl p-6 overflow-hidden">
+            <div className="relative h-20 bg-green-600/20 rounded-lg">
+              {/* Simple goal line */}
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-yellow-400"></div>
+              <div className="absolute left-0 -top-8 text-yellow-400 font-bold text-sm">GOAL!</div>
               
-              {/* Ball position */}
+              {/* Ball */}
               <div 
-                className="absolute top-1/2 transform -translate-y-1/2 -translate-x-1/2"
-                style={{ left: `${selectedYardLine}%` }}
+                className="absolute top-1/2 transform -translate-y-1/2 transition-all duration-500"
+                style={{ left: `${(100-ballPosition)}%` }}
               >
-                <div className="bg-yellow-500 rounded-full w-4 h-4 border-2 border-yellow-700 animate-pulse"></div>
+                <div className="relative">
+                  <div className="bg-orange-500 rounded-full w-6 h-6 border-3 border-white shadow-lg animate-bounce"></div>
+                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-white font-bold text-sm whitespace-nowrap">
+                    {ballPosition} yards to go!
+                  </div>
+                </div>
               </div>
               
-              {/* First down marker */}
+              {/* First down line */}
               <div 
-                className="absolute top-0 bottom-0 border-l-2 border-yellow-300"
-                style={{ left: `${Math.max(0, selectedYardLine - distance)}%` }}
+                className="absolute top-0 bottom-0 w-1 bg-blush-400 opacity-80"
+                style={{ left: `${Math.max(0, (100-ballPosition) + (yardsToGo/100*100))}%` }}
               >
-                <span className="absolute -top-6 -ml-4 text-xs text-yellow-300 font-bold">
-                  1ST
-                </span>
+                <div className="absolute -top-8 -ml-8 text-blush-400 font-bold text-sm">Need to reach!</div>
               </div>
             </div>
           </div>
 
-          {/* Current situation display */}
-          <div className="bg-gradient-to-r from-navy to-secondary-100 text-white rounded-lg p-4">
-            <div className="text-center">
-              <div className="text-2xl font-bold mb-2">
-                {down}{getOrdinalSuffix(down)} & {distance}
+          {/* Simple Status Display */}
+          <div className={`rounded-2xl p-6 text-center transition-all duration-300 ${
+            showCelebration ? 'bg-gradient-to-r from-green-400 to-emerald-500' :
+            gameOver ? 'bg-gradient-to-r from-red-400 to-rose-500' :
+            'bg-gradient-to-r from-blush-400 to-sage-400'
+          } text-white shadow-lg`}>
+            {showCelebration ? (
+              <div className="animate-pulse">
+                <div className="text-4xl mb-2">🎉</div>
+                <div className="text-xl font-bold">Way to go!</div>
               </div>
-              <div className="text-sm opacity-90">
-                {selectedYardLine} yards to end zone
+            ) : gameOver ? (
+              <div>
+                <div className="text-4xl mb-2">😅</div>
+                <div className="text-xl font-bold">Oops! Other team's turn</div>
               </div>
-            </div>
+            ) : (
+              <div>
+                <div className="text-3xl font-bold mb-2">
+                  Try #{down} of 4
+                </div>
+                <div className="text-lg">Need {yardsToGo} more yards</div>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Controls and explanation */}
-        <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-2">
+        {/* Simple Controls */}
+        <div className="space-y-6">
+          <div className="grid grid-cols-2 gap-4">
             <button 
               onClick={() => moveForward(3)}
-              className="bg-sage-500 hover:bg-sage-600 text-white px-4 py-2 rounded transition-colors"
+              disabled={gameOver}
+              className="bg-gradient-to-r from-sage-500 to-sage-600 hover:from-sage-600 hover:to-sage-700 disabled:opacity-50 text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-200 transform hover:scale-105 disabled:transform-none shadow-lg"
             >
-              +3 yards
+              🏃‍♀️ Run +3 yards
             </button>
             <button 
-              onClick={() => moveForward(7)}
-              className="bg-blush-500 hover:bg-blush-600 text-white px-4 py-2 rounded transition-colors"
+              onClick={() => moveForward(8)}
+              disabled={gameOver}
+              className="bg-gradient-to-r from-blush-500 to-blush-600 hover:from-blush-600 hover:to-blush-700 disabled:opacity-50 text-white px-6 py-4 rounded-2xl font-semibold transition-all duration-200 transform hover:scale-105 disabled:transform-none shadow-lg"
             >
-              +7 yards
+              🏈 Pass +8 yards
             </button>
+          </div>
+          
+          <div className="text-center">
             <button 
-              onClick={() => moveForward(15)}
-              className="bg-warmGold hover:bg-yellow-600 text-white px-4 py-2 rounded transition-colors"
+              onClick={resetGame}
+              className="bg-white border-2 border-blush-300 text-blush-600 px-6 py-3 rounded-xl font-medium hover:bg-blush-50 transition-colors"
             >
-              +15 yards
-            </button>
-            <button 
-              onClick={resetField}
-              className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded transition-colors"
-            >
-              Reset
+              🔄 Start Over
             </button>
           </div>
 
-          <div className="bg-sage-50 rounded-lg p-4 border border-sage-200">
-            <h4 className="font-bold text-navy mb-2">Situation Analysis</h4>
-            <p className="text-sm text-gray-700">
-              {getDownsExplanation()}
-            </p>
-          </div>
-
-          {showExplanation && (
-            <div className="bg-green-50 rounded-lg p-4 border border-green-200 animate-pulse">
-              <h4 className="font-bold text-green-800 mb-1">🎉 First Down!</h4>
-              <p className="text-sm text-green-700">
-                Great job! You gained enough yards for a new set of downs.
+          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border-2 border-blush-200">
+            <h4 className="text-lg font-bold text-secondary-100 mb-3 text-center">What's Happening?</h4>
+            <div className="text-center p-4 bg-blush-50 rounded-xl">
+              <p className="text-secondary-200 font-medium">
+                {getSimpleExplanation()}
               </p>
-              <button 
-                onClick={() => setShowExplanation(false)}
-                className="mt-2 text-xs text-green-600 hover:text-green-800"
-              >
-                Continue playing →
-              </button>
             </div>
-          )}
+          </div>
 
-          <div className="text-xs text-gray-600 space-y-1">
-            <p>💡 <strong>Tips:</strong></p>
-            <p>• Try different gain amounts to see strategic decisions</p>
-            <p>• Watch how 4th down changes the options</p>
-            <p>• See what happens when you don't get a first down</p>
+          <div className="bg-gradient-to-r from-sage-50 to-blush-50 rounded-2xl p-6 border border-sage-200">
+            <h4 className="text-lg font-bold text-secondary-100 mb-3 text-center">💡 How It Works</h4>
+            <div className="space-y-2 text-sm text-secondary-200">
+              <p>🏃‍♀️ <strong>Running plays</strong> usually gain fewer yards but are safer</p>
+              <p>🏈 <strong>Passing plays</strong> can gain more yards but are riskier</p>
+              <p>✨ <strong>Get 10+ yards</strong> in 4 tries to keep the ball!</p>
+            </div>
           </div>
         </div>
       </div>

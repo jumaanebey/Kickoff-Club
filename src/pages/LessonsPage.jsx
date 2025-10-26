@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { allLessons, getLessonsByCategory, checkPrerequisites } from '../data/lessonsIndex'
 import { loadProgress, isLessonUnlocked } from '../utils/progressTracker'
+import { useSimpleRouter } from '../App'
 
 export default function LessonsPage() {
   const [progress, setProgress] = useState(loadProgress())
   const [selectedCategory, setSelectedCategory] = useState('all')
+  const [searchQuery, setSearchQuery] = useState('')
+  const { navigate } = useSimpleRouter()
 
   const categories = [
-    { id: 'all', name: 'All Lessons', icon: '📚' },
-    { id: 'basic-rules', name: 'Basic Rules', icon: '📖' },
-    { id: 'positions', name: 'Positions', icon: '👥' },
-    { id: 'strategy', name: 'Strategy', icon: '🧠' },
-    { id: 'advanced', name: 'Advanced', icon: '🏆' }
+    { id: 'all', name: 'All Lessons', icon: '✨' },
+    { id: 'basic-rules', name: 'The Basics', icon: '🌱' },
+    { id: 'positions', name: 'Players', icon: '👯‍♀️' },
+    { id: 'strategy', name: 'Game Plans', icon: '💡' },
+    { id: 'advanced', name: 'Next Level', icon: '🌟' }
   ]
 
-  const filteredLessons = selectedCategory === 'all' 
+  const categoryFiltered = selectedCategory === 'all' 
     ? allLessons 
     : getLessonsByCategory(selectedCategory)
+  
+  const filteredLessons = categoryFiltered.filter(lesson => 
+    lesson.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    lesson.description?.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 
   const getLessonProgress = (lessonId) => {
     const isCompleted = progress.lessons.completed.includes(lessonId)
@@ -27,7 +35,7 @@ export default function LessonsPage() {
   }
 
   const handleLessonClick = (lessonId) => {
-    window.location.href = `/lesson/${lessonId}`
+    navigate(`/lesson/${lessonId}`)
   }
 
   return (
@@ -37,47 +45,79 @@ export default function LessonsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-secondary-100 mb-4">
-              Your Learning Journey
+              ✨ Your Football Learning Journey
             </h1>
             <p className="text-xl text-secondary-200 max-w-2xl mx-auto">
-              Master professional football fundamentals with bite-sized lessons designed for complete beginners
+              Learn football at your own pace with fun, bite-sized lessons. No judgment, no pressure - just simple explanations that actually make sense! 💜
             </p>
           </div>
 
-          {/* User Progress Stats */}
+          {/* User Progress Stats - Prettier Design */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div className="text-center">
-              <div className="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                <span className="text-accent-600 font-bold">{progress.lessons.completed.length}</span>
+            <div className="bg-gradient-to-br from-blush-50 to-white p-4 rounded-2xl border border-blush-200">
+              <div className="text-center">
+                <div className="text-2xl mb-1">🌸</div>
+                <p className="text-2xl font-bold text-blush-600">{progress.lessons.completed.length}</p>
+                <p className="text-xs text-secondary-300">Lessons Done!</p>
               </div>
-              <p className="text-sm text-secondary-300">Lessons Complete</p>
             </div>
             
-            <div className="text-center">
-              <div className="w-12 h-12 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                <span className="text-rose-600 font-bold">{progress.badges.earned.length}</span>
+            <div className="bg-gradient-to-br from-sage-50 to-white p-4 rounded-2xl border border-sage-200">
+              <div className="text-center">
+                <div className="text-2xl mb-1">🏆</div>
+                <p className="text-2xl font-bold text-sage-600">{progress.badges.earned.length}</p>
+                <p className="text-xs text-secondary-300">Badges Won!</p>
               </div>
-              <p className="text-sm text-secondary-300">Badges Earned</p>
             </div>
             
-            <div className="text-center">
-              <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                <span className="text-primary-600 font-bold">{progress.stats.currentStreak}</span>
+            <div className="bg-gradient-to-br from-accent-50 to-white p-4 rounded-2xl border border-accent-200">
+              <div className="text-center">
+                <div className="text-2xl mb-1">🔥</div>
+                <p className="text-2xl font-bold text-accent-600">{progress.stats.currentStreak}</p>
+                <p className="text-xs text-secondary-300">Day Streak!</p>
               </div>
-              <p className="text-sm text-secondary-300">Day Streak</p>
             </div>
             
-            <div className="text-center">
-              <div className="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                <span className="text-white font-bold">{Math.floor(progress.stats.totalPoints / 100) + 1}</span>
+            <div className="bg-gradient-to-br from-primary-50 to-white p-4 rounded-2xl border border-primary-200">
+              <div className="text-center">
+                <div className="text-2xl mb-1">⭐</div>
+                <p className="text-2xl font-bold text-primary-600">{Math.floor(progress.stats.totalPoints / 100) + 1}</p>
+                <p className="text-xs text-secondary-300">Your Level!</p>
               </div>
-              <p className="text-sm text-secondary-300">Level</p>
             </div>
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+        {/* Search Bar - Prettier */}
+        <div className="max-w-md mx-auto mb-8">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="🔍 Find a topic you're curious about..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full px-4 py-4 pl-12 pr-4 text-secondary-200 bg-white border-2 border-blush-200 rounded-2xl focus:outline-none focus:border-blush-400 focus:ring-4 focus:ring-blush-100 transition-all placeholder-secondary-300 shadow-sm"
+            />
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+              <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute inset-y-0 right-0 flex items-center pr-3"
+              >
+                <svg className="w-5 h-5 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
+        </div>
+
         {/* Category Filter */}
         <div className="flex flex-wrap justify-center gap-3 mb-8">
           {categories.map((category) => (
@@ -97,39 +137,39 @@ export default function LessonsPage() {
         </div>
 
         {/* Lessons Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 max-w-3xl mx-auto">
           {filteredLessons.map((lesson) => {
             const lessonProgress = getLessonProgress(lesson.id)
             
             return (
               <div
                 key={lesson.id}
-                className={`card cursor-pointer transition-all duration-300 ${
+                className={`bg-white rounded-2xl p-6 border-2 cursor-pointer transition-all duration-300 transform ${
                   lessonProgress.isUnlocked
-                    ? 'hover:shadow-xl hover:-translate-y-2'
-                    : 'opacity-60 cursor-not-allowed'
+                    ? 'border-blush-200 hover:border-blush-400 hover:shadow-2xl hover:scale-105'
+                    : 'border-gray-200 opacity-60 cursor-not-allowed'
                 }`}
                 onClick={() => lessonProgress.isUnlocked && handleLessonClick(lesson.id)}
               >
                 {/* Lesson Header */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center mr-3 ${
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center mr-3 text-lg font-bold ${
                       lessonProgress.isCompleted 
-                        ? 'bg-accent-500 text-white' 
+                        ? 'bg-gradient-to-r from-blush-400 to-sage-400 text-white' 
                         : lessonProgress.isUnlocked
-                          ? 'bg-primary-100 text-primary-600'
+                          ? 'bg-gradient-to-r from-blush-100 to-sage-100 text-blush-600'
                           : 'bg-gray-100 text-gray-400'
                     }`}>
-                      {lessonProgress.isCompleted ? '✓' : lesson.order}
+                      {lessonProgress.isCompleted ? '✨' : lesson.order}
                     </div>
                     
                     <div>
                       <div className="flex items-center">
-                        <span className={`inline-block px-2 py-1 text-xs rounded-full mr-2 ${
-                          lesson.difficulty === 'beginner' ? 'bg-primary-100 text-primary-600' : 'bg-rose-100 text-rose-600'
+                        <span className={`inline-block px-3 py-1 text-xs rounded-full mr-2 font-medium ${
+                          lesson.difficulty === 'beginner' ? 'bg-gradient-to-r from-sage-50 to-blush-50 text-sage-600 border border-sage-200' : 'bg-gradient-to-r from-rose-50 to-accent-50 text-rose-600 border border-rose-200'
                         }`}>
-                          {lesson.difficulty}
+                          {lesson.difficulty === 'beginner' ? '🌱 Easy' : '🌟 Challenge'}
                         </span>
                         <span className="text-xs text-secondary-300">{lesson.duration}s</span>
                       </div>
@@ -166,18 +206,18 @@ export default function LessonsPage() {
                   </div>
                 )}
 
-                {/* Progress Bar */}
+                {/* Progress Bar - Prettier */}
                 {lessonProgress.isUnlocked && (
                   <div className="mt-4">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-xs text-secondary-300">Progress</span>
-                      <span className="text-xs text-secondary-300">
-                        {lessonProgress.isCompleted ? '100%' : '0%'}
+                      <span className="text-xs text-secondary-300">Your Progress</span>
+                      <span className="text-xs font-medium text-blush-600">
+                        {lessonProgress.isCompleted ? '✨ Complete!' : 'Ready to start'}
                       </span>
                     </div>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="w-full bg-gray-100 rounded-full h-3">
                       <div 
-                        className="bg-accent-500 h-2 rounded-full transition-all duration-300"
+                        className="bg-gradient-to-r from-blush-400 to-sage-400 h-3 rounded-full transition-all duration-500"
                         style={{ width: lessonProgress.isCompleted ? '100%' : '0%' }}
                       ></div>
                     </div>
@@ -201,20 +241,28 @@ export default function LessonsPage() {
                   </div>
                 )}
 
-                {/* Action */}
-                <div className="mt-4 pt-4 border-t border-gray-100">
+                {/* Action - More Encouraging */}
+                <div className="mt-4 pt-4 border-t border-blush-100">
                   {lessonProgress.isCompleted ? (
-                    <span className="text-sm text-accent-600 font-medium">
-                      ✓ Completed • Review anytime
-                    </span>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-sage-600 font-medium">
+                        ✨ You nailed this one!
+                      </span>
+                      <span className="text-xs text-secondary-300">Review →</span>
+                    </div>
                   ) : lessonProgress.isUnlocked ? (
-                    <span className="text-sm text-primary-600 font-medium">
-                      Start Lesson →
-                    </span>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm text-blush-600 font-medium">
+                        Ready to learn! 💜
+                      </span>
+                      <span className="text-sm text-blush-500 font-bold">Start →</span>
+                    </div>
                   ) : (
-                    <span className="text-sm text-gray-400">
-                      Complete prerequisites to unlock
-                    </span>
+                    <div className="flex items-center">
+                      <span className="text-sm text-gray-400">
+                        🔒 Coming soon after lesson {lesson.order - 1}
+                      </span>
+                    </div>
                   )}
                 </div>
               </div>
@@ -222,23 +270,21 @@ export default function LessonsPage() {
           })}
         </div>
 
-        {/* Empty State */}
+        {/* Empty State - Friendlier */}
         {filteredLessons.length === 0 && (
           <div className="text-center py-12">
-            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">📚</span>
-            </div>
-            <h3 className="text-lg font-semibold text-secondary-100 mb-2">
-              No lessons in this category yet
+            <div className="text-6xl mb-4">🤔</div>
+            <h3 className="text-xl font-semibold text-secondary-100 mb-2">
+              Hmm, nothing here yet!
             </h3>
-            <p className="text-secondary-200 mb-4">
-              We're working on adding more content. Check back soon!
+            <p className="text-secondary-200 mb-6 max-w-md mx-auto">
+              We're cooking up some amazing lessons for this category. In the meantime, check out our other lessons! 💜
             </p>
             <button
               onClick={() => setSelectedCategory('all')}
-              className="btn-primary"
+              className="px-6 py-3 bg-gradient-to-r from-blush-500 to-sage-500 text-white rounded-xl font-medium hover:from-blush-600 hover:to-sage-600 transition-all duration-200 transform hover:scale-105"
             >
-              View All Lessons
+              ✨ See All Lessons
             </button>
           </div>
         )}

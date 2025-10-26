@@ -1,124 +1,105 @@
-import React, { Suspense, lazy, useEffect } from 'react'
+import React, { useState, useEffect, createContext, useContext } from 'react'
 import { AppProvider } from './context/AppContext'
-import { useRouter } from './hooks/useRouter'
-import { usePerformanceMonitor, useAdaptiveQuality } from './hooks/usePerformance'
-import { useAccessibility, useSEO } from './hooks/useAccessibility'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import ErrorBoundary from './components/ErrorBoundary'
-import LoadingSpinner from './components/LoadingSpinner'
-import AccessibilityToolbar from './components/AccessibilityToolbar'
 
-// Lazy load pages for better performance
-const Home = lazy(() => import('./pages/Home'))
-const SimpleLessonPage = lazy(() => import('./pages/SimpleLessonPage'))
-const LessonsPage = lazy(() => import('./pages/LessonsPage'))
-const ProfilePage = lazy(() => import('./pages/ProfilePage'))
-const LearningTracksPage = lazy(() => import('./pages/LearningTracksPage'))
-const InteractiveDemo = lazy(() => import('./pages/InteractiveDemo'))
-const AssessmentPage = lazy(() => import('./pages/AssessmentPage'))
-const CommunityPage = lazy(() => import('./pages/CommunityPage'))
+// Import pages directly
+import Home from './pages/Home'
+import LessonsPage from './pages/LessonsPage'
+import LearningTracksPage from './pages/LearningTracksPage'
+import InteractiveDemo from './pages/InteractiveDemo'
+import AssessmentPage from './pages/AssessmentPage'
+import CommunityPage from './pages/CommunityPage'
+import ProfilePage from './pages/ProfilePage'
+import SimpleLessonPage from './pages/SimpleLessonPage'
+import PlatformPage from './pages/PlatformPage'
+import VideoCreatorPage from './pages/VideoCreatorPage'
 
-const COMPONENT_MAP = {
-  'Home': Home,
-  'SimpleLessonPage': SimpleLessonPage,
-  'LessonsPage': LessonsPage,
-  'ProfilePage': ProfilePage,
-  'LearningTracksPage': LearningTracksPage,
-  'InteractiveDemo': InteractiveDemo,
-  'AssessmentPage': AssessmentPage,
-  'CommunityPage': CommunityPage
+// Create router context
+const RouterContext = createContext()
+
+// Router provider component
+const RouterProvider = ({ children }) => {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+  
+  const navigate = (path) => {
+    console.log('Navigate called:', path)
+    window.history.pushState({}, '', path)
+    setCurrentPath(path)
+  }
+  
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname)
+    }
+    
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+  
+  return (
+    <RouterContext.Provider value={{ currentPath, navigate }}>
+      {children}
+    </RouterContext.Provider>
+  )
 }
 
-function AppRouter() {
-  const { currentRoute, isTransitioning } = useRouter()
-  const { recordRenderTime } = usePerformanceMonitor()
-  const { getOptimalSettings } = useAdaptiveQuality()
-  const { addSkipLink, announce } = useAccessibility()
-  const { updateMeta } = useSEO()
+// Simple router hook
+export const useSimpleRouter = () => {
+  const context = useContext(RouterContext)
+  if (!context) {
+    throw new Error('useSimpleRouter must be used within RouterProvider')
+  }
+  return context
+}
+
+function SimpleRouter() {
+  const { currentPath } = useSimpleRouter()
   
-  const PageComponent = COMPONENT_MAP[currentRoute.component] || Home
-  const settings = getOptimalSettings()
-
-  // Initialize accessibility features
-  useEffect(() => {
-    addSkipLink('main-content', 'Skip to main content')
-  }, [])
-
-  // Update SEO for route changes
-  useEffect(() => {
-    const routeMeta = {
-      Home: {
-        title: 'Learn NFL Football - From Beginner to Fan',
-        description: 'Master NFL football with bite-sized lessons, interactive quizzes, and personalized learning. Perfect for complete beginners.',
-        keywords: ['NFL', 'football', 'learn', 'beginner', 'tutorial', 'sports']
-      },
-      SimpleLessonPage: {
-        title: 'NFL Lesson',
-        description: 'Interactive NFL football lesson with quizzes and progress tracking.'
-      },
-      LessonsPage: {
-        title: 'All NFL Lessons',
-        description: 'Browse our complete collection of NFL football lessons for all skill levels.'
-      },
-      ProfilePage: {
-        title: 'Your Progress',
-        description: 'Track your NFL learning progress, badges, and achievements.'
-      },
-      AssessmentPage: {
-        title: 'NFL Knowledge Assessment',
-        description: 'Test your NFL knowledge with our adaptive assessment and discover your skill level.'
-      },
-      CommunityPage: {
-        title: 'Community Hub',
-        description: 'Connect with fellow NFL learners, join groups, and compete in challenges.'
-      }
-    }
-
-    const meta = routeMeta[currentRoute.component] || routeMeta.Home
-    updateMeta({
-      ...meta,
-      canonicalUrl: `${window.location.origin}${window.location.pathname}`
-    })
+  // Route to component mapping
+  const getComponent = () => {
+    const path = currentPath
     
-    // Announce route changes to screen readers
-    if (currentRoute.component !== 'Home') {
-      announce(`Navigated to ${currentRoute.component.replace('Page', '')} page`)
+    if (path === '/') return <Home />
+    if (path === '/platform') return <PlatformPage />
+    if (path === '/lessons') return <LessonsPage />
+    if (path === '/tracks') return <LearningTracksPage />
+    if (path === '/demo') return <InteractiveDemo />
+    if (path === '/assessment') return <AssessmentPage />
+    if (path === '/community') return <CommunityPage />
+    if (path === '/profile') return <ProfilePage />
+    if (path === '/video-creator') return <VideoCreatorPage />
+    if (path.startsWith('/lesson/')) {
+      const lessonId = path.split('/lesson/')[1]
+      return <SimpleLessonPage params={{ id: lessonId }} />
     }
-  }, [currentRoute.component, updateMeta, announce])
-
-  useEffect(() => {
-    const startTime = performance.now()
-    return () => recordRenderTime(currentRoute.component, startTime)
-  }, [currentRoute.component, recordRenderTime])
-
+    
+    // Default to home
+    return <Home />
+  }
+  
   return (
-    <div className={`transition-opacity duration-300 ${isTransitioning ? 'opacity-75' : 'opacity-100'}`}>
-      <Suspense fallback={<LoadingSpinner />}>
-        <ErrorBoundary>
-          <PageComponent 
-            params={currentRoute.params} 
-            adaptiveSettings={settings}
-          />
-        </ErrorBoundary>
-      </Suspense>
-    </div>
+    <ErrorBoundary>
+      {getComponent()}
+    </ErrorBoundary>
   )
 }
 
 export default function App() {
   return (
     <ErrorBoundary>
-      <AppProvider>
-        <div className="min-h-screen flex flex-col bg-gray-50">
-          <Nav />
-          <main id="main-content" className="flex-grow" role="main" tabIndex="-1">
-            <AppRouter />
-          </main>
-          <Footer />
-          <AccessibilityToolbar />
-        </div>
-      </AppProvider>
+      <RouterProvider>
+        <AppProvider>
+          <div className="min-h-screen flex flex-col bg-gray-50">
+            <Nav />
+            <main className="flex-grow">
+              <SimpleRouter />
+            </main>
+            <Footer />
+          </div>
+        </AppProvider>
+      </RouterProvider>
     </ErrorBoundary>
   )
 }

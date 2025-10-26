@@ -69,7 +69,7 @@ export default function BadgeModal({ isOpen, onClose, badgeTitle = "First-Play E
           {/* Badge Title */}
           <div className="text-center mb-6">
             <h3 className="font-semibold text-xl text-gray-900 mb-1">{badgeTitle}</h3>
-            <p className="text-sm text-gray-600 font-medium">You've mastered the basics of NFL scoring!</p>
+            <p className="text-sm text-gray-600 font-medium">You've mastered the basics of football scoring!</p>
           </div>
         </div>
 

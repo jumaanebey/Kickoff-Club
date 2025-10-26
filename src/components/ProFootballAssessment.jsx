@@ -321,11 +321,11 @@ export default function ProFootballAssessment({ onComplete }) {
     return (
       <div className="max-w-4xl mx-auto p-6 bg-white rounded-xl shadow-lg">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            🏈 Professional Football Knowledge Assessment
+          <h2 className="text-3xl font-bold text-secondary-100 mb-4">
+            ✨ How Much Do You Already Know?
           </h2>
-          <p className="text-lg text-gray-600 mb-6">
-            Choose your assessment type to get started
+          <p className="text-lg text-secondary-200 mb-6">
+            No wrong answers here - just helping you find the perfect starting point! 💜
           </p>
         </div>
 
@@ -348,11 +348,22 @@ export default function ProFootballAssessment({ onComplete }) {
           </div>
         )}
 
-        {/* Assessment Tier Selection */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        {/* Assessment Tier Selection - Friendlier Design */}
+        <div className="grid sm:grid-cols-2 gap-6 mb-8">
           {Object.entries(assessmentConfig.modes).map(([mode, config]) => {
             const isUnlocked = unlockedTiers.includes(mode)
-            const tierIcon = ['🥉', '🥈', '🥇', '💎'][config.tier - 1] || '🎯'
+            const levelEmojis = {
+              beginner: '🌸',
+              intermediate: '🌺', 
+              advanced: '🌹',
+              expert: '💎'
+            }
+            const levelColors = {
+              beginner: 'from-blush-100 to-sage-100 border-blush-300',
+              intermediate: 'from-sage-100 to-primary-100 border-sage-300',
+              advanced: 'from-primary-100 to-accent-100 border-primary-300', 
+              expert: 'from-accent-100 to-rose-100 border-accent-300'
+            }
             
             return (
               <button
@@ -364,48 +375,38 @@ export default function ProFootballAssessment({ onComplete }) {
                   }
                 }}
                 disabled={!isUnlocked}
-                className={`p-4 rounded-xl border-2 text-center transition-all ${
+                className={`p-6 rounded-2xl border-2 text-center transition-all duration-300 transform hover:scale-[1.02] ${
                   isUnlocked
-                    ? 'hover:shadow-lg border-gray-200 hover:border-sage-300 cursor-pointer'
-                    : 'border-gray-100 bg-gray-50 cursor-not-allowed opacity-60'
+                    ? `bg-gradient-to-br ${levelColors[mode]} hover:shadow-xl cursor-pointer`
+                    : 'border-gray-200 bg-gray-50 cursor-not-allowed opacity-60'
                 }`}
               >
-                <div className="mb-3">
-                  <div className="text-3xl mb-2">
-                    {isUnlocked ? tierIcon : '🔒'}
+                <div className="mb-4">
+                  <div className="text-4xl mb-3">
+                    {isUnlocked ? levelEmojis[mode] : '🔒'}
                   </div>
-                  <h3 className={`text-lg font-bold mb-1 ${isUnlocked ? 'text-gray-900' : 'text-gray-500'}`}>
-                    {config.name}
+                  <h3 className={`text-xl font-bold mb-2 ${isUnlocked ? 'text-secondary-100' : 'text-gray-500'}`}>
+                    {config.name.replace(' Assessment', '')}
                   </h3>
-                  <div className="text-xs text-gray-500 mb-2">
-                    Tier {config.tier} • {config.totalQuestions} Questions
+                  <div className={`text-sm mb-3 ${isUnlocked ? 'text-secondary-200' : 'text-gray-400'}`}>
+                    {config.totalQuestions} questions • {Math.round(config.timeLimit / 60)} minutes
                   </div>
                 </div>
                 
-                <div className={`text-xs mb-3 ${isUnlocked ? 'text-gray-600' : 'text-gray-400'}`}>
-                  {config.description}
+                <div className={`text-sm mb-4 px-3 py-2 rounded-lg ${isUnlocked ? 'bg-white/60 text-secondary-200' : 'bg-gray-100 text-gray-400'}`}>
+                  {mode === 'beginner' ? 'Perfect starting point!' : 
+                   mode === 'intermediate' ? 'Ready for more challenge?' :
+                   mode === 'advanced' ? 'Test your knowledge!' :
+                   'Prove your expertise!'}
                 </div>
                 
-                <div className="space-y-1 text-xs">
-                  <div className="flex justify-between">
-                    <span>Difficulty:</span>
-                    <span className="font-semibold capitalize">
-                      {config.difficulty?.join(', ') || 'Mixed'}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Pass Score:</span>
-                    <span className="font-semibold">{config.passingScore || 70}%</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Time:</span>
-                    <span className="font-semibold">{Math.round(config.timeLimit / 60)} min</span>
-                  </div>
+                <div className={`text-xs space-y-1 ${isUnlocked ? 'text-secondary-300' : 'text-gray-400'}`}>
+                  <div>Need {config.passingScore || 70}% to pass</div>
                 </div>
                 
                 {!isUnlocked && config.requiresUnlock && (
-                  <div className="mt-3 text-xs text-red-600 font-medium">
-                    🔒 Complete previous tier to unlock
+                  <div className="mt-3 text-xs text-blush-600 font-medium bg-blush-50 px-2 py-1 rounded-full">
+                    Complete previous level first 💜
                   </div>
                 )}
               </button>
@@ -413,78 +414,33 @@ export default function ProFootballAssessment({ onComplete }) {
           })}
         </div>
 
-        {/* Assessment Info */}
-
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
-          <div className="bg-sage-50 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">📊 How It Works</h3>
-            <ul className="space-y-3 text-gray-700">
-              <li className="flex items-start">
-                <span className="text-sage-500 mr-2">•</span>
-                <span>Adaptive difficulty based on your performance</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-sage-500 mr-2">•</span>
-                <span>Questions across all pro football topics</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-sage-500 mr-2">•</span>
-                <span>30 seconds per question</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-sage-500 mr-2">•</span>
-                <span>Personalized learning recommendations</span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="bg-blush-50 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">🎯 Assessment Areas</h3>
-            <div className="grid grid-cols-2 gap-3">
-              {[
-                { name: 'Basic Rules', icon: '📜' },
-                { name: 'Positions', icon: '👥' },
-                { name: 'Strategy', icon: '🧠' },
-                { name: 'Advanced', icon: '⚡' }
-              ].map(area => (
-                <div key={area.name} className="flex items-center p-3 bg-white rounded-lg">
-                  <span className="text-xl mr-2">{area.icon}</span>
-                  <span className="text-sm font-medium text-gray-700">{area.name}</span>
-                </div>
-              ))}
+        {/* Simplified Assessment Info */}
+        <div className="bg-gradient-to-r from-sage-50 to-blush-50 rounded-2xl p-6 mb-8 border border-sage-200">
+          <h3 className="text-xl font-semibold text-secondary-100 mb-4 text-center">✨ What to Expect</h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="text-center">
+              <div className="text-3xl mb-2">⏱️</div>
+              <h4 className="font-semibold text-secondary-100 mb-2">Quick & Easy</h4>
+              <p className="text-sm text-secondary-200">Just 30 seconds per question - go with your gut!</p>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl mb-2">💜</div>
+              <h4 className="font-semibold text-secondary-100 mb-2">No Pressure</h4>
+              <p className="text-sm text-secondary-200">This helps us find the perfect lessons for you</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-8">
-          <div className="flex items-start">
-            <span className="text-yellow-500 text-xl mr-3">💡</span>
-            <div>
-              <h4 className="font-semibold text-yellow-800 mb-2">Tips for Success</h4>
-              <ul className="text-sm text-yellow-700 space-y-1">
-                <li>• Read each question carefully</li>
-                <li>• Don't overthink - go with your first instinct</li>
-                <li>• The test adapts to your skill level as you progress</li>
-                <li>• There's no penalty for wrong answers</li>
-              </ul>
-            </div>
+        <div className="bg-blush-50 border border-blush-200 rounded-xl p-6 mb-8">
+          <div className="text-center">
+            <div className="text-4xl mb-3">🤗</div>
+            <h4 className="font-semibold text-secondary-100 mb-3">Remember: This is Just for Fun!</h4>
+            <p className="text-sm text-secondary-200 max-w-md mx-auto">
+              Don't stress about getting everything right. We're just figuring out what you already know so we can help you learn what you don't! No wrong answers here. 💕
+            </p>
           </div>
         </div>
 
-        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
-          <div className="flex items-start">
-            <span className="text-yellow-500 text-xl mr-3">💡</span>
-            <div>
-              <h4 className="font-semibold text-yellow-800 mb-2">How Tiered Assessment Works:</h4>
-              <ul className="text-sm text-yellow-700 space-y-1 text-left">
-                <li>• <strong>Start with Beginner:</strong> Everyone begins here to establish baseline</li>
-                <li>• <strong>Pass to Unlock:</strong> Score {assessmentConfig.modes.beginner.passingScore}%+ to unlock the next tier</li>
-                <li>• <strong>Progressive Challenge:</strong> Each tier gets harder with more questions</li>
-                <li>• <strong>Prove Your Expertise:</strong> Reach Expert tier to show true pro football mastery</li>
-              </ul>
-            </div>
-          </div>
-        </div>
       </div>
     )
   }
@@ -744,74 +700,76 @@ export default function ProFootballAssessment({ onComplete }) {
   return (
     <div className="max-w-4xl mx-auto p-6">
       {/* Header */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+      <div className="bg-gradient-to-r from-blush-50 to-sage-50 rounded-2xl shadow-sm border border-blush-200 p-6 mb-6">
         <div className="flex justify-between items-center mb-4">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">Pro Football Assessment</h2>
-            <p className="text-gray-600">
-              Question {assessment.responses.length + 1} of {assessment.totalQuestions}
+            <h2 className="text-2xl font-bold text-secondary-100">✨ Football Knowledge Check</h2>
+            <p className="text-secondary-200">
+              Question {assessment.responses.length + 1} of {assessment.totalQuestions} • Almost there!
             </p>
           </div>
           <div className="text-right">
-            <div className={`text-2xl font-bold mb-1 ${timeRemaining <= 10 ? 'text-red-600' : 'text-gray-900'}`}>
+            <div className={`text-2xl font-bold mb-1 ${timeRemaining <= 10 ? 'text-rose-500' : 'text-sage-600'}`}>
               {formatTime(timeRemaining)}
             </div>
-            <div className="text-sm text-gray-500">Time left</div>
+            <div className="text-sm text-secondary-300">No rush! 💜</div>
           </div>
         </div>
 
         {/* Progress Bar */}
-        <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+        <div className="w-full bg-white/60 rounded-full h-3 mb-2">
           <div
-            className="bg-sage-500 h-2 rounded-full transition-all duration-300"
+            className="bg-gradient-to-r from-blush-400 to-sage-400 h-3 rounded-full transition-all duration-500"
             style={{ width: `${progress}%` }}
           ></div>
         </div>
-        <div className="flex justify-between text-sm text-gray-500">
-          <span>{progress}% Complete</span>
+        <div className="flex justify-between text-sm text-secondary-200">
+          <span>{progress}% Complete 🎉</span>
           <div className="flex items-center gap-4">
             {currentStreak > 0 && (
-              <span className="text-green-600 font-medium">
-                {currentStreak >= 5 ? '🦄' : currentStreak >= 3 ? '🔥' : '⭐'} {currentStreak} streak
+              <span className="text-accent-600 font-medium bg-white/60 px-2 py-1 rounded-full">
+                {currentStreak >= 5 ? '🦄' : currentStreak >= 3 ? '🔥' : '⭐'} {currentStreak} streak!
               </span>
             )}
-            <span className="capitalize">{assessment.currentDifficulty} Level</span>
           </div>
         </div>
       </div>
 
       {/* Question */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 mb-6">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 mb-6">
         <div className="mb-8">
-          <div className="flex items-center mb-4">
-            <span className="inline-block px-3 py-1 bg-sage-100 text-sage-800 rounded-full text-sm font-medium capitalize mr-3">
-              {currentQuestion.category.replace('-', ' ')}
-            </span>
-            <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium capitalize">
-              {currentQuestion.difficulty}
+          <div className="text-center mb-6">
+            <span className="inline-block px-4 py-2 bg-gradient-to-r from-blush-100 to-sage-100 text-secondary-100 rounded-full text-sm font-medium capitalize">
+              {currentQuestion.category.replace('-', ' ')} question
             </span>
           </div>
-          <h3 className="text-xl font-semibold text-gray-900 leading-relaxed">
+          <h3 className="text-xl font-semibold text-secondary-100 leading-relaxed text-center">
             {currentQuestion.question}
           </h3>
         </div>
 
         {/* Answer Options */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           {currentQuestion.options.map((option, index) => (
             <button
               key={index}
               onClick={() => handleAnswerSelect(option)}
-              className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
+              className={`w-full text-left p-4 rounded-xl border-2 transition-all duration-200 transform hover:scale-[1.01] ${
                 selectedAnswer === option
-                  ? 'bg-sage-50 border-sage-400 text-sage-900'
-                  : 'bg-gray-50 border-gray-200 hover:border-sage-300 text-gray-700'
+                  ? 'bg-gradient-to-r from-blush-50 to-sage-50 border-blush-400 text-secondary-100 shadow-md'
+                  : 'bg-gray-50 border-gray-200 hover:border-blush-300 hover:bg-blush-50/50 text-secondary-200'
               }`}
             >
-              <span className="font-medium mr-3">
-                {String.fromCharCode(65 + index)}.
-              </span>
-              {option}
+              <div className="flex items-center">
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm mr-4 ${
+                  selectedAnswer === option
+                    ? 'bg-blush-400 text-white'
+                    : 'bg-gray-200 text-gray-600'
+                }`}>
+                  {String.fromCharCode(65 + index)}
+                </div>
+                <span className="flex-1">{option}</span>
+              </div>
             </button>
           ))}
         </div>
@@ -854,27 +812,30 @@ export default function ProFootballAssessment({ onComplete }) {
         )}
 
         {/* Submit Button */}
-        <div className="mt-8 flex justify-between items-center">
-          <div className="text-sm text-gray-500">
-            {showFeedback ? 'Loading next question...' : (isSubmitting ? 'Processing...' : (selectedAnswer ? `Selected: ${selectedAnswer}` : 'Select an answer to continue'))}
-          </div>
+        <div className="mt-8 text-center">
           <button
             onClick={handleSubmitAnswer}
             disabled={(!selectedAnswer || isSubmitting)}
-            className="px-8 py-3 bg-sage-500 text-white rounded-lg font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-sage-600 transition-colors"
+            className="px-8 py-4 bg-gradient-to-r from-blush-500 to-sage-500 text-white rounded-xl font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed hover:from-blush-600 hover:to-sage-600 transition-all duration-200 transform hover:scale-105 disabled:transform-none text-lg"
           >
-            {showFeedback ? 'Loading Next Question...' : (isSubmitting ? 'Processing...' : (assessment && assessment.responses.length === assessment.totalQuestions - 1 ? 'Finish Assessment' : 'Next Question'))} →
+            {showFeedback ? '✨ Loading next...' : (isSubmitting ? '⏳ Thinking...' : (assessment && assessment.responses.length === assessment.totalQuestions - 1 ? '🎉 See My Results!' : '💜 Next Question'))}
           </button>
+          {selectedAnswer && !showFeedback && !isSubmitting && (
+            <p className="text-sm text-secondary-300 mt-3">Nice choice! Ready when you are ✨</p>
+          )}
+          {!selectedAnswer && !showFeedback && (
+            <p className="text-sm text-secondary-300 mt-3">Pick the answer that feels right to you 💕</p>
+          )}
         </div>
       </div>
 
-      {/* Tips */}
-      <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-lg p-4 border border-yellow-200">
-        <div className="flex items-start">
-          <span className="text-yellow-500 text-lg mr-2">💡</span>
-          <div className="text-sm text-yellow-700">
-            <strong>Tip:</strong> The assessment adapts to your performance. Don't worry about getting everything right - focus on doing your best!
-          </div>
+      {/* Encouraging Message */}
+      <div className="bg-gradient-to-r from-blush-50 to-sage-50 rounded-xl p-4 border border-blush-200">
+        <div className="text-center">
+          <span className="text-2xl mr-2">🤗</span>
+          <span className="text-sm text-secondary-200">
+            <strong>Remember:</strong> You're doing great! This is just helping us figure out what to teach you next. No pressure! 💜
+          </span>
         </div>
       </div>
 

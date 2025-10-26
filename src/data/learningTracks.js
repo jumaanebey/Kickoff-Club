@@ -2,7 +2,7 @@
 export const learningTracks = {
   'fundamentals': {
     id: 'fundamentals',
-    title: 'NFL Fundamentals',
+    title: 'Football Fundamentals',
     subtitle: 'Start here to learn the basics',
     difficulty: 'beginner',
     description: 'Master the essential concepts that make football work. Perfect for complete beginners.',
@@ -290,7 +290,7 @@ export const learningTracks = {
       {
         lessonId: 'nfl-evolution',
         order: 7,
-        title: 'Evolution of NFL Strategy',
+        title: 'Evolution of Football Strategy',
         prerequisites: ['coaching-decisions'],
         isRequired: false,
         unlocksConcepts: ['rule-changes', 'modern-offense', 'defensive-evolution']

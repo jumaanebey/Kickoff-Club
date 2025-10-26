@@ -1,310 +1,155 @@
+import React from 'react'
+
+// Fallback components for missing imports
+const FallbackComponent = ({ name, description }) => (
+  <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
+    <div className="text-center">
+      <div className="text-4xl mb-4">🚧</div>
+      <h3 className="text-lg font-semibold text-gray-800 mb-2">{name}</h3>
+      <p className="text-gray-600 text-sm">{description}</p>
+      <div className="mt-4 bg-blue-50 rounded-lg p-3">
+        <p className="text-blue-700 text-xs">Component ready for integration</p>
+      </div>
+    </div>
+  </div>
+)
+
+// Import the actual components - they exist now
 import DownsCounterSimple from '../components/DownsCounterSimple'
 import ScoringSimulatorSimple from '../components/ScoringSimulatorSimple'
-import GameScenario from '../components/GameScenario'
-import InteractiveFieldDiagram from '../components/InteractiveFieldDiagram'
-import InteractiveScoringSimulator from '../components/InteractiveScoringSimulator'
-import AchievementShowcase from '../components/AchievementShowcase'
-import Leaderboard from '../components/Leaderboard'
-import AnalyticsDashboard from '../components/AnalyticsDashboard'
-import VideoPlayerWithScript from '../components/VideoPlayerWithScript'
-import PracticeMode from '../components/PracticeMode'
-import TeamSelector from '../components/TeamSelector'
-import SocialShare from '../components/SocialShare'
-import MiniGames from '../components/MiniGames'
+import FootballScenarioGame from '../components/FootballScenarioGame'
+import SimpleAchievementShowcase from '../components/SimpleAchievementShowcase'
 
-const InteractiveDemo = () => {
+// Import available components with fallbacks for ones that may not exist yet
+let GameScenario, InteractiveScoringSimulator, Leaderboard, AnalyticsDashboard, VideoPlayerWithScript, PracticeMode, TeamSelector, SocialShare, MiniGames
+
+try {
+  GameScenario = require('../components/GameScenario').default
+} catch {
+  GameScenario = () => <FallbackComponent name="Game Scenarios" description="Strategic decision challenges" />
+}
+
+try {
+  InteractiveScoringSimulator = require('../components/InteractiveScoringSimulator').default
+} catch {
+  InteractiveScoringSimulator = () => <FallbackComponent name="Advanced Scoring" description="Complex scoring decision simulator" />
+}
+
+try {
+  Leaderboard = require('../components/Leaderboard').default
+} catch {
+  Leaderboard = () => <FallbackComponent name="Leaderboards" description="Competitive learning rankings" />
+}
+
+try {
+  AnalyticsDashboard = require('../components/AnalyticsDashboard').default
+} catch {
+  AnalyticsDashboard = () => <FallbackComponent name="Analytics" description="Learning progress insights" />
+}
+
+try {
+  VideoPlayerWithScript = require('../components/VideoPlayerWithScript').default
+} catch {
+  VideoPlayerWithScript = () => <FallbackComponent name="Video Integration" description="Synchronized video lessons" />
+}
+
+try {
+  PracticeMode = require('../components/PracticeMode').default
+} catch {
+  PracticeMode = () => <FallbackComponent name="Practice Mode" description="Unlimited practice questions" />
+}
+
+try {
+  TeamSelector = require('../components/TeamSelector').default
+} catch {
+  TeamSelector = () => <FallbackComponent name="Team Selection" description="Personalized team-based content" />
+}
+
+try {
+  SocialShare = require('../components/SocialShare').default
+} catch {
+  SocialShare = () => <FallbackComponent name="Social Sharing" description="Share progress with friends" />
+}
+
+try {
+  MiniGames = require('../components/MiniGames').default
+} catch {
+  MiniGames = () => <FallbackComponent name="Mini Games" description="Interactive learning games" />
+}
+
+const InteractiveDemo = ({ navigate }) => {
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="max-w-4xl mx-auto p-6">
       <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-secondary-100 mb-4">
-          🎮 Interactive Professional Football Learning Experience
+        <h1 className="text-3xl font-bold text-secondary-100 mb-4">
+          🎮 Try Our Interactive Learning Tools
         </h1>
-        <p className="text-xl text-secondary-300 max-w-3xl mx-auto">
-          Experience hands-on learning with fully interactive simulators, challenges, and real-time feedback systems.
+        <p className="text-lg text-secondary-300 max-w-2xl mx-auto">
+          Get hands-on with the core concepts of football through simple, interactive simulations.
         </p>
       </div>
 
-      <div className="grid gap-8">
-        {/* Interactive Field Diagram */}
+      <div className="space-y-12">
+        {/* Football Scenarios Game */}
         <div className="space-y-4">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-secondary-100 mb-2">
-              🏈 Interactive Field & Downs System
+              🏈 Football Scenarios
             </h2>
             <p className="text-secondary-300">
-              Click to move the ball and experience how the 4-down system works in real situations
+              Experience real football plays and learn what happens on each down!
             </p>
           </div>
-          <InteractiveFieldDiagram />
+          <FootballScenarioGame />
         </div>
 
-        {/* Original Downs Counter (Simple Version) */}
+        {/* Scoring Simulator */}
         <div className="space-y-4">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-secondary-100 mb-2">
-              🔄 Basic Downs Counter
+              🎯 Practice Scoring Plays
             </h2>
             <p className="text-secondary-300">
-              Simple demonstration of how downs progress play by play
-            </p>
-          </div>
-          <DownsCounterSimple />
-        </div>
-
-        {/* Interactive Scoring Simulator */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-secondary-100 mb-2">
-              🎯 Advanced Scoring Decision Simulator
-            </h2>
-            <p className="text-secondary-300">
-              Make strategic scoring decisions with real game consequences
-            </p>
-          </div>
-          <InteractiveScoringSimulator />
-        </div>
-
-        {/* Original Scoring Simulator (Simple Version) */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-secondary-100 mb-2">
-              ⚡ Quick Scoring Practice
-            </h2>
-            <p className="text-secondary-300">
-              Simple practice with scoring plays and extra point decisions
+              Try different scoring plays and make touchdown decisions
             </p>
           </div>
           <ScoringSimulatorSimple />
         </div>
 
-        {/* Game Scenario Challenge */}
+        {/* Achievement System */}
         <div className="space-y-4">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-secondary-100 mb-2">
-              🧠 Strategic Decision Challenge
+              🏆 Track Your Progress
             </h2>
             <p className="text-secondary-300">
-              Make coaching decisions in crucial game situations
+              See how achievements work as you complete lessons
             </p>
           </div>
-          <GameScenario />
+          <SimpleAchievementShowcase />
         </div>
 
-        {/* Achievement System Showcase */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-secondary-100 mb-2">
-              🏆 Advanced Achievement System
-            </h2>
-            <p className="text-secondary-300">
-              Comprehensive badge system with streaks, milestones, and progress tracking
-            </p>
-          </div>
-          <AchievementShowcase />
-        </div>
-
-        {/* Analytics Dashboard */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-secondary-100 mb-2">
-              📊 Learning Analytics
-            </h2>
-            <p className="text-secondary-300">
-              Track your progress with detailed insights and performance metrics
-            </p>
-          </div>
-          <AnalyticsDashboard />
-        </div>
-
-        {/* Leaderboards */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-secondary-100 mb-2">
-              🏆 Competitive Learning
-            </h2>
-            <p className="text-secondary-300">
-              Compete with other learners and climb the leaderboards
-            </p>
-          </div>
-          <Leaderboard />
-        </div>
-
-        {/* Practice Mode */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-secondary-100 mb-2">
-              🎯 Practice Mode
-            </h2>
-            <p className="text-secondary-300">
-              Unlimited practice questions with hints and instant feedback
-            </p>
-          </div>
-          <PracticeMode />
-        </div>
-
-        {/* Team Selection */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-secondary-100 mb-2">
-              🏈 Team-Based Learning
-            </h2>
-            <p className="text-secondary-300">
-              Choose your favorite team and get personalized content
-            </p>
-          </div>
-          <TeamSelector />
-        </div>
-
-        {/* Mini Games */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-secondary-100 mb-2">
-              🎮 Learning Mini-Games
-            </h2>
-            <p className="text-secondary-300">
-              Master concepts through fun, interactive games with time challenges
-            </p>
-          </div>
-          <MiniGames />
-        </div>
-
-        {/* Social Sharing */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-secondary-100 mb-2">
-              🌐 Social Learning
-            </h2>
-            <p className="text-secondary-300">
-              Share your progress and achievements with friends
-            </p>
-          </div>
-          <SocialShare />
-        </div>
-
-        {/* Video Player Demo */}
-        <div className="space-y-4">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-secondary-100 mb-2">
-              🎥 Video Learning Experience
-            </h2>
-            <p className="text-secondary-300">
-              Synchronized video lessons with timed scripts and interactive elements
-            </p>
-          </div>
-          <VideoPlayerWithScript 
-            lesson={{
-              id: "how-downs-work",
-              title: "How Downs Work",
-              subtitle: "The 4-Try System That Drives Every Play",
-              duration: 90,
-              script: {
-                sections: [
-                  {
-                    timestamp: "0:03-0:12",
-                    title: "Big Picture",
-                    content: "A down is one try to move the ball forward. Teams get four downs to go ten yards.",
-                    onScreen: "animated field + 'DOWN = one play attempt'"
-                  },
-                  {
-                    timestamp: "0:12-0:26",
-                    title: "1st Down Explained",
-                    content: "If it's 1st and 10, the offense has four tries starting now to gain 10 yards.",
-                    onScreen: "'1st & 10' badge appears showing yard marker moving 10 yards"
-                  },
-                  {
-                    timestamp: "0:26-0:40",
-                    title: "2nd & 3rd Down",
-                    content: "If they don't get 10 on the first try, it becomes 2nd down. Then 3rd down.",
-                    onScreen: "2nd & 5, 3rd & 7 examples with arrows"
-                  }
-                ]
-              }
-            }}
-          />
-        </div>
-
-        {/* Feature Summary */}
-        <div className="bg-gradient-to-r from-sage-50 to-blush-50 rounded-xl p-8 border border-sage-200">
-          <h2 className="text-2xl font-bold text-secondary-100 mb-6 text-center">
-            🚀 Enhanced Learning Platform Features
+        {/* Simple Call to Action */}
+        <div className="text-center mt-12 p-6 bg-gradient-to-r from-sage-50 to-blush-50 rounded-lg border border-sage-200">
+          <h2 className="text-2xl font-bold text-secondary-100 mb-4">
+            Ready to Learn Football?
           </h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-2xl mb-2">📚</div>
-              <h3 className="font-bold text-navy mb-2">Enhanced Content</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Production-ready 90-second scripts</li>
-                <li>• Detailed timestamps & production notes</li>
-                <li>• WebVTT captions for accessibility</li>
-                <li>• Interactive quiz systems</li>
-              </ul>
-            </div>
-
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-2xl mb-2">🎮</div>
-              <h3 className="font-bold text-navy mb-2">Interactive Elements</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Hands-on downs simulator</li>
-                <li>• Scoring decision mechanics</li>
-                <li>• Strategic scenario challenges</li>
-                <li>• Real-time feedback systems</li>
-              </ul>
-            </div>
-
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-2xl mb-2">🏆</div>
-              <h3 className="font-bold text-navy mb-2">Advanced Gamification</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• 25+ new achievement badges</li>
-                <li>• Streak-based rewards</li>
-                <li>• Performance tracking</li>
-                <li>• Learning pathway progression</li>
-              </ul>
-            </div>
-
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-2xl mb-2">🎯</div>
-              <h3 className="font-bold text-navy mb-2">Learning Tracks</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Structured skill pathways</li>
-                <li>• Beginner → Expert progression</li>
-                <li>• Unlockable content system</li>
-                <li>• Prerequisites management</li>
-              </ul>
-            </div>
-
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-2xl mb-2">📹</div>
-              <h3 className="font-bold text-navy mb-2">Video Integration</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Script synchronization ready</li>
-                <li>• Live quiz overlays</li>
-                <li>• Section markers & controls</li>
-                <li>• Caption system integrated</li>
-              </ul>
-            </div>
-
-            <div className="bg-white rounded-lg p-4 shadow-sm">
-              <div className="text-2xl mb-2">🔧</div>
-              <h3 className="font-bold text-navy mb-2">Technical Excellence</h3>
-              <ul className="text-sm text-gray-600 space-y-1">
-                <li>• Component-based architecture</li>
-                <li>• Real-time state management</li>
-                <li>• Mobile-responsive design</li>
-                <li>• Production-ready codebase</li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="text-center mt-8">
-            <div className="bg-warmGold bg-opacity-20 rounded-lg p-4 border border-warmGold">
-              <h3 className="font-bold text-navy mb-2">🎉 Platform Status: Ready for Production</h3>
-              <p className="text-sm text-gray-700">
-                Complete learning management system with interactive elements, gamification, 
-                structured progression, and video integration capabilities.
-              </p>
-            </div>
+          <p className="text-secondary-300 mb-4">
+            Start with our structured lessons or continue exploring the interactive tools above.
+          </p>
+          <div className="space-x-4">
+            <button 
+              onClick={() => navigate('/lessons')}
+              className="bg-sage-500 hover:bg-sage-600 text-white px-6 py-2 rounded-lg transition-colors"
+            >
+              📚 Start Learning
+            </button>
+            <button 
+              onClick={() => navigate('/platform')}
+              className="bg-accent-500 hover:bg-accent-600 text-white px-6 py-2 rounded-lg transition-colors"
+            >
+              📖 View All Lessons
+            </button>
           </div>
         </div>
       </div>
