@@ -40,39 +40,19 @@ export default function ProFootballAssessment({ onComplete }) {
     try {
       setLoading(true)
       setError(null)
-      
+
       // Get current user (may be null for first-time users)
       const currentUser = getCurrentUser()
       setUser(currentUser)
-      
-      if (currentUser && currentUser.progress) {
-        try {
-          const unlockedTiersList = getUnlockedTiers(currentUser.progress)
-          const tierProgressData = getTierProgress(currentUser.progress)
-          
-          // Ensure beginner is always available
-          const finalUnlockedTiers = unlockedTiersList.includes('beginner') 
-            ? unlockedTiersList 
-            : ['beginner', ...unlockedTiersList]
-          
-          setUnlockedTiers(finalUnlockedTiers)
-          setTierProgress(tierProgressData)
-        } catch (progressError) {
-          console.warn('Error loading user progress:', progressError)
-          // Fallback to beginner only
-          setUnlockedTiers(['beginner'])
-          setTierProgress({ unlockedCount: 1, totalCount: 4, unlockedTiers: ['beginner'] })
-        }
-      } else {
-        // No user or no progress - default to beginner available
-        setUnlockedTiers(['beginner'])
-        setTierProgress({ unlockedCount: 1, totalCount: 4, unlockedTiers: ['beginner'] })
-      }
+
+      // Unlock all tiers - allow users to take any test
+      setUnlockedTiers(['beginner', 'intermediate', 'advanced', 'expert'])
+      setTierProgress(null) // Remove progress tracking
     } catch (error) {
       console.error('Error initializing assessment:', error)
       setError('Failed to initialize assessment. Please refresh the page.')
-      // Still allow beginner tier as fallback
-      setUnlockedTiers(['beginner'])
+      // Still allow all tiers as fallback
+      setUnlockedTiers(['beginner', 'intermediate', 'advanced', 'expert'])
     } finally {
       setLoading(false)
     }
@@ -329,26 +309,10 @@ export default function ProFootballAssessment({ onComplete }) {
           <p className="text-lg text-secondary-200 mb-6">
             No wrong answers here - just helping you find the perfect starting point!
           </p>
-        </div>
-
-        {/* Tier Progress Display */}
-        {tierProgress && (
-          <div className="mb-6 bg-gradient-to-r from-sage-50 to-blush-50 rounded-lg p-6 border border-sage-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">🏆 Assessment Progress</h3>
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-gray-700">Tiers Unlocked</span>
-              <span className="font-bold text-sage-600">
-                {tierProgress.unlockedCount} / {tierProgress.totalCount}
-              </span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
-              <div
-                className="bg-sage-500 h-2 rounded-full transition-all duration-500"
-                style={{ width: `${(tierProgress.unlockedCount / tierProgress.totalCount) * 100}%` }}
-              ></div>
-            </div>
+          <div className="inline-block bg-accent-50 border border-accent-200 rounded-lg px-4 py-2 text-sm text-accent-700">
+            💡 Tip: We recommend starting with Beginner and working your way up!
           </div>
-        )}
+        </div>
 
         {/* Assessment Tier Selection - Friendlier Design */}
         <div className="grid sm:grid-cols-2 gap-6 mb-8">
@@ -371,44 +335,39 @@ export default function ProFootballAssessment({ onComplete }) {
               <button
                 key={mode}
                 onClick={() => {
-                  if (isUnlocked) {
-                    setSelectedMode(mode)
-                    startAssessment(mode)
-                  }
+                  setSelectedMode(mode)
+                  startAssessment(mode)
                 }}
-                disabled={!isUnlocked}
-                className={`p-6 rounded-2xl border-2 text-center transition-all duration-300 transform hover:scale-[1.02] ${
-                  isUnlocked
-                    ? `bg-gradient-to-br ${levelColors[mode]} hover:shadow-xl cursor-pointer`
-                    : 'border-gray-200 bg-gray-50 cursor-not-allowed opacity-60'
-                }`}
+                className={`p-6 rounded-2xl border-2 text-center transition-all duration-300 transform hover:scale-[1.02] bg-gradient-to-br ${levelColors[mode]} hover:shadow-xl cursor-pointer`}
               >
                 <div className="mb-4">
                   <div className="text-4xl mb-3">
-                    {isUnlocked ? levelEmojis[mode] : '🔒'}
+                    {levelEmojis[mode]}
                   </div>
-                  <h3 className={`text-xl font-bold mb-2 ${isUnlocked ? 'text-secondary-100' : 'text-gray-500'}`}>
+                  <h3 className="text-xl font-bold mb-2 text-secondary-100">
                     {config.name.replace(' Assessment', '')}
                   </h3>
-                  <div className={`text-sm mb-3 ${isUnlocked ? 'text-secondary-200' : 'text-gray-400'}`}>
+                  <div className="text-sm mb-3 text-secondary-200">
                     {config.totalQuestions} questions • {Math.round(config.timeLimit / 60)} minutes
                   </div>
                 </div>
-                
-                <div className={`text-sm mb-4 px-3 py-2 rounded-lg ${isUnlocked ? 'bg-white/60 text-secondary-200' : 'bg-gray-100 text-gray-400'}`}>
-                  {mode === 'beginner' ? 'Perfect starting point!' : 
+
+                <div className="text-sm mb-4 px-3 py-2 rounded-lg bg-white/60 text-secondary-200">
+                  {mode === 'beginner' ? 'Perfect starting point!' :
                    mode === 'intermediate' ? 'Ready for more challenge?' :
                    mode === 'advanced' ? 'Test your knowledge!' :
                    'Prove your expertise!'}
                 </div>
-                
-                <div className={`text-xs space-y-1 ${isUnlocked ? 'text-secondary-300' : 'text-gray-400'}`}>
+
+                <div className="text-xs space-y-1 text-secondary-300">
                   <div>Need {config.passingScore || 70}% to pass</div>
                 </div>
-                
-                {!isUnlocked && config.requiresUnlock && (
-                  <div className="mt-3 text-xs text-blush-600 font-medium bg-blush-50 px-2 py-1 rounded-full">
-                    Complete previous level first 💜
+
+                {mode !== 'beginner' && (
+                  <div className="mt-3 text-xs text-accent-600 font-medium bg-accent-50 px-2 py-1 rounded-full">
+                    {mode === 'intermediate' ? 'Try Beginner first' :
+                     mode === 'advanced' ? 'Recommended: Complete Intermediate' :
+                     'Recommended: Complete Advanced'}
                   </div>
                 )}
               </button>
