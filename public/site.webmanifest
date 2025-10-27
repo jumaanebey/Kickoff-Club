@@ -1,0 +1,26 @@
+{
+  "name": "Kickoff Club",
+  "short_name": "Kickoff Club",
+  "description": "Learn football fundamentals with bite-sized lessons. From confused to confident in 10 easy lessons.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["education", "sports"],
+  "lang": "en-US",
+  "dir": "ltr"
+}
