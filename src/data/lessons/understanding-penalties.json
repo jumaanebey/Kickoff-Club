@@ -59,17 +59,60 @@
     ]
   },
   "quiz": {
-    "id": "understanding-penalties-quiz",
-    "question": "The offense gains 8 yards on a play, but the defense committed a 5-yard offside penalty. What should the offense do?",
-    "options": [
-      "Accept the penalty and replay the down with 5 extra yards",
-      "Decline the penalty and keep the 8-yard gain",
-      "Both penalties offset, replay the down",
-      "The play doesn't count at all"
-    ],
-    "correctIndex": 1,
-    "explanation": "Smart choice! Since the offense gained 8 yards (more than the 5-yard penalty would give), they should decline the penalty and keep their bigger gain.",
-    "encouragement": "You understand penalty strategy! Knowing when to accept or decline is crucial."
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple-choice",
+        "question": "What does a yellow flag on the field mean?",
+        "options": [
+          "Timeout has been called",
+          "A penalty has occurred",
+          "The play was a touchdown",
+          "It's the two-minute warning"
+        ],
+        "correct": 1,
+        "explanation": "When a referee throws a yellow flag, it means a penalty has occurred - someone broke a rule. The refs will announce what the penalty was after the play ends."
+      },
+      {
+        "id": "q2",
+        "type": "multiple-choice",
+        "question": "Which penalty is typically 5 yards?",
+        "options": [
+          "Holding",
+          "Pass interference",
+          "False start",
+          "Roughing the passer"
+        ],
+        "correct": 2,
+        "explanation": "False start is a 5-yard penalty. It happens when an offensive player moves before the ball is snapped. Holding is 10 yards, and roughing the passer is 15 yards."
+      },
+      {
+        "id": "q3",
+        "type": "multiple-choice",
+        "question": "What is 'pass interference'?",
+        "options": [
+          "When the QB throws an interception",
+          "When a defender illegally prevents a receiver from catching the ball",
+          "When the pass is incomplete",
+          "When two receivers run into each other"
+        ],
+        "correct": 1,
+        "explanation": "Pass interference is when a defender illegally contacts a receiver to prevent them from catching the ball. In the NFL, it's a spot foul - the ball moves to where the foul occurred."
+      },
+      {
+        "id": "q4",
+        "type": "multiple-choice",
+        "question": "The offense gains 8 yards on a play, but the defense committed a 5-yard offside penalty. What should the offense do?",
+        "options": [
+          "Accept the penalty and replay the down with 5 extra yards",
+          "Decline the penalty and keep the 8-yard gain",
+          "Both penalties offset, replay the down",
+          "The play doesn't count at all"
+        ],
+        "correct": 1,
+        "explanation": "Smart choice! Since the offense gained 8 yards (more than the 5-yard penalty would give), they should decline the penalty and keep their bigger gain. This is strategic thinking!"
+      }
+    ]
   },
   "keyTerms": [
     {

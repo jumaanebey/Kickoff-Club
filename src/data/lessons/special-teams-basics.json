@@ -59,17 +59,60 @@
     ]
   },
   "quiz": {
-    "id": "special-teams-quiz",
-    "question": "It's 4th & 8 from the opponent's 35-yard line. Your team is up by 2 points with 3 minutes left. What's the best special teams decision?",
-    "options": [
-      "Attempt a 52-yard field goal",
-      "Punt to pin them deep",
-      "Try a fake punt",
-      "Go for the first down"
-    ],
-    "correctIndex": 0,
-    "explanation": "Good call! A 52-yard field goal is makeable for football kickers. If successful, you go up by 5 points (requiring a touchdown to beat you). Missing still leaves them at their 35 - not much different from a punt.",
-    "encouragement": "You understand special teams strategy! Field position and score determine these crucial decisions."
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple-choice",
+        "question": "When does a kickoff happen in football?",
+        "options": [
+          "Only at the start of the game",
+          "After every touchdown and field goal, plus to start each half",
+          "Only on 4th down",
+          "Whenever the coach wants"
+        ],
+        "correct": 1,
+        "explanation": "Kickoffs happen at the start of each half and after every scoring play (touchdowns and field goals). The scoring team kicks off to the opponent."
+      },
+      {
+        "id": "q2",
+        "type": "multiple-choice",
+        "question": "How many points is a field goal worth?",
+        "options": [
+          "1 point",
+          "2 points",
+          "3 points",
+          "6 points"
+        ],
+        "correct": 2,
+        "explanation": "A field goal is worth 3 points. It's a good option when your offense can't reach the end zone but is close enough for the kicker to make it through the uprights."
+      },
+      {
+        "id": "q3",
+        "type": "multiple-choice",
+        "question": "Why do teams punt on 4th down instead of going for it?",
+        "options": [
+          "They're required to by the rules",
+          "To pin the opponent deep and avoid giving them good field position",
+          "Punting is worth points",
+          "The offense is tired"
+        ],
+        "correct": 1,
+        "explanation": "Teams punt to flip field position. Rather than risk turning the ball over on downs in bad field position, punting forces the opponent to start their drive far from scoring range."
+      },
+      {
+        "id": "q4",
+        "type": "multiple-choice",
+        "question": "It's 4th & 8 from the opponent's 35-yard line. Your team is up by 2 points with 3 minutes left. What's the best special teams decision?",
+        "options": [
+          "Attempt a 52-yard field goal",
+          "Punt to pin them deep",
+          "Try a fake punt",
+          "Go for the first down"
+        ],
+        "correct": 0,
+        "explanation": "A 52-yard field goal is makeable for NFL kickers. If successful, you go up by 5 points (requiring a touchdown to beat you). This is the strategic choice in this situation."
+      }
+    ]
   },
   "keyTerms": [
     {

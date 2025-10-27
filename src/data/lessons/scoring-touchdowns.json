@@ -53,17 +53,60 @@
     ]
   },
   "quiz": {
-    "id": "scoring-touchdowns-quiz", 
-    "question": "A team just scored a touchdown. What's the maximum total points they can earn from this scoring drive?",
-    "options": [
-      "6 points (just the touchdown)",
-      "7 points (touchdown + extra point)", 
-      "8 points (touchdown + 2-point conversion)",
-      "It depends on how far they drove"
-    ],
-    "correctIndex": 2,
-    "explanation": "A touchdown is always worth 6 points, but teams can choose to go for a 2-point conversion instead of the 1-point extra point kick, making the maximum 8 points total.",
-    "encouragement": "You're thinking strategically about scoring options!"
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple-choice",
+        "question": "How many points is a touchdown worth by itself?",
+        "options": [
+          "7 points",
+          "6 points",
+          "8 points",
+          "It varies"
+        ],
+        "correct": 1,
+        "explanation": "A touchdown is always worth exactly 6 points. The 7th point comes from the extra point attempt after the touchdown."
+      },
+      {
+        "id": "q2",
+        "type": "multiple-choice",
+        "question": "What needs to happen for a touchdown to count?",
+        "options": [
+          "The player's whole body must be in the end zone",
+          "The ball must break the plane of the goal line",
+          "The player must catch the ball in the end zone",
+          "The ball must touch the ground in the end zone"
+        ],
+        "correct": 1,
+        "explanation": "Only the ball needs to break the plane (cross) the goal line. It doesn't matter where the player's body is - if any part of the ball crosses that white line, it's a touchdown!"
+      },
+      {
+        "id": "q3",
+        "type": "multiple-choice",
+        "question": "A team just scored a touchdown. What's the maximum total points they can earn from this scoring drive?",
+        "options": [
+          "6 points (just the touchdown)",
+          "7 points (touchdown + extra point)",
+          "8 points (touchdown + 2-point conversion)",
+          "It depends on how far they drove"
+        ],
+        "correct": 2,
+        "explanation": "A touchdown is always worth 6 points, but teams can choose to go for a 2-point conversion instead of the 1-point extra point kick, making the maximum 8 points total."
+      },
+      {
+        "id": "q4",
+        "type": "multiple-choice",
+        "question": "When do teams usually decide to go for a 2-point conversion instead of kicking the extra point?",
+        "options": [
+          "On every touchdown to maximize points",
+          "Late in close games when they need exactly 2 points",
+          "Only in the first quarter",
+          "Never - it's too risky"
+        ],
+        "correct": 1,
+        "explanation": "Teams typically go for 2 when they're behind late in the game and need exactly 2 points to tie or take the lead. It's a strategic risk-reward decision based on game situation."
+      }
+    ]
   },
   "keyTerms": [
     {

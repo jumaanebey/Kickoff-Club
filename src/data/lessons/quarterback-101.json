@@ -53,17 +53,60 @@
     ]
   },
   "quiz": {
-    "id": "quarterback-101-quiz",
-    "question": "A quarterback sees the defense showing blitz before the snap. What's their best option?",
-    "options": [
-      "Always run the play as called",
-      "Call an audible to change to a quicker passing play", 
-      "Take a timeout to talk to the coach",
-      "Hand the ball off no matter what"
-    ],
-    "correctIndex": 1,
-    "explanation": "Good quarterbacks read the defense and adjust. If they see a blitz coming, calling an audible to a quick slant or screen pass can beat the pressure and potentially result in a big gain.",
-    "encouragement": "You're thinking like a field general! Reading the defense is crucial."
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple-choice",
+        "question": "Who touches the ball on every offensive play?",
+        "options": [
+          "The center",
+          "The quarterback",
+          "The running back",
+          "The wide receiver"
+        ],
+        "correct": 1,
+        "explanation": "The quarterback touches the ball on every single offensive play. They receive the snap from the center and then decide whether to throw, hand off, or run."
+      },
+      {
+        "id": "q2",
+        "type": "multiple-choice",
+        "question": "What is an 'audible' in football?",
+        "options": [
+          "When the QB throws a touchdown pass",
+          "When the QB changes the play at the line of scrimmage",
+          "When the QB calls a timeout",
+          "When the QB runs with the ball"
+        ],
+        "correct": 1,
+        "explanation": "An audible is when the quarterback changes the play at the line of scrimmage based on what they see from the defense. Famous QBs shout code words like 'Omaha!' to signal the change."
+      },
+      {
+        "id": "q3",
+        "type": "multiple-choice",
+        "question": "A quarterback sees the defense showing blitz before the snap. What's their best option?",
+        "options": [
+          "Always run the play as called",
+          "Call an audible to change to a quicker passing play",
+          "Take a timeout to talk to the coach",
+          "Hand the ball off no matter what"
+        ],
+        "correct": 1,
+        "explanation": "Good quarterbacks read the defense and adjust. If they see a blitz coming, calling an audible to a quick slant or screen pass can beat the pressure and potentially result in a big gain."
+      },
+      {
+        "id": "q4",
+        "type": "multiple-choice",
+        "question": "What's the main difference between a 'pocket passer' and a 'dual-threat' quarterback?",
+        "options": [
+          "Pocket passers are always better",
+          "Dual-threat QBs can both pass and run effectively",
+          "Pocket passers don't throw as far",
+          "Dual-threat QBs never stay in the pocket"
+        ],
+        "correct": 1,
+        "explanation": "A dual-threat QB can hurt defenses with both their arm and legs - they can throw passes AND run for significant yards. Pocket passers stay protected and focus on precise passing."
+      }
+    ]
   },
   "keyTerms": [
     {

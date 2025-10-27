@@ -59,17 +59,60 @@
     ]
   },
   "quiz": {
-    "id": "timeouts-and-clock-quiz",
-    "question": "Your team is losing by 3 points with 1:30 left. You have 2 timeouts and the ball at midfield. What's your clock strategy?",
-    "options": [
-      "Run the ball to control possession",
-      "Use both timeouts immediately to plan",
-      "Pass to the sidelines and save timeouts for defense",
-      "Let the clock run down before scoring"
-    ],
-    "correctIndex": 2,
-    "explanation": "Perfect strategy! Passing to sidelines stops the clock naturally on incompletions or when receivers get out of bounds. Save those timeouts - you might need them if the other team gets the ball back.",
-    "encouragement": "You're thinking like a coach! Clock management wins close games."
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple-choice",
+        "question": "How many timeouts does each team get per half?",
+        "options": [
+          "2 timeouts",
+          "3 timeouts",
+          "4 timeouts",
+          "Unlimited timeouts"
+        ],
+        "correct": 1,
+        "explanation": "Each team gets 3 timeouts per half. Once you use them, they're gone until halftime. Then you get 3 more for the second half."
+      },
+      {
+        "id": "q2",
+        "type": "multiple-choice",
+        "question": "What is the 'two-minute warning'?",
+        "options": [
+          "A penalty for delay of game",
+          "An automatic stoppage at 2:00 left in each half",
+          "When teams must make a decision",
+          "A timeout called by the coach"
+        ],
+        "correct": 1,
+        "explanation": "The two-minute warning is an automatic stoppage of play when exactly 2:00 remains in each half. It acts like a free timeout for both teams to strategize."
+      },
+      {
+        "id": "q3",
+        "type": "multiple-choice",
+        "question": "When does the game clock stop running?",
+        "options": [
+          "Only at the end of quarters",
+          "After incomplete passes, out of bounds, timeouts, and scores",
+          "Never - it always runs",
+          "Only when the coach signals"
+        ],
+        "correct": 1,
+        "explanation": "The clock stops for incomplete passes, when a player goes out of bounds, timeouts, penalties, scores, and injuries. This is why a 60-minute game takes 3+ hours!"
+      },
+      {
+        "id": "q4",
+        "type": "multiple-choice",
+        "question": "Your team is losing by 3 points with 1:30 left. You have 2 timeouts and the ball at midfield. What's your clock strategy?",
+        "options": [
+          "Run the ball to control possession",
+          "Use both timeouts immediately to plan",
+          "Pass to the sidelines and save timeouts for defense",
+          "Let the clock run down before scoring"
+        ],
+        "correct": 2,
+        "explanation": "Pass to the sidelines! Incompletions and receivers going out of bounds stop the clock naturally. Save those precious timeouts in case you need to stop the clock on a running play or if the defense needs them later."
+      }
+    ]
   },
   "keyTerms": [
     {

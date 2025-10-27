@@ -59,17 +59,60 @@
     ]
   },
   "quiz": {
-    "id": "field-layout-quiz",
-    "question": "A team has the ball at their own 35-yard line. How many yards do they need to travel to score a touchdown?",
-    "options": [
-      "35 yards",
-      "65 yards",
-      "85 yards",
-      "100 yards"
-    ],
-    "correctIndex": 1,
-    "explanation": "If they're at their own 35-yard line, they need to travel 65 yards to reach the opponent's goal line (35 + 30 + 30 + 20 + 10 = 65 from their 35 to the opponent's end zone).",
-    "encouragement": "Great spatial thinking! Understanding field position is crucial for following strategy."
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple-choice",
+        "question": "How long is a football field from end zone to end zone?",
+        "options": [
+          "100 yards",
+          "110 yards",
+          "120 yards",
+          "150 yards"
+        ],
+        "correct": 2,
+        "explanation": "A football field is 120 yards total - 100 yards from goal line to goal line, plus two 10-yard end zones."
+      },
+      {
+        "id": "q2",
+        "type": "multiple-choice",
+        "question": "What is the 'red zone' in football?",
+        "options": [
+          "The area where penalties occur",
+          "Inside the opponent's 20-yard line",
+          "The middle 50 yards of the field",
+          "The area behind your own goal line"
+        ],
+        "correct": 1,
+        "explanation": "The red zone is inside the opponent's 20-yard line. Offenses are expected to score when they reach this area because they're so close to the end zone."
+      },
+      {
+        "id": "q3",
+        "type": "multiple-choice",
+        "question": "A team has the ball at their own 35-yard line. How many yards do they need to travel to score a touchdown?",
+        "options": [
+          "35 yards",
+          "65 yards",
+          "85 yards",
+          "100 yards"
+        ],
+        "correct": 1,
+        "explanation": "From your own 35-yard line, you need to travel 65 yards to reach the opponent's goal line (35 yards to midfield + 30 yards to their 20 = 65 yards total)."
+      },
+      {
+        "id": "q4",
+        "type": "multiple-choice",
+        "question": "Where is the 50-yard line located?",
+        "options": [
+          "At the goal line",
+          "At midfield - halfway between both goal lines",
+          "50 yards from your own end zone",
+          "In the red zone"
+        ],
+        "correct": 1,
+        "explanation": "The 50-yard line is at midfield - exactly in the middle of the 100-yard playing field, equidistant from both end zones."
+      }
+    ]
   },
   "keyTerms": [
     {
