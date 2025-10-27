@@ -326,6 +326,227 @@ const SimplePlatform = () => {
             <li><strong>Play Clock:</strong> 40 seconds (or 25 after certain stoppages) to snap the ball or get a delay penalty</li>
           </ul>
         `
+      },
+      'offensive-positions': {
+        title: 'Offensive Positions Explained',
+        content: `
+          <h2>Meet the Offense: Players Trying to Score ⚡</h2>
+          <p>The offense is the team with the ball. Let's meet the key players and understand what each position does to move the ball and score!</p>
+
+          <h3>The Quarterback (QB) 🎯</h3>
+          <p>The quarterback is like the field general - they get the ball on every play and decide what to do with it. The most important player on the field!</p>
+
+          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>💡 What QBs Do</h4>
+            <ul>
+              <li>Throw passes to receivers</li>
+              <li>Hand off the ball to running backs</li>
+              <li>Make quick decisions under pressure</li>
+              <li>Call plays and audibles at the line</li>
+            </ul>
+          </div>
+
+          <h3>Running Backs (RB) 🏃</h3>
+          <p>Running backs are the workhorses who carry the ball and catch passes out of the backfield. They need to be fast AND tough!</p>
+          <ul>
+            <li><strong>Carry the ball</strong> on running plays through holes in the defense</li>
+            <li><strong>Catch short passes</strong> from the QB (called "dump-offs")</li>
+            <li><strong>Block for the quarterback</strong> when defenders rush</li>
+            <li><strong>Must have vision</strong> to find holes and break tackles</li>
+          </ul>
+
+          <h3>Wide Receivers (WR) 🚀</h3>
+          <p>These are the speed demons who run precise routes to catch passes downfield. They need great hands, speed, and route-running ability!</p>
+          <ul>
+            <li><strong>Run specific pass routes</strong> (slant, post, go, out, etc.)</li>
+            <li><strong>Catch passes</strong> from the quarterback</li>
+            <li><strong>Create separation</strong> from defenders using speed and technique</li>
+            <li><strong>Block on running plays</strong> downfield</li>
+          </ul>
+
+          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>🎯 The Hybrid: Tight End (TE)</h4>
+            <p>Tight ends are versatile players who can both block like linemen AND catch like receivers. They're usually bigger than wide receivers but still athletic enough to run routes and catch passes over the middle of the field.</p>
+          </div>
+
+          <h3>Offensive Line (OL) 🛡️</h3>
+          <p>The big guys up front who protect the quarterback and create holes for running backs. They're the unsung heroes - without them, nothing works!</p>
+
+          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>The Five Linemen</h4>
+            <ul>
+              <li><strong>Center (C):</strong> Snaps the ball to the QB on every play</li>
+              <li><strong>Left & Right Guard (LG/RG):</strong> Inside blockers next to the center</li>
+              <li><strong>Left & Right Tackle (LT/RT):</strong> Outside blockers, protect QB's blind side</li>
+            </ul>
+            <p>These 5 players work as a unit to protect the QB from rushers and create running lanes for the RB. Usually the biggest players on the team (300+ pounds)!</p>
+          </div>
+
+          <h3>Working Together</h3>
+          <p>All 11 offensive players must work together on every play. Each position has a specific job, but they all depend on each other:</p>
+          <ul>
+            <li><strong>QB</strong> leads the offense and handles the ball every play</li>
+            <li><strong>RB</strong> carries the ball and catches short passes</li>
+            <li><strong>WR</strong> runs routes and catches passes downfield</li>
+            <li><strong>TE</strong> blocks AND catches passes (hybrid role)</li>
+            <li><strong>OL</strong> protects QB and blocks for RB</li>
+          </ul>
+        `
+      },
+      'defensive-positions': {
+        title: 'Defensive Positions Explained',
+        content: `
+          <h2>Meet the Defense: Stopping the Offense 🛡️</h2>
+          <p>The defense's job is to stop the offense from scoring. Let's meet the warriors who tackle ball carriers, rush the QB, and defend passes!</p>
+
+          <h3>Defensive Line (DL) 💥</h3>
+          <p>The big guys up front who battle the offensive line and try to disrupt plays in the backfield. They're the first line of defense!</p>
+
+          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>💡 The D-Line Positions</h4>
+            <ul>
+              <li><strong>Defensive Tackles (DT):</strong> Inside players who stop the run and push the pocket</li>
+              <li><strong>Defensive Ends (DE):</strong> Outside rushers who pressure the QB and set the edge on runs</li>
+            </ul>
+            <p>Their main jobs: <strong>Stop running backs</strong>, <strong>pressure the quarterback</strong>, and <strong>bat down passes</strong> at the line!</p>
+          </div>
+
+          <h3>Linebackers (LB) ⚡</h3>
+          <p>The heart and soul of the defense! Linebackers play behind the defensive line and are involved in almost every play. They need to be fast, strong, and smart!</p>
+          <ul>
+            <li><strong>Middle Linebacker (MLB):</strong> The "quarterback of the defense" - calls plays and leads the unit</li>
+            <li><strong>Outside Linebackers (OLB):</strong> Cover tight ends, blitz the QB, and stop outside runs</li>
+          </ul>
+
+          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>🎯 What Linebackers Do</h4>
+            <ul>
+              <li>Stop running backs in their tracks</li>
+              <li>Cover tight ends and running backs in pass coverage</li>
+              <li>Blitz the quarterback (rush the passer)</li>
+              <li>Read the offense and make tackles sideline-to-sideline</li>
+            </ul>
+          </div>
+
+          <h3>Secondary: Cornerbacks (CB) 🚀</h3>
+          <p>Cornerbacks are the speed demons who cover wide receivers. They need elite speed, agility, and anticipation to stay with fast receivers!</p>
+          <ul>
+            <li><strong>Cover wide receivers</strong> in man-to-man or zone coverage</li>
+            <li><strong>Break up passes</strong> or intercept the ball</li>
+            <li><strong>Tackle receivers</strong> after catches</li>
+            <li><strong>Read the QB's eyes</strong> to jump routes</li>
+          </ul>
+
+          <h3>Secondary: Safeties (S) 🎯</h3>
+          <p>Safeties are the last line of defense - they play deep to prevent big plays and help wherever needed. The ultimate Swiss Army knife!</p>
+
+          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>Two Types of Safeties</h4>
+            <ul>
+              <li><strong>Free Safety (FS):</strong> Plays deepest, prevents deep passes, "center fielder"</li>
+              <li><strong>Strong Safety (SS):</strong> Hybrid role - helps stop the run AND covers passes</li>
+            </ul>
+            <p>Safeties need to <strong>prevent big plays</strong>, <strong>help cornerbacks</strong> in coverage, <strong>support the run</strong>, and sometimes <strong>blitz the QB</strong>!</p>
+          </div>
+
+          <h3>How They Work Together</h3>
+          <p>The defense operates as one unit with three levels:</p>
+          <ul>
+            <li><strong>D-Line:</strong> First level - engage blockers, pressure QB, stop runs at the line</li>
+            <li><strong>Linebackers:</strong> Second level - read and react, cover short passes, make tackles</li>
+            <li><strong>Secondary:</strong> Third level - deep coverage, prevent big plays, create turnovers</li>
+          </ul>
+
+          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>💪 The Defense's Goals</h4>
+            <p><strong>Stop the run</strong> (force them to pass)<br/>
+            <strong>Pressure the QB</strong> (force bad throws)<br/>
+            <strong>Cover receivers</strong> (prevent completions)<br/>
+            <strong>Create turnovers</strong> (interceptions and fumbles)<br/>
+            <strong>Get off the field</strong> (force punts on 3rd down)</p>
+          </div>
+        `
+      },
+      'nfl-seasons-playoffs': {
+        title: 'NFL Seasons & Playoffs',
+        content: `
+          <h2>The NFL Season: From September to the Super Bowl 🏆</h2>
+          <p>The NFL season is a months-long marathon that culminates in the ultimate prize: the Super Bowl. Here's how it all works!</p>
+
+          <h3>Regular Season Structure</h3>
+          <p>The NFL regular season runs from early September through early January. Each team plays <strong>17 games</strong> over 18 weeks (one bye week for rest).</p>
+
+          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>💡 How Teams Are Organized</h4>
+            <p><strong>32 total teams</strong> divided into two conferences:<br/>
+            <strong>AFC (American Football Conference)</strong> - 16 teams<br/>
+            <strong>NFC (National Football Conference)</strong> - 16 teams</p>
+            <p>Each conference has 4 divisions (North, South, East, West) with 4 teams each.</p>
+          </div>
+
+          <h3>The Schedule</h3>
+          <p>Each team's 17-game schedule includes:</p>
+          <ul>
+            <li><strong>6 games</strong> against division rivals (play each twice - home and away)</li>
+            <li><strong>4 games</strong> against another division in their conference</li>
+            <li><strong>4 games</strong> against a division from the other conference</li>
+            <li><strong>3 games</strong> against teams from the remaining divisions in their conference</li>
+          </ul>
+
+          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>🎯 What Matters: Wins & Losses</h4>
+            <p>Teams compete for the best win-loss record to make the playoffs. A team that goes 14-3 (14 wins, 3 losses) is having an elite season. 10-7 or 9-8 usually makes the playoffs.</p>
+          </div>
+
+          <h3>The Playoffs: Road to the Super Bowl</h3>
+          <p>After the regular season ends in early January, the top <strong>14 teams</strong> (7 from each conference) enter the playoffs.</p>
+
+          <h3>Playoff Format</h3>
+          <ul>
+            <li><strong>4 Division Winners</strong> from each conference (ranked 1-4 by record)</li>
+            <li><strong>3 Wild Card teams</strong> from each conference (best records among non-division winners)</li>
+            <li><strong>#1 seed in each conference gets a bye</strong> (automatically advances to divisional round)</li>
+          </ul>
+
+          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>🏈 The Playoff Rounds</h4>
+            <p><strong>Wild Card Weekend:</strong> 6 games (#2 vs #7, #3 vs #6, #4 vs #5 in each conference)<br/>
+            <strong>Divisional Round:</strong> 4 games (top seeds enter here)<br/>
+            <strong>Conference Championships:</strong> 2 games (AFC and NFC champions determined)<br/>
+            <strong>Super Bowl:</strong> 1 game - AFC champion vs NFC champion for the title!</p>
+          </div>
+
+          <h3>Single Elimination</h3>
+          <p>The playoffs are <strong>single elimination</strong> - lose once and you're done. No second chances! This creates incredible drama and pressure.</p>
+          <ul>
+            <li><strong>Home field advantage</strong> goes to the higher seed (their stadium, their fans)</li>
+            <li><strong>January and February football</strong> means cold weather games in northern cities</li>
+            <li><strong>Every play matters</strong> - one mistake can end your season</li>
+          </ul>
+
+          <h3>The Super Bowl 🏆</h3>
+          <p>The Super Bowl is played on the second Sunday of February at a neutral site (decided years in advance). It's the biggest single-day sporting event in America!</p>
+
+          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>⭐ Super Bowl Traditions</h4>
+            <ul>
+              <li><strong>Roman numerals</strong> for each game (Super Bowl LVIII = 58)</li>
+              <li><strong>Halftime show</strong> featuring major music artists</li>
+              <li><strong>Commercials</strong> that cost millions per 30-second spot</li>
+              <li><strong>Trophy:</strong> Vince Lombardi Trophy (named after legendary coach)</li>
+              <li><strong>Rings:</strong> Championship rings for the winning team</li>
+            </ul>
+          </div>
+
+          <h3>Key Season Terms</h3>
+          <ul>
+            <li><strong>Bye Week:</strong> One week off during the regular season for rest</li>
+            <li><strong>Division Title:</strong> Best record in your 4-team division</li>
+            <li><strong>Wild Card:</strong> Playoff team that didn't win their division</li>
+            <li><strong>Seeding:</strong> Playoff ranking (1-7) based on regular season record</li>
+            <li><strong>Home Field Advantage:</strong> Playing playoff games in your stadium</li>
+          </ul>
+        `
       }
     }
 
