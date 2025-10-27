@@ -409,7 +409,7 @@ const SimplePlatform = () => {
                     <div className="flex flex-wrap gap-3">
                       <button
                         onClick={() => setSelectedLesson(lesson.id)}
-                        className="px-6 py-2 bg-gradient-to-r from-blush-500 to-sage-500 text-white rounded-xl hover:from-blush-600 hover:to-sage-600 transition-all duration-200 transform hover:scale-105 font-medium"
+                        className="px-6 py-2 bg-blush-500 text-white rounded-xl hover:bg-blush-600 transition-all duration-200 transform hover:scale-105 font-medium shadow-sm"
                       >
                         📖 Read Article
                       </button>
