@@ -40,24 +40,14 @@ function Hero({ onStart, navigate }) {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button 
-                onClick={onStart} 
+              <button
+                onClick={onStart}
                 aria-label="Start learning"
                 className="btn-primary text-lg px-8 py-4 group"
               >
                 <span className="flex items-center">
                   Start Learning Now ✨
                   <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
-                </span>
-              </button>
-              
-              <button 
-                onClick={() => navigate && navigate('/assessment')} 
-                className="btn-secondary text-lg px-8 py-4 group"
-              >
-                <span className="flex items-center">
-                  Test Your Knowledge
-                  <span className="ml-2 text-accent-600">✨</span>
                 </span>
               </button>
             </div>
