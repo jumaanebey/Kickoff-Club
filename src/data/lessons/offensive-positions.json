@@ -7,7 +7,7 @@
   "difficulty": "beginner",
   "category": "positions",
   "thumb": "/images/lessons/offensive-positions.jpg",
-  "videoUrl": "/videos/lessons/offensive-positions.mp4",
+  "videoUrl": "/assets/lessons/offensive-positions.mp4",
   "prerequisites": ["field-layout-basics"],
   "topics": ["offense", "positions", "quarterback", "running-back", "wide-receiver"],
   "preview": {

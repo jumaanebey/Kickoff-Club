@@ -7,7 +7,7 @@
   "difficulty": "beginner",
   "category": "positions",
   "thumb": "/images/lessons/defensive-positions.jpg",
-  "videoUrl": "/videos/lessons/defensive-positions.mp4",
+  "videoUrl": "/assets/lessons/defensive-positions.mp4",
   "prerequisites": ["offensive-positions"],
   "topics": ["defense", "positions", "linebacker", "cornerback", "safety"],
   "preview": {

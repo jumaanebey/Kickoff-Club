@@ -7,7 +7,7 @@
   "difficulty": "intermediate",
   "category": "basic-rules",
   "thumb": "/images/lessons/playoffs.jpg",
-  "videoUrl": "/videos/lessons/playoffs.mp4",
+  "videoUrl": "/assets/lessons/nfl-seasons-playoffs.mp4",
   "prerequisites": ["how-downs-work"],
   "topics": ["season", "playoffs", "super-bowl", "schedule", "standings"],
   "preview": {
