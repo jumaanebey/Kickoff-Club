@@ -26,6 +26,7 @@ const SimplePlatform = () => {
   const lessons = allLessons.map(lesson => ({
     id: lesson.id,
     title: lesson.title,
+    subtitle: lesson.subtitle,
     completed: state.user?.progress?.lessons?.completed?.includes(lesson.id) || false,
     hasVideo: true,
     difficulty: lesson.difficulty,
@@ -401,7 +402,7 @@ const SimplePlatform = () => {
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-secondary-100 mb-2">{lesson.title}</h3>
                     <p className="text-secondary-200 mb-4">
-                      {lesson.completed ? '✨ You nailed this one!' : '🎥 Ready to watch'} • Short, simple video lesson
+                      {lesson.completed ? '✨ You nailed this one! • ' : ''}{lesson.subtitle}
                     </p>
                     <div className="flex flex-wrap gap-3">
                       {lesson.hasVideo && (
