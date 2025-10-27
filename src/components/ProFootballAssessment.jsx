@@ -253,10 +253,12 @@ export default function ProFootballAssessment({ onComplete }) {
           totalPoints: user.progress.stats.totalPoints + finalResults.totalPoints
         }
       })
-      
-      // Update unlocked tiers if new tier was unlocked
-      if (finalResults.unlocksNext) {
-        const updatedUser = getCurrentUser()
+
+      // Refresh user state and update unlocked tiers
+      const updatedUser = getCurrentUser()
+      setUser(updatedUser)
+
+      if (finalResults.unlocksNext && updatedUser) {
         const newUnlockedTiers = getUnlockedTiers(updatedUser.progress)
         setUnlockedTiers(newUnlockedTiers)
         setTierProgress(getTierProgress(updatedUser.progress))
