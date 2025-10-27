@@ -102,87 +102,6 @@ export default function Home({ adaptiveSettings }) {
           </button>
         </div>
 
-        {/* Intelligent lesson recommendations */}
-        {isReturningUser ? (
-          <>
-            {/* Continue Learning Section */}
-            <div className="mb-8 bg-gradient-to-r from-accent-50 to-primary-50 rounded-2xl p-6 border border-accent-200">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-bold text-gray-900 flex items-center">
-                  <svg className="w-6 h-6 text-accent-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  Continue Learning
-                </h3>
-                <span className="text-sm text-accent-700 font-medium">
-                  {state.user.progress.lessons.completed.length} of {allLessons.length} complete
-                </span>
-              </div>
-              {recommendedLessons.length > 0 ? (
-                <div className="bg-white rounded-xl p-4 shadow-sm">
-                  <p className="text-sm text-gray-600 mb-3">Pick up where you left off:</p>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-semibold text-gray-900">{recommendedLessons[0].title}</h4>
-                      <p className="text-xs text-gray-500 mt-1">Next recommended lesson</p>
-                    </div>
-                    <button
-                      onClick={() => navigate(`/lesson/${recommendedLessons[0].id}`)}
-                      className="btn-primary text-sm px-6 py-2"
-                    >
-                      Resume →
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div className="bg-white rounded-xl p-4 shadow-sm text-center">
-                  <p className="text-gray-600">🎉 You've completed all available lessons!</p>
-                  <p className="text-sm text-gray-500 mt-2">Check back soon for new content.</p>
-                </div>
-              )}
-            </div>
-            <div className="mb-12">
-              <AdaptiveRecommendations maxRecommendations={3} showReasoning={false} />
-            </div>
-          </>
-        ) : (
-          <>
-            <h3 className="text-2xl font-semibold text-secondary-100 mb-6 flex items-center">
-              <svg className="w-7 h-7 text-accent-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3l14 9-14 9V3z" />
-              </svg>
-              Start Here - Perfect for Beginners
-            </h3>
-            <div className="grid grid-cols-1 gap-6 mb-8 max-w-3xl mx-auto">
-              {recommendedLessons.map((lesson, index) => (
-                <div key={lesson.id} className="relative">
-                  {index === 0 && (
-                    <div className="absolute -top-3 -right-3 z-10">
-                      <div className="bg-accent-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg animate-pulse">
-                        👑 START HERE
-                      </div>
-                    </div>
-                  )}
-                  <LessonCard 
-                    lesson={lesson}
-                    onClick={() => {
-                      const startTime = performance.now()
-                      trackEvent('lesson_card_click', { 
-                        lesson: lesson.id, 
-                        position: index,
-                        source: 'home_featured'
-                      })
-                      recordInteraction('lesson_card_click', performance.now() - startTime)
-                      navigate(`/lesson/${lesson.id}`)
-                    }}
-                    className={index === 0 ? 'ring-2 ring-accent-300 shadow-lg scale-105' : ''}
-                  />
-                </div>
-              ))}
-            </div>
-          </>
-        )}
 
         {/* Dynamic CTA Section with smart messaging */}
         <div className={`text-center p-8 rounded-2xl transition-all duration-500 ${
@@ -207,9 +126,9 @@ export default function Home({ adaptiveSettings }) {
           </div>
           
           <p className="text-secondary-200 mb-6">
-            {isReturningUser 
-              ? `You're on ${state.user.progress.stats.currentLevel?.replace('-level', '') || 'rookie'} level with ${state.user.progress.stats.totalPoints || 0} points. Keep your Kickoff Club momentum going!`
-              : `Join thousands of Kickoff Club members who've gone from confused to confident`
+            {isReturningUser
+              ? `You've completed ${state.user.progress.lessons.completed.length} of ${allLessons.length} lessons. Keep learning!`
+              : `7 video lessons to take you from confused to confident`
             }
           </p>
           
