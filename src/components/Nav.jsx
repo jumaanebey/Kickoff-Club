@@ -45,7 +45,7 @@ function Nav() {
               >
                 Platform
               </button>
-              <button 
+              <button
                 onClick={() => handleNavigate('/lessons')}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
                   currentPath === '/lessons' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
@@ -53,7 +53,8 @@ function Nav() {
               >
                 Lessons
               </button>
-              <button 
+              {/* Learning Tracks - Hidden for now
+              <button
                 onClick={() => handleNavigate('/tracks')}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
                   currentPath === '/tracks' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
@@ -61,7 +62,9 @@ function Nav() {
               >
                 Learning Tracks
               </button>
-              <button 
+              */}
+              {/* Interactive Demo - Hidden for now
+              <button
                 onClick={() => handleNavigate('/demo')}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
                   currentPath === '/demo' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
@@ -69,7 +72,8 @@ function Nav() {
               >
                 Interactive Demo
               </button>
-              <button 
+              */}
+              <button
                 onClick={() => handleNavigate('/assessment')}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
                   currentPath === '/assessment' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
@@ -153,6 +157,7 @@ function Nav() {
               >
                 Lessons
               </button>
+              {/* Learning Tracks - Hidden for now
               <button
                 onClick={() => {navigate('/tracks'); setIsMenuOpen(false)}}
                 className={`w-full text-left px-3 py-2 rounded-xl text-base font-medium transition-all duration-200 ${
@@ -161,6 +166,8 @@ function Nav() {
               >
                 Learning Tracks
               </button>
+              */}
+              {/* Interactive Demo - Hidden for now
               <button
                 onClick={() => {navigate('/demo'); setIsMenuOpen(false)}}
                 className={`w-full text-left px-3 py-2 rounded-xl text-base font-medium transition-all duration-200 ${
@@ -169,6 +176,7 @@ function Nav() {
               >
                 Interactive Demo
               </button>
+              */}
               <button
                 onClick={() => {navigate('/assessment'); setIsMenuOpen(false)}}
                 className={`w-full text-left px-3 py-2 rounded-xl text-base font-medium transition-all duration-200 ${
