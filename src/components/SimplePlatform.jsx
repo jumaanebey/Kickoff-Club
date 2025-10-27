@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useApp } from '../context/AppContext'
 import { useSimpleRouter } from '../App'
 import { allLessons } from '../data/lessonsIndex'
+import LessonQuiz from './LessonQuiz'
 
 // Lesson icons mapping
 const lessonIcons = {
@@ -21,6 +22,7 @@ const SimplePlatform = () => {
   const { state, actions } = useApp()
   const { navigate } = useSimpleRouter()
   const [selectedLesson, setSelectedLesson] = useState(null)
+  const [quizLessonId, setQuizLessonId] = useState(null)
 
   // Use actual lesson data from lessonsIndex
   const lessons = allLessons.map(lesson => ({
@@ -439,8 +441,8 @@ const SimplePlatform = () => {
                         📖 Read Instead
                       </button>
                       <button
-                        onClick={() => navigate('/assessment')}
-                        aria-label="Take assessment quiz to test your knowledge"
+                        onClick={() => setQuizLessonId(lesson.id)}
+                        aria-label={`Take quiz for ${lesson.title}`}
                         className="px-6 py-2 bg-white border-2 border-accent-300 text-accent-600 rounded-xl hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 font-medium"
                       >
                         📝 Take Quiz
@@ -457,6 +459,14 @@ const SimplePlatform = () => {
             ))}
           </div>
         </div>
+
+        {/* Lesson Quiz Modal */}
+        {quizLessonId && (
+          <LessonQuiz
+            lessonId={quizLessonId}
+            onClose={() => setQuizLessonId(null)}
+          />
+        )}
       </div>
     </div>
   )
