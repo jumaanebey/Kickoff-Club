@@ -82,7 +82,7 @@ function Nav() {
                 Assessment
               </button>
               {/* Community - Coming Soon
-              <button 
+              <button
                 onClick={() => handleNavigate('/community')}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
                   currentPath === '/community' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
@@ -90,7 +90,8 @@ function Nav() {
               >
                 Community
               </button> */}
-              <button 
+              {/* Video Creator - Hidden for now
+              <button
                 onClick={() => handleNavigate('/video-creator')}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
                   currentPath === '/video-creator' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
@@ -98,7 +99,8 @@ function Nav() {
               >
                 🎬 Video Creator
               </button>
-              <button 
+              */}
+              <button
                 onClick={() => handleNavigate('/profile')}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
                   currentPath === '/profile' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
@@ -194,6 +196,7 @@ function Nav() {
               >
                 Community
               </button> */}
+              {/* Video Creator - Hidden for now
               <button
                 onClick={() => {navigate('/video-creator'); setIsMenuOpen(false)}}
                 className={`w-full text-left px-3 py-2 rounded-xl text-base font-medium transition-all duration-200 ${
@@ -202,6 +205,7 @@ function Nav() {
               >
                 🎬 Video Creator
               </button>
+              */}
               <button
                 onClick={() => {navigate('/profile'); setIsMenuOpen(false)}}
                 className={`w-full text-left px-3 py-2 rounded-xl text-base font-medium transition-all duration-200 ${
