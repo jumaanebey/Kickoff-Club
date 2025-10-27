@@ -406,7 +406,7 @@ const SimplePlatform = () => {
                     <p className="text-secondary-200 mb-4">
                       {lesson.completed ? '✨ You nailed this one!' : '🌱 Ready when you are'} • Perfect for a cozy read
                     </p>
-                    <div className="flex space-x-3">
+                    <div className="flex flex-wrap gap-3">
                       <button
                         onClick={() => setSelectedLesson(lesson.id)}
                         className="px-6 py-2 bg-gradient-to-r from-blush-500 to-sage-500 text-white rounded-xl hover:from-blush-600 hover:to-sage-600 transition-all duration-200 transform hover:scale-105 font-medium"
@@ -418,9 +418,15 @@ const SimplePlatform = () => {
                           onClick={() => navigate(`/lesson/${lesson.id}`)}
                           className="px-6 py-2 bg-white border-2 border-blush-300 text-blush-600 rounded-xl hover:bg-blush-50 hover:border-blush-400 transition-all duration-200 font-medium"
                         >
-                          🎥 Watch Instead
+                          🎥 Watch Video
                         </button>
                       )}
+                      <button
+                        onClick={() => navigate('/assessment')}
+                        className="px-6 py-2 bg-white border-2 border-accent-300 text-accent-600 rounded-xl hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 font-medium"
+                      >
+                        📝 Take Quiz
+                      </button>
                     </div>
                   </div>
                 </div>
