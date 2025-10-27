@@ -348,34 +348,6 @@ const SimplePlatform = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blush-50 to-sage-50">
       <div className="max-w-4xl mx-auto p-6">
-        {/* Beautiful Progress Header */}
-        <div className="bg-gradient-to-r from-white to-blush-50/50 rounded-2xl shadow-lg border border-blush-200 p-8 mb-8">
-          <div className="text-center mb-6">
-            <h1 className="text-4xl font-bold text-secondary-100 mb-4">✨ Your Reading Journey</h1>
-            <p className="text-lg text-secondary-200">Take your time and dive deep into each topic at your own pace 💜</p>
-          </div>
-          
-          <div className="flex items-center justify-between mb-4">
-            <div className="text-center">
-              <div className="text-3xl font-bold bg-gradient-to-r from-blush-500 to-sage-500 bg-clip-text text-transparent">{progressPercent}%</div>
-              <div className="text-sm text-secondary-300">Complete!</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl mb-1">🌸</div>
-              <div className="text-sm text-secondary-300">Keep blooming!</div>
-            </div>
-          </div>
-          
-          <div className="w-full bg-white/60 rounded-full h-4 mb-3">
-            <div 
-              className="bg-gradient-to-r from-blush-400 to-sage-400 h-4 rounded-full transition-all duration-500"
-              style={{ width: `${progressPercent}%` }}
-            ></div>
-          </div>
-          <p className="text-secondary-200 text-center">
-            You've mastered {completedCount} of {lessons.length} lessons - amazing work! 🎉
-          </p>
-        </div>
 
         {/* Beautiful Lesson List */}
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-blush-200">
