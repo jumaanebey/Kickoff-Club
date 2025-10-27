@@ -31,6 +31,8 @@ const SimplePlatform = () => {
     subtitle: lesson.subtitle,
     preview: lesson.preview,
     completed: state.user?.progress?.lessons?.completed?.includes(lesson.id) || false,
+    viewed: state.user?.progress?.lessons?.viewed?.includes(lesson.id) || false,
+    read: state.user?.progress?.lessons?.read?.includes(lesson.id) || false,
     hasVideo: true,
     difficulty: lesson.difficulty,
     duration: lesson.duration
@@ -350,8 +352,11 @@ const SimplePlatform = () => {
             
             <div className="border-t border-blush-100 mt-10 pt-8 text-center">
               <p className="text-secondary-200 mb-4">Nice work reading through this! 🎉</p>
-              <button 
-                onClick={() => setSelectedLesson(null)}
+              <button
+                onClick={() => {
+                  actions.readLesson(selectedLesson) // Mark as read when they finish
+                  setSelectedLesson(null)
+                }}
                 className="px-8 py-3 bg-gradient-to-r from-blush-500 to-sage-500 text-white rounded-xl font-semibold hover:from-blush-600 hover:to-sage-600 transition-all duration-200 transform hover:scale-105"
               >
                 ✨ Continue Your Journey
@@ -405,7 +410,10 @@ const SimplePlatform = () => {
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-secondary-100 mb-2">{lesson.title}</h3>
                     <p className="text-secondary-200 mb-3">
-                      {lesson.completed ? '✨ You nailed this one! • ' : ''}{lesson.subtitle}
+                      {lesson.completed && '✨ You nailed this one! • '}
+                      {!lesson.completed && lesson.viewed && '📺 Video watched • '}
+                      {!lesson.completed && lesson.read && '📖 Article read • '}
+                      {lesson.subtitle}
                     </p>
 
                     {/* What you'll learn */}

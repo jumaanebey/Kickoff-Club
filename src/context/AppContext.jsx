@@ -252,7 +252,35 @@ export const AppProvider = ({ children }) => {
         }
       }
     },
-    
+
+    viewLesson: (lessonId) => {
+      const currentProgress = state.user.progress
+      if (!currentProgress.lessons.viewed.includes(lessonId)) {
+        const updatedProgress = {
+          ...currentProgress,
+          lessons: {
+            ...currentProgress.lessons,
+            viewed: [...currentProgress.lessons.viewed, lessonId]
+          }
+        }
+        dispatch({ type: 'UPDATE_PROGRESS', payload: updatedProgress })
+      }
+    },
+
+    readLesson: (lessonId) => {
+      const currentProgress = state.user.progress
+      if (!currentProgress.lessons.read.includes(lessonId)) {
+        const updatedProgress = {
+          ...currentProgress,
+          lessons: {
+            ...currentProgress.lessons,
+            read: [...currentProgress.lessons.read, lessonId]
+          }
+        }
+        dispatch({ type: 'UPDATE_PROGRESS', payload: updatedProgress })
+      }
+    },
+
     setAdaptivePreferences: (preferences) => {
       dispatch({ type: 'SET_ADAPTIVE_SETTINGS', payload: preferences })
     },

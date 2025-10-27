@@ -20,7 +20,9 @@ const defaultProgress = {
     lastLoginDate: new Date().toISOString().split('T')[0]
   },
   lessons: {
-    completed: [], // lesson IDs
+    completed: [], // lesson IDs (passed quiz with 75%+)
+    viewed: [], // lesson IDs (watched video to completion)
+    read: [], // lesson IDs (read article to completion)
     inProgress: {}, // { lessonId: { progress: 0.5, lastAccess: timestamp } }
     bookmarked: [], // lesson IDs
     timeSpent: {} // { lessonId: seconds }

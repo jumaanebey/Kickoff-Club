@@ -34,6 +34,7 @@ const VideoLesson = ({ lessonId, onComplete }) => {
 
   const handleVideoComplete = () => {
     setVideoWatched(true)
+    actions.viewLesson(lessonId) // Mark as viewed when video finishes
     triggerAchievement('video', 'Video Complete! 🎥', 'You watched the full lesson')
   }
 

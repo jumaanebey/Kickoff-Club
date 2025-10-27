@@ -62,8 +62,8 @@ export default function LessonQuiz({ lessonId, onClose }) {
       // Quiz complete
       setQuizComplete(true)
 
-      // Mark lesson as completed if they got at least 50% correct
-      if (score / totalQuestions >= 0.5) {
+      // Mark lesson as completed if they got at least 75% correct
+      if (score / totalQuestions >= 0.75) {
         actions.completeLesson(lessonId)
       }
     }
@@ -80,7 +80,7 @@ export default function LessonQuiz({ lessonId, onClose }) {
   // Quiz complete screen
   if (quizComplete) {
     const percentage = Math.round((score / totalQuestions) * 100)
-    const passed = percentage >= 50
+    const passed = percentage >= 75
 
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
