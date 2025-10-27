@@ -175,24 +175,6 @@ const VideoLesson = ({ lessonId, onComplete }) => {
         }
       ]
     },
-    'quarterback-101': {
-      title: 'Quarterback 101',
-      videoUrl: '/assets/lessons/quarterback-101.mp4',
-      duration: 'Video lesson',
-      description: 'The most important position explained',
-      quiz: [
-        {
-          question: 'What is the quarterback\'s main job?',
-          options: ['Block defenders', 'Lead the offense', 'Catch passes', 'Kick field goals'],
-          correct: 1
-        },
-        {
-          question: 'What does a QB do on every offensive play?',
-          options: ['Run with the ball', 'Block', 'Receive the snap', 'Call timeout'],
-          correct: 2
-        }
-      ]
-    },
     'nfl-seasons-playoffs': {
       title: 'NFL Season & Playoff Structure',
       videoUrl: '/assets/lessons/nfl-seasons-playoffs.mp4',
