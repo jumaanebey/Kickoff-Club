@@ -27,6 +27,7 @@ const SimplePlatform = () => {
     id: lesson.id,
     title: lesson.title,
     subtitle: lesson.subtitle,
+    preview: lesson.preview,
     completed: state.user?.progress?.lessons?.completed?.includes(lesson.id) || false,
     hasVideo: true,
     difficulty: lesson.difficulty,
@@ -401,9 +402,25 @@ const SimplePlatform = () => {
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-secondary-100 mb-2">{lesson.title}</h3>
-                    <p className="text-secondary-200 mb-4">
+                    <p className="text-secondary-200 mb-3">
                       {lesson.completed ? '✨ You nailed this one! • ' : ''}{lesson.subtitle}
                     </p>
+
+                    {/* What you'll learn */}
+                    {lesson.preview && lesson.preview["What you'll learn"] && (
+                      <div className="mb-4 p-3 bg-primary-50/50 rounded-lg border border-primary-100">
+                        <p className="text-xs font-semibold text-accent-600 mb-2">What you'll learn:</p>
+                        <ul className="space-y-1">
+                          {lesson.preview["What you'll learn"].map((item, idx) => (
+                            <li key={idx} className="text-sm text-secondary-200 flex items-start">
+                              <span className="text-accent-500 mr-2">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
                     <div className="flex flex-wrap gap-3">
                       {lesson.hasVideo && (
                         <button
