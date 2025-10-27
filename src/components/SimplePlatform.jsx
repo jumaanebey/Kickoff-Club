@@ -353,8 +353,8 @@ const SimplePlatform = () => {
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-blush-200">
           <div className="p-8 border-b border-blush-100">
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-secondary-100 mb-2">📚 Football Knowledge Library</h2>
-              <p className="text-secondary-200">Read at your own pace, no pressure! Each article is crafted to make complex topics simple 💕</p>
+              <h1 className="text-3xl font-bold text-secondary-100 mb-3">📚 Football Lessons</h1>
+              <p className="text-lg text-secondary-200">Read at your own pace. Each article makes football simple and fun!</p>
             </div>
           </div>
         
