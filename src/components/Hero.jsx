@@ -65,7 +65,7 @@ function Hero({ onStart, navigate }) {
 
               <div className="flex items-center">
                 <span className="text-warning-500 mr-1">✨</span>
-                <span>Free • 7 lessons • Easy to follow</span>
+                <span>Free • 10 lessons • Easy to follow</span>
               </div>
             </div>
           </div>

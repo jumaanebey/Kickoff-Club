@@ -468,13 +468,13 @@ const SimplePlatform = () => {
         `
       },
       'nfl-seasons-playoffs': {
-        title: 'NFL Seasons & Playoffs',
+        title: 'Seasons & Playoffs',
         content: `
-          <h2>The NFL Season: From September to the Super Bowl 🏆</h2>
-          <p>The NFL season is a months-long marathon that culminates in the ultimate prize: the Super Bowl. Here's how it all works!</p>
+          <h2>The Pro Football Season: From September to the Super Bowl 🏆</h2>
+          <p>The pro football season is a months-long marathon that culminates in the ultimate prize: the Super Bowl. Here's how it all works!</p>
 
           <h3>Regular Season Structure</h3>
-          <p>The NFL regular season runs from early September through early January. Each team plays <strong>17 games</strong> over 18 weeks (one bye week for rest).</p>
+          <p>The regular season runs from early September through early January. Each team plays <strong>17 games</strong> over 18 weeks (one bye week for rest).</p>
 
           <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
             <h4>💡 How Teams Are Organized</h4>

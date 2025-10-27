@@ -97,7 +97,7 @@
           "When two receivers run into each other"
         ],
         "correct": 1,
-        "explanation": "Pass interference is when a defender illegally contacts a receiver to prevent them from catching the ball. In the NFL, it's a spot foul - the ball moves to where the foul occurred."
+        "explanation": "Pass interference is when a defender illegally contacts a receiver to prevent them from catching the ball. It's a spot foul - the ball moves to where the foul occurred."
       },
       {
         "id": "q4",

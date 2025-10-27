@@ -177,7 +177,7 @@ const VideoLesson = ({ lessonId, onComplete }) => {
       ]
     },
     'nfl-seasons-playoffs': {
-      title: 'NFL Season & Playoff Structure',
+      title: 'Season & Playoff Structure',
       videoUrl: '/assets/lessons/nfl-seasons-playoffs.mp4',
       duration: 'Video lesson',
       description: 'From September to Super Bowl Sunday',
