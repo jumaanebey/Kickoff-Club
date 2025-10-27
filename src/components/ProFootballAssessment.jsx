@@ -327,7 +327,7 @@ export default function ProFootballAssessment({ onComplete }) {
             ✨ How Much Do You Already Know?
           </h2>
           <p className="text-lg text-secondary-200 mb-6">
-            No wrong answers here - just helping you find the perfect starting point! 💜
+            No wrong answers here - just helping you find the perfect starting point!
           </p>
         </div>
 
@@ -438,7 +438,7 @@ export default function ProFootballAssessment({ onComplete }) {
             <div className="text-4xl mb-3">🤗</div>
             <h4 className="font-semibold text-secondary-100 mb-3">Remember: This is Just for Fun!</h4>
             <p className="text-sm text-secondary-200 max-w-md mx-auto">
-              Don't stress about getting everything right. We're just figuring out what you already know so we can help you learn what you don't! No wrong answers here. 💕
+              Don't stress about getting everything right. We're just figuring out what you already know so we can help you learn what you don't! No wrong answers here.
             </p>
           </div>
         </div>

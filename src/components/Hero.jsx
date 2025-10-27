@@ -46,7 +46,7 @@ function Hero({ onStart, navigate }) {
                 className="btn-primary text-lg px-8 py-4 group"
               >
                 <span className="flex items-center">
-                  Let's learn together ✨
+                  Start your first lesson ✨
                   <span className="ml-2 group-hover:translate-x-1 transition-transform duration-200">→</span>
                 </span>
               </button>
