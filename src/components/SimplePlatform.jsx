@@ -3,6 +3,20 @@ import { useApp } from '../context/AppContext'
 import { useSimpleRouter } from '../App'
 import { allLessons } from '../data/lessonsIndex'
 
+// Lesson icons mapping
+const lessonIcons = {
+  'how-downs-work': '🏈',
+  'scoring-touchdowns': '🎯',
+  'field-layout-basics': '📏',
+  'nfl-seasons-playoffs': '🏆',
+  'quarterback-101': '🎯',
+  'offensive-positions': '⚡',
+  'defensive-positions': '🛡️',
+  'special-teams-basics': '👟',
+  'timeouts-and-clock': '⏱️',
+  'understanding-penalties': '🚩'
+}
+
 const SimplePlatform = () => {
   const { state, actions } = useApp()
   const { navigate } = useSimpleRouter()
@@ -360,8 +374,19 @@ const SimplePlatform = () => {
         
           <div className="divide-y divide-blush-100">
             {lessons.map((lesson, index) => (
-              <div key={lesson.id} className="p-8 hover:bg-blush-50/30 transition-colors duration-200">
-                <div className="flex items-center">
+              <div key={lesson.id} className="p-8 hover:bg-blush-50/30 transition-colors duration-200 relative overflow-hidden">
+                {/* Football field hash marks background */}
+                <div className="absolute inset-y-0 right-0 w-24 opacity-5 pointer-events-none">
+                  <div className="h-full flex flex-col justify-evenly">
+                    <div className="h-px bg-secondary-300"></div>
+                    <div className="h-px bg-secondary-300"></div>
+                    <div className="h-px bg-secondary-300"></div>
+                    <div className="h-px bg-secondary-300"></div>
+                    <div className="h-px bg-secondary-300"></div>
+                  </div>
+                </div>
+
+                <div className="flex items-center relative">
                   <div className="mr-6">
                     {lesson.completed ? (
                       <div className="w-14 h-14 bg-gradient-to-r from-sage-400 to-blush-400 text-white rounded-full flex items-center justify-center text-lg shadow-lg">
@@ -403,6 +428,11 @@ const SimplePlatform = () => {
                         📝 Take Quiz
                       </button>
                     </div>
+                  </div>
+
+                  {/* Large lesson icon on the right */}
+                  <div className="ml-6 text-7xl opacity-20 hidden sm:block">
+                    {lessonIcons[lesson.id] || '🏈'}
                   </div>
                 </div>
               </div>

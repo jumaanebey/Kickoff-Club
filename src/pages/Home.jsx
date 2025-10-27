@@ -90,7 +90,7 @@ export default function Home({ adaptiveSettings }) {
                 Welcome to Kickoff Club ⚡
               </h2>
               <p className="text-xl text-secondary-200 mb-8">
-                Join the Kickoff Club community — thousands of fans mastering professional football fundamentals through our video lessons
+                Join Kickoff Club — where casual fans become football insiders
               </p>
             </>
           )}
