@@ -174,6 +174,78 @@ const VideoLesson = ({ lessonId, onComplete }) => {
           correct: 2
         }
       ]
+    },
+    'quarterback-101': {
+      title: 'Quarterback 101',
+      videoUrl: '/assets/lessons/quarterback-101.mp4',
+      duration: 'Video lesson',
+      description: 'The most important position explained',
+      quiz: [
+        {
+          question: 'What is the quarterback\'s main job?',
+          options: ['Block defenders', 'Lead the offense', 'Catch passes', 'Kick field goals'],
+          correct: 1
+        },
+        {
+          question: 'What does a QB do on every offensive play?',
+          options: ['Run with the ball', 'Block', 'Receive the snap', 'Call timeout'],
+          correct: 2
+        }
+      ]
+    },
+    'nfl-seasons-playoffs': {
+      title: 'NFL Season & Playoff Structure',
+      videoUrl: '/assets/lessons/nfl-seasons-playoffs.mp4',
+      duration: 'Video lesson',
+      description: 'From September to Super Bowl Sunday',
+      quiz: [
+        {
+          question: 'How many regular season games does each team play?',
+          options: ['16', '17', '18', '20'],
+          correct: 1
+        },
+        {
+          question: 'How many teams make the playoffs from each conference?',
+          options: ['6', '7', '8', '10'],
+          correct: 1
+        }
+      ]
+    },
+    'offensive-positions': {
+      title: 'Offensive Positions Explained',
+      videoUrl: '/assets/lessons/offensive-positions.mp4',
+      duration: 'Video lesson',
+      description: 'Meet the players trying to score',
+      quiz: [
+        {
+          question: 'Which position touches the ball on every play?',
+          options: ['Running Back', 'Quarterback', 'Wide Receiver', 'Center'],
+          correct: 1
+        },
+        {
+          question: 'What is the main job of the offensive line?',
+          options: ['Catch passes', 'Run with ball', 'Protect QB and block', 'Call plays'],
+          correct: 2
+        }
+      ]
+    },
+    'defensive-positions': {
+      title: 'Defensive Positions Explained',
+      videoUrl: '/assets/lessons/defensive-positions.mp4',
+      duration: 'Video lesson',
+      description: 'The 11 players stopping the offense',
+      quiz: [
+        {
+          question: 'Which position primarily covers wide receivers?',
+          options: ['Linebacker', 'Defensive End', 'Cornerback', 'Safety'],
+          correct: 2
+        },
+        {
+          question: 'What is the main job of the defensive line?',
+          options: ['Cover receivers', 'Rush QB and stop runs', 'Call plays', 'Intercept passes'],
+          correct: 1
+        }
+      ]
     }
   }
 
