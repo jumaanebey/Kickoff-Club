@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import BackupRestore from './BackupRestore'
 
 export default function Footer() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
-  const [showBackup, setShowBackup] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -58,9 +56,6 @@ export default function Footer() {
             </div>
 
             <div className="flex gap-6 text-sm">
-              <button onClick={() => setShowBackup(true)} className="text-white/80 hover:text-white transition-colors">
-                Backup Progress
-              </button>
               <a href="/privacy" className="text-white/80 hover:text-white transition-colors">Privacy</a>
               <a href="/terms" className="text-white/80 hover:text-white transition-colors">Terms</a>
               <a href="mailto:hello@kickoffclub.com" className="text-white/80 hover:text-white transition-colors">Contact</a>
@@ -85,9 +80,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
-      {/* Backup/Restore Modal */}
-      {showBackup && <BackupRestore onClose={() => setShowBackup(false)} />}
     </footer>
   )
 }

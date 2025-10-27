@@ -75,9 +75,13 @@ function Hero({ onStart, navigate }) {
             <div className="relative">
               {/* Decorative elements */}
               <div className="absolute -top-4 -right-4 w-72 h-72 bg-gradient-to-br from-primary-200 to-accent-200 rounded-3xl -rotate-6 blur-lg opacity-50"></div>
-              
-              {/* Main video container */}
-              <div className="relative bg-white rounded-3xl shadow-2xl p-2 transform hover:rotate-1 transition-transform duration-500">
+
+              {/* Main video container - clickable */}
+              <button
+                onClick={() => navigate('/platform')}
+                className="relative bg-white rounded-3xl shadow-2xl p-2 transform hover:rotate-1 hover:scale-105 transition-all duration-500 w-full cursor-pointer"
+                aria-label="Go to video lessons"
+              >
                 <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-primary-100 to-accent-100">
                   <div className="w-full h-64 flex items-center justify-center">
                     <div className="text-center">
@@ -89,7 +93,7 @@ function Hero({ onStart, navigate }) {
                     </div>
                   </div>
                 </div>
-              </div>
+              </button>
 
               {/* Floating elements */}
 
