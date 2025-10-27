@@ -7,6 +7,7 @@ const VideoLesson = ({ lessonId, onComplete }) => {
   const [animationsEnabled, setAnimationsEnabled] = useState(true)
   const [videoWatched, setVideoWatched] = useState(false)
   const [quizCompleted, setQuizCompleted] = useState(false)
+  const [helpfulFeedback, setHelpfulFeedback] = useState(null)
 
   // Load animation preference from localStorage
   useEffect(() => {
@@ -281,6 +282,44 @@ const VideoLesson = ({ lessonId, onComplete }) => {
               </div>
             )}
           </div>
+
+          {/* Feedback Section - after video */}
+          {videoWatched && !quizCompleted && (
+            <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+              <p className="text-sm font-medium text-gray-700 mb-3">Was this lesson helpful?</p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setHelpfulFeedback('yes')}
+                  className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    helpfulFeedback === 'yes'
+                      ? 'bg-green-500 text-white'
+                      : 'bg-white border border-gray-300 text-gray-700 hover:border-green-500'
+                  }`}
+                  aria-label="This lesson was helpful"
+                >
+                  👍 Yes, helpful!
+                </button>
+                <button
+                  onClick={() => setHelpfulFeedback('no')}
+                  className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    helpfulFeedback === 'no'
+                      ? 'bg-red-500 text-white'
+                      : 'bg-white border border-gray-300 text-gray-700 hover:border-red-500'
+                  }`}
+                  aria-label="This lesson needs improvement"
+                >
+                  👎 Needs work
+                </button>
+              </div>
+              {helpfulFeedback && (
+                <p className="mt-3 text-xs text-gray-600 animate-fade-in">
+                  {helpfulFeedback === 'yes'
+                    ? '✓ Thanks for your feedback! We\'re glad this helped.'
+                    : '✓ Thanks! We\'ll work on improving this lesson.'}
+                </p>
+              )}
+            </div>
+          )}
 
           {/* Quiz Section */}
           {videoWatched && !quizCompleted && (
