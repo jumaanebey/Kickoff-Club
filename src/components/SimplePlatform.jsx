@@ -353,8 +353,8 @@ const SimplePlatform = () => {
         <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-blush-200">
           <div className="p-8 border-b border-blush-100">
             <div className="text-center">
-              <h1 className="text-3xl font-bold text-secondary-100 mb-3">📚 Football Lessons</h1>
-              <p className="text-lg text-secondary-200">Read at your own pace. Each article makes football simple and fun!</p>
+              <h1 className="text-3xl font-bold text-secondary-100 mb-3">🎥 Football Video Lessons</h1>
+              <p className="text-lg text-secondary-200">Watch bite-sized videos to master football fundamentals. Read the article if you prefer!</p>
             </div>
           </div>
         
@@ -376,25 +376,25 @@ const SimplePlatform = () => {
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-secondary-100 mb-2">{lesson.title}</h3>
                     <p className="text-secondary-200 mb-4">
-                      {lesson.completed ? '✨ You nailed this one!' : '🌱 Ready when you are'} • Perfect for a cozy read
+                      {lesson.completed ? '✨ You nailed this one!' : '🎥 Ready to watch'} • Short, simple video lesson
                     </p>
                     <div className="flex flex-wrap gap-3">
-                      <button
-                        onClick={() => setSelectedLesson(lesson.id)}
-                        aria-label={`Read article about ${lesson.title}`}
-                        className="px-6 py-2 bg-blush-500 text-white rounded-xl hover:bg-blush-600 transition-all duration-200 transform hover:scale-105 font-medium shadow-sm"
-                      >
-                        📖 Read Article
-                      </button>
                       {lesson.hasVideo && (
                         <button
                           onClick={() => navigate(`/lesson/${lesson.id}`)}
                           aria-label={`Watch video lesson about ${lesson.title}`}
-                          className="px-6 py-2 bg-white border-2 border-blush-300 text-blush-600 rounded-xl hover:bg-blush-50 hover:border-blush-400 transition-all duration-200 font-medium"
+                          className="px-6 py-2 bg-blush-500 text-white rounded-xl hover:bg-blush-600 transition-all duration-200 transform hover:scale-105 font-medium shadow-sm"
                         >
                           🎥 Watch Video
                         </button>
                       )}
+                      <button
+                        onClick={() => setSelectedLesson(lesson.id)}
+                        aria-label={`Read article about ${lesson.title}`}
+                        className="px-6 py-2 bg-white border-2 border-blush-300 text-blush-600 rounded-xl hover:bg-blush-50 hover:border-blush-400 transition-all duration-200 font-medium"
+                      >
+                        📖 Read Instead
+                      </button>
                       <button
                         onClick={() => navigate('/assessment')}
                         aria-label="Take assessment quiz to test your knowledge"
