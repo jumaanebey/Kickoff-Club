@@ -144,12 +144,22 @@ export default function LessonsPage() {
             return (
               <div
                 key={lesson.id}
+                role="button"
+                tabIndex={lessonProgress.isUnlocked ? 0 : -1}
+                aria-label={`${lesson.title} - ${lessonProgress.isCompleted ? 'Completed' : lessonProgress.isUnlocked ? 'Click to start lesson' : 'Locked - Complete previous lessons to unlock'}`}
+                aria-disabled={!lessonProgress.isUnlocked}
                 className={`bg-white rounded-2xl p-6 border-2 cursor-pointer transition-all duration-300 transform ${
                   lessonProgress.isUnlocked
                     ? 'border-blush-200 hover:border-blush-400 hover:shadow-2xl hover:scale-105'
                     : 'border-gray-200 opacity-60 cursor-not-allowed'
                 }`}
                 onClick={() => lessonProgress.isUnlocked && handleLessonClick(lesson.id)}
+                onKeyPress={(e) => {
+                  if ((e.key === 'Enter' || e.key === ' ') && lessonProgress.isUnlocked) {
+                    e.preventDefault()
+                    handleLessonClick(lesson.id)
+                  }
+                }}
               >
                 {/* Lesson Header */}
                 <div className="flex items-center justify-between mb-4">

@@ -409,6 +409,7 @@ const SimplePlatform = () => {
                     <div className="flex flex-wrap gap-3">
                       <button
                         onClick={() => setSelectedLesson(lesson.id)}
+                        aria-label={`Read article about ${lesson.title}`}
                         className="px-6 py-2 bg-blush-500 text-white rounded-xl hover:bg-blush-600 transition-all duration-200 transform hover:scale-105 font-medium shadow-sm"
                       >
                         📖 Read Article
@@ -416,6 +417,7 @@ const SimplePlatform = () => {
                       {lesson.hasVideo && (
                         <button
                           onClick={() => navigate(`/lesson/${lesson.id}`)}
+                          aria-label={`Watch video lesson about ${lesson.title}`}
                           className="px-6 py-2 bg-white border-2 border-blush-300 text-blush-600 rounded-xl hover:bg-blush-50 hover:border-blush-400 transition-all duration-200 font-medium"
                         >
                           🎥 Watch Video
@@ -423,6 +425,7 @@ const SimplePlatform = () => {
                       )}
                       <button
                         onClick={() => navigate('/assessment')}
+                        aria-label="Take assessment quiz to test your knowledge"
                         className="px-6 py-2 bg-white border-2 border-accent-300 text-accent-600 rounded-xl hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 font-medium"
                       >
                         📝 Take Quiz

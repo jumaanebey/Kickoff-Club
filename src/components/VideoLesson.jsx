@@ -8,6 +8,7 @@ const VideoLesson = ({ lessonId, onComplete }) => {
   const [videoWatched, setVideoWatched] = useState(false)
   const [quizCompleted, setQuizCompleted] = useState(false)
   const [helpfulFeedback, setHelpfulFeedback] = useState(null)
+  const [videoLoading, setVideoLoading] = useState(true)
 
   // Load animation preference from localStorage
   useEffect(() => {
@@ -262,12 +263,26 @@ const VideoLesson = ({ lessonId, onComplete }) => {
         {/* Video Section */}
         <div className="p-6">
           <div className="aspect-video bg-gray-900 rounded-lg relative overflow-hidden mb-6">
+            {/* Loading Spinner */}
+            {videoLoading && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-900 z-10">
+                <div className="text-center">
+                  <div className="inline-block w-12 h-12 border-4 border-blush-500 border-t-transparent rounded-full animate-spin mb-3"></div>
+                  <p className="text-white text-sm">Loading video...</p>
+                </div>
+              </div>
+            )}
+
             {/* Real HTML5 Video Player */}
             <video
               controls
               className="w-full h-full"
               onEnded={handleVideoComplete}
+              onLoadStart={() => setVideoLoading(true)}
+              onCanPlay={() => setVideoLoading(false)}
+              onError={() => setVideoLoading(false)}
               src={lesson.videoUrl}
+              aria-label={`Video lesson: ${lesson.title}`}
             >
               Your browser does not support the video tag.
             </video>
@@ -342,26 +357,45 @@ const VideoLesson = ({ lessonId, onComplete }) => {
                 <h4 className="text-lg font-medium mb-4">{lesson.quiz[currentQuiz].question}</h4>
                 
                 <div className="space-y-3">
-                  {lesson.quiz[currentQuiz].options.map((option, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleQuizAnswer(index)}
-                      disabled={selectedAnswer !== null}
-                      className={`w-full p-4 text-left rounded-lg border transition-all ${
-                        selectedAnswer === null 
-                          ? 'hover:bg-white hover:border-accent-300 bg-white border-gray-200' 
-                          : selectedAnswer === index
-                            ? index === lesson.quiz[currentQuiz].correct
-                              ? 'bg-green-100 border-green-300 text-green-800'
-                              : 'bg-red-100 border-red-300 text-red-800'
-                            : index === lesson.quiz[currentQuiz].correct
-                              ? 'bg-green-100 border-green-300 text-green-800'
-                              : 'bg-gray-100 border-gray-200 text-gray-600'
-                      } ${animationsEnabled && selectedAnswer === index ? 'animate-pulse' : ''}`}
-                    >
-                      {option}
-                    </button>
-                  ))}
+                  {lesson.quiz[currentQuiz].options.map((option, index) => {
+                    const isCorrect = index === lesson.quiz[currentQuiz].correct
+                    const isSelected = selectedAnswer === index
+                    const isAnswered = selectedAnswer !== null
+
+                    let ariaLabel = option
+                    if (isAnswered) {
+                      if (isSelected && isCorrect) {
+                        ariaLabel = `${option} - Your answer: Correct!`
+                      } else if (isSelected && !isCorrect) {
+                        ariaLabel = `${option} - Your answer: Incorrect`
+                      } else if (isCorrect) {
+                        ariaLabel = `${option} - Correct answer`
+                      }
+                    }
+
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => handleQuizAnswer(index)}
+                        disabled={selectedAnswer !== null}
+                        aria-label={ariaLabel}
+                        aria-pressed={isSelected}
+                        className={`w-full p-4 text-left rounded-lg border transition-all ${
+                          selectedAnswer === null
+                            ? 'hover:bg-white hover:border-accent-300 bg-white border-gray-200'
+                            : selectedAnswer === index
+                              ? index === lesson.quiz[currentQuiz].correct
+                                ? 'bg-green-100 border-green-300 text-green-800'
+                                : 'bg-red-100 border-red-300 text-red-800'
+                              : index === lesson.quiz[currentQuiz].correct
+                                ? 'bg-green-100 border-green-300 text-green-800'
+                                : 'bg-gray-100 border-gray-200 text-gray-600'
+                        } ${animationsEnabled && selectedAnswer === index ? 'animate-pulse' : ''}`}
+                      >
+                        {option}
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
             </div>
