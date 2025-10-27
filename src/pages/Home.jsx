@@ -29,16 +29,15 @@ export default function Home({ adaptiveSettings }) {
 
   function start() {
     const startTime = performance.now()
-    const targetLesson = isReturningUser ? recommendedLessons[0] : allLessons[0]
-    
-    trackEvent('lesson_started', { 
-      lesson: targetLesson.id,
+
+    trackEvent('navigation', {
+      destination: 'platform',
       userType: isReturningUser ? 'returning' : 'new',
-      source: 'home_cta'
+      source: 'home_hero_cta'
     })
-    
-    recordInteraction('lesson_start_click', performance.now() - startTime)
-    navigate(`/lesson/${targetLesson.id}`)
+
+    recordInteraction('lessons_navigation', performance.now() - startTime)
+    navigate('/platform')
   }
 
   function goToLessons() {
