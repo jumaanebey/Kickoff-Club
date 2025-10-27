@@ -182,8 +182,8 @@ export default function ProFootballAssessment({ onComplete }) {
     
     if (shouldShowUnicorn) {
       setShowUnicornCelebration(true)
-      // Hide unicorn celebration after 3 seconds
-      setTimeout(() => setShowUnicornCelebration(false), 3000)
+      // Hide unicorn celebration after 2 seconds
+      setTimeout(() => setShowUnicornCelebration(false), 2000)
     }
     
     // Show feedback first
@@ -200,8 +200,8 @@ export default function ProFootballAssessment({ onComplete }) {
     // Record the response
     assessment.recordResponse(currentQuestion.id, selectedAnswerIndex, responseTime)
 
-    // Show feedback for 2.5 seconds (longer if unicorn), then proceed
-    const feedbackDelay = shouldShowUnicorn ? 3500 : 2500
+    // Show feedback for 2.5 seconds, then proceed
+    const feedbackDelay = 2500
     setTimeout(() => {
       setShowFeedback(false)
       setFeedbackData(null)
@@ -839,14 +839,17 @@ export default function ProFootballAssessment({ onComplete }) {
         </div>
       </div>
 
-      {/* Unicorn Celebration Overlay */}
+      {/* Unicorn Celebration - Subtle Top Banner */}
       {showUnicornCelebration && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 pointer-events-none">
-          <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-8 text-center shadow-2xl animate-bounce">
-            <div className="text-6xl mb-4 animate-pulse">🦄</div>
-            <div className="text-2xl font-bold text-purple-800 mb-2">MAGICAL STREAK!</div>
-            <div className="text-lg text-purple-600">You're on a {currentStreak} question winning streak!</div>
-            <div className="text-sm text-purple-500 mt-2">✨ Keep the magic alive! ✨</div>
+        <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none animate-fade-in">
+          <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl px-6 py-3 shadow-lg border-2 border-purple-300">
+            <div className="flex items-center gap-3">
+              <div className="text-3xl">🦄</div>
+              <div>
+                <div className="text-sm font-bold text-purple-800">Magical Streak!</div>
+                <div className="text-xs text-purple-600">{currentStreak} in a row ✨</div>
+              </div>
+            </div>
           </div>
         </div>
       )}
