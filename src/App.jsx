@@ -15,6 +15,7 @@ import ProfilePage from './pages/ProfilePage'
 import SimpleLessonPage from './pages/SimpleLessonPage'
 import PlatformPage from './pages/PlatformPage'
 import VideoCreatorPage from './pages/VideoCreatorPage'
+import NotFound from './pages/NotFound'
 
 // Create router context
 const RouterContext = createContext()
@@ -74,9 +75,9 @@ function SimpleRouter() {
       const lessonId = path.split('/lesson/')[1]
       return <SimpleLessonPage params={{ id: lessonId }} />
     }
-    
-    // Default to home
-    return <Home />
+
+    // 404 - Page not found
+    return <NotFound />
   }
   
   return (

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useApp } from '../context/AppContext'
+import ShareButtons from './ShareButtons'
 
 const VideoLesson = ({ lessonId, onComplete }) => {
   const { state, actions } = useApp()
@@ -297,6 +298,13 @@ const VideoLesson = ({ lessonId, onComplete }) => {
               </div>
             )}
           </div>
+
+          {/* Share Buttons */}
+          {videoWatched && (
+            <div className="mb-6 p-4 bg-white border border-gray-200 rounded-lg">
+              <ShareButtons title={lesson.title} />
+            </div>
+          )}
 
           {/* Feedback Section - after video */}
           {videoWatched && !quizCompleted && (
