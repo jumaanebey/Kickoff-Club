@@ -70,12 +70,12 @@ function Hero({ onStart, navigate }) {
                   <div className="w-8 h-8 rounded-full bg-primary-400 border-2 border-white"></div>
                   <div className="w-8 h-8 rounded-full bg-rose-400 border-2 border-white"></div>
                 </div>
-                <span>Join 1,000+ fans learning (no silly questions!)</span>
+                <span>Start learning today (no silly questions!)</span>
               </div>
-              
+
               <div className="flex items-center">
-                <span className="text-warning-500 mr-1">⭐⭐⭐⭐⭐</span>
-                <span>4.9/5 "Finally makes sense!"</span>
+                <span className="text-warning-500 mr-1">✨</span>
+                <span>Free • 7 lessons • Easy to follow</span>
               </div>
             </div>
           </div>

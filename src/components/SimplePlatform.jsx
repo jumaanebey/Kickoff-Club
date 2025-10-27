@@ -409,27 +409,6 @@ const SimplePlatform = () => {
             ))}
           </div>
         </div>
-
-        {/* Beautiful Stats */}
-        <div className="mt-8 grid grid-cols-3 gap-6">
-          <div className="bg-gradient-to-br from-blush-50 to-white rounded-2xl shadow-lg border border-blush-200 p-6 text-center transform hover:scale-105 transition-transform duration-200">
-            <div className="text-3xl mb-2">🌸</div>
-            <div className="text-3xl font-bold text-blush-600">{completedCount}</div>
-            <div className="text-sm text-secondary-300">Articles Read!</div>
-          </div>
-          <div className="bg-gradient-to-br from-sage-50 to-white rounded-2xl shadow-lg border border-sage-200 p-6 text-center transform hover:scale-105 transition-transform duration-200">
-            <div className="text-3xl mb-2">🔥</div>
-            <div className="text-3xl font-bold text-sage-600">7</div>
-            <div className="text-sm text-secondary-300">Day Streak!</div>
-          </div>
-          <div className="bg-gradient-to-br from-accent-50 to-white rounded-2xl shadow-lg border border-accent-200 p-6 text-center transform hover:scale-105 transition-transform duration-200">
-            <div className="text-3xl mb-2">⭐</div>
-            <div className="text-2xl font-bold text-accent-600">
-              {progressPercent < 30 ? '🌱 Learning' : progressPercent < 70 ? '🌸 Growing' : '🌺 Blooming'}
-            </div>
-            <div className="text-sm text-secondary-300">Your Journey!</div>
-          </div>
-        </div>
       </div>
     </div>
   )
