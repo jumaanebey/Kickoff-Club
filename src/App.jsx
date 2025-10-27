@@ -28,13 +28,17 @@ const RouterProvider = ({ children }) => {
     console.log('Navigate called:', path)
     window.history.pushState({}, '', path)
     setCurrentPath(path)
+    // Scroll to top on navigation
+    window.scrollTo(0, 0)
   }
   
   useEffect(() => {
     const handlePopState = () => {
       setCurrentPath(window.location.pathname)
+      // Scroll to top when using back/forward buttons
+      window.scrollTo(0, 0)
     }
-    
+
     window.addEventListener('popstate', handlePopState)
     return () => window.removeEventListener('popstate', handlePopState)
   }, [])
@@ -57,7 +61,12 @@ export const useSimpleRouter = () => {
 
 function SimpleRouter() {
   const { currentPath } = useSimpleRouter()
-  
+
+  // Scroll to top whenever route changes
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [currentPath])
+
   // Route to component mapping
   const getComponent = () => {
     const path = currentPath
