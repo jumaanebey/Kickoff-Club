@@ -24,71 +24,286 @@ const SimplePlatform = () => {
   // Simple lesson content
   const getLessonContent = (id) => {
     const content = {
-      'welcome': {
-        title: 'Welcome to Kickoff Club',
+      'how-downs-work': {
+        title: 'How Downs Work',
         content: `
-          <h2>Welcome to the Kickoff Club! 🏈</h2>
-          <p>You've just joined thousands of football fans on their journey from confused to confident.</p>
-          
-          <h3>What You'll Learn</h3>
-          <ul>
-            <li>Core football concepts in simple lessons</li>
-            <li>How to follow games with confidence</li>
-            <li>The strategy behind plays</li>
-            <li>Player positions and their roles</li>
-          </ul>
+          <h2>Understanding Downs: The Heart of Football 🏈</h2>
+          <p>If you understand downs, you understand football. It's that simple - and that important!</p>
+
+          <h3>What Are Downs?</h3>
+          <p>A "down" is simply an attempt to move the ball forward. Every time the offense starts a play, that's one down. The offense gets <strong>4 downs (attempts) to move the ball 10 yards forward</strong>.</p>
 
           <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>💡 Pro Tip</h4>
-            <p>Take your time with each lesson. Understanding beats memorizing!</p>
+            <h4>💡 The Simple Rule</h4>
+            <p><strong>4 chances to go 10 yards.</strong> If you succeed, you get 4 more chances. If you fail after 4 tries, the other team gets the ball.</p>
           </div>
-        `
-      },
-      'what-is-football': {
-        title: 'What is Professional Football?',
-        content: `
-          <h2>Professional Football: The Beautiful Game 🏈</h2>
-          <p>Football is a strategic battle between two teams fighting for territory.</p>
-          
-          <h3>The Basic Concept</h3>
-          <p>Two teams take turns trying to advance a ball down a 100-yard field to score points. Think of it as "controlled chaos" - while it looks frantic, every player has a specific job.</p>
+
+          <h3>How It Works</h3>
+          <ul>
+            <li><strong>1st Down:</strong> You have 10 yards to go. If you gain 3 yards, now it's 2nd down and 7 yards to go.</li>
+            <li><strong>2nd Down:</strong> If you gain 5 more yards, now it's 3rd down and 2 yards to go.</li>
+            <li><strong>3rd Down:</strong> This is crucial! If you don't get those 2 yards, you face 4th down.</li>
+            <li><strong>4th Down:</strong> Most teams punt (kick the ball away) to give the opponent bad field position instead of risking turnover.</li>
+          </ul>
 
           <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🎯 Key Insight</h4>
-            <p>Every play is like a mini chess match with 22 pieces moving at once.</p>
+            <h4>🎯 Why This Matters</h4>
+            <p>Downs create drama! "3rd and long" (needing many yards) is tense. "4th and inches" (needing less than a yard) means big decisions. This rhythm makes every play meaningful.</p>
           </div>
 
-          <h3>Why It's Compelling</h3>
+          <h3>What You'll Hear</h3>
           <ul>
-            <li><strong>Strategy Meets Athletics</strong> - Brain and brawn combined</li>
-            <li><strong>Every Play Matters</strong> - One play can change everything</li>
-            <li><strong>Team Chemistry</strong> - 11 players moving as one</li>
+            <li><strong>"1st and 10"</strong> - First down, 10 yards to go</li>
+            <li><strong>"3rd and long"</strong> - Third down, lots of yards needed (usually 7+)</li>
+            <li><strong>"4th and goal"</strong> - Fourth down at the goal line</li>
           </ul>
         `
       },
-      'game-basics': {
-        title: 'Game Basics: Field & Equipment',
+      'scoring-touchdowns': {
+        title: 'Scoring Touchdowns',
         content: `
-          <h2>The Football Field & Equipment 🏟️</h2>
-          <p>Let's start with the basics - where the game is played and what equipment is used.</p>
-          
-          <h3>The Field</h3>
+          <h2>How Teams Score Touchdowns 🏆</h2>
+          <p>Touchdowns are the most exciting plays in football - here's how they work!</p>
+
+          <h3>What Is a Touchdown?</h3>
+          <p>A touchdown happens when a player carries the ball into the opponent's end zone OR catches a pass while standing in the end zone. The ball just needs to "break the plane" (cross the goal line) - even by an inch!</p>
+
+          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>⭐ Points Breakdown</h4>
+            <p><strong>Touchdown = 6 points</strong><br/>Then you get a bonus attempt for 1 or 2 more points!</p>
+          </div>
+
+          <h3>Ways to Score a Touchdown</h3>
           <ul>
-            <li><strong>100 yards long</strong> - Plus 10-yard end zones on each side</li>
-            <li><strong>53 yards wide</strong> - Marked with yard lines every 5 yards</li>
-            <li><strong>Goal posts</strong> - For kicking field goals and extra points</li>
+            <li><strong>Running:</strong> A player runs with the ball into the end zone</li>
+            <li><strong>Passing:</strong> A receiver catches the ball while in the end zone (both feet must be in bounds!)</li>
+            <li><strong>Fumble Recovery:</strong> Pick up a dropped ball in the end zone</li>
+            <li><strong>Interception Return:</strong> Defense catches opponent's pass and runs it back</li>
+          </ul>
+
+          <h3>After the Touchdown: Extra Points</h3>
+          <p>After scoring a touchdown, teams choose one of two options:</p>
+          <ul>
+            <li><strong>Extra Point (PAT):</strong> Kick the ball through the goalposts from the 15-yard line = 1 point (almost always successful)</li>
+            <li><strong>2-Point Conversion:</strong> Run or pass the ball into the end zone from the 2-yard line = 2 points (risky but rewarding!)</li>
+          </ul>
+
+          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>🎯 Strategic Insight</h4>
+            <p>Most teams kick the extra point (easy 7 total). They only "go for 2" when trailing late in the game or when the math says it's worth the risk!</p>
+          </div>
+        `
+      },
+      'understanding-penalties': {
+        title: 'Understanding Penalties',
+        content: `
+          <h2>Penalties: Yellow Flags Explained 🚩</h2>
+          <p>When you see a yellow flag fly, someone broke a rule. Here's what you need to know!</p>
+
+          <h3>What Happens When There's a Penalty?</h3>
+          <p>Referees throw a yellow flag on the field. Play continues until it ends, then refs explain the penalty. The team that got hurt by the foul can usually choose to accept it (moving the ball) or decline it (if the play went well for them anyway).</p>
+
+          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>⚡ Quick Guide</h4>
+            <p><strong>5 yards</strong> = Minor penalty (false start, delay of game)<br/>
+            <strong>10 yards</strong> = Medium penalty (holding, illegal block)<br/>
+            <strong>15 yards</strong> = Major penalty (personal foul, roughing the passer)</p>
+          </div>
+
+          <h3>Most Common Penalties</h3>
+          <ul>
+            <li><strong>False Start (5 yards):</strong> Offensive player moves before the ball is snapped</li>
+            <li><strong>Holding (10 yards):</strong> Grabbing/hooking a player to slow them down</li>
+            <li><strong>Pass Interference (spot foul):</strong> Blocking a receiver from catching the ball</li>
+            <li><strong>Offsides (5 yards):</strong> Being on wrong side of the ball when it's snapped</li>
+            <li><strong>Roughing the Passer (15 yards):</strong> Hitting QB after they've thrown the ball</li>
+            <li><strong>Delay of Game (5 yards):</strong> Not snapping the ball before play clock expires</li>
+          </ul>
+
+          <h3>What Refs Say</h3>
+          <p>After a penalty, the referee makes hand signals and announces: <em>"Holding, offense, number 72. 10-yard penalty. Repeat 2nd down."</em></p>
+
+          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>🎯 Why Penalties Matter</h4>
+            <p>A penalty at the wrong time can kill a drive or extend the opponent's drive. "Drive-killing penalty" = stopping your own team's momentum. "Automatic first down" = some defensive penalties give offense a fresh set of downs!</p>
+          </div>
+        `
+      },
+      'special-teams-basics': {
+        title: 'Special Teams Explained',
+        content: `
+          <h2>Special Teams: The Third Phase of Football ⚡</h2>
+          <p>Special teams handle kicks - and they can change the game in one explosive play!</p>
+
+          <h3>What Are Special Teams?</h3>
+          <p>Any time there's a kick, special teams take the field. These are specialists who practice kicking, catching kicks, and covering/returning kicks. It's called the "third phase" (offense, defense, special teams).</p>
+
+          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>💡 Three Main Situations</h4>
+            <p><strong>Kickoffs</strong> (starting drives), <strong>Punts</strong> (giving up the ball on 4th down), and <strong>Field Goals</strong> (scoring without a touchdown)</p>
+          </div>
+
+          <h3>Types of Special Teams Plays</h3>
+          <ul>
+            <li><strong>Kickoff:</strong> Starts each half and happens after scores. Kicker boots it deep, returner catches and runs it back.</li>
+            <li><strong>Punt:</strong> On 4th down, instead of going for it, team kicks the ball away to pin opponent deep in their own territory.</li>
+            <li><strong>Field Goal:</strong> Kicking the ball through the uprights from anywhere on the field = 3 points. Harder the farther you are!</li>
+            <li><strong>Extra Point:</strong> The kick after a touchdown (from the 15-yard line) = 1 point.</li>
+          </ul>
+
+          <h3>Field Goal Distance</h3>
+          <p>Field goals are measured from where the ball is kicked (7 yards behind line of scrimmage) plus the 10-yard end zone. So kicking from the opponent's 30-yard line = 47-yard field goal attempt!</p>
+
+          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>🎯 Why Special Teams Win Games</h4>
+            <p>A blocked punt returned for a TD. A 60-yard field goal as time expires. A kickoff return to the house. These game-changers happen multiple times per season - and they're all special teams!</p>
+          </div>
+
+          <h3>Key Players</h3>
+          <ul>
+            <li><strong>Kicker:</strong> Handles kickoffs, field goals, extra points</li>
+            <li><strong>Punter:</strong> Punts on 4th down to flip field position</li>
+            <li><strong>Long Snapper:</strong> Snaps the ball back to holder/punter (harder than it looks!)</li>
+            <li><strong>Returner:</strong> Catches punts/kickoffs and runs them back</li>
+          </ul>
+        `
+      },
+      'field-layout-basics': {
+        title: 'Field Layout Basics',
+        content: `
+          <h2>Understanding the Football Field 🏟️</h2>
+          <p>The football field is a 120-yard battlefield with clear zones and markings - here's your map!</p>
+
+          <h3>Field Dimensions</h3>
+          <ul>
+            <li><strong>100 yards long</strong> - From goal line to goal line</li>
+            <li><strong>10-yard end zones</strong> - One at each end (where touchdowns happen)</li>
+            <li><strong>53⅓ yards wide</strong> - Narrower than you might think!</li>
+            <li><strong>120 yards total</strong> - Including both end zones</li>
           </ul>
 
           <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>📏 Quick Fact</h4>
-            <p>The field is exactly 120 yards total (100 + 10 + 10 end zones)</p>
+            <h4>📏 The Yard Lines</h4>
+            <p>Every 5 yards has a white line. The <strong>50-yard line</strong> is midfield. Numbers count down as you approach each end zone (50, 40, 30, 20, 10, Goal).</p>
           </div>
 
-          <h3>Essential Equipment</h3>
+          <h3>Important Field Zones</h3>
           <ul>
-            <li><strong>Helmet</strong> - Protection and communication</li>
-            <li><strong>Pads</strong> - Shoulder, thigh, and knee protection</li>
-            <li><strong>The Ball</strong> - Oval-shaped, easier to throw spirals</li>
+            <li><strong>Red Zone:</strong> Inside the opponent's 20-yard line. Offenses are expected to score here!</li>
+            <li><strong>Midfield:</strong> The 50-yard line - great field position, either team could score</li>
+            <li><strong>Own Territory:</strong> Your half of the field (backs against the wall)</li>
+            <li><strong>Opponent Territory:</strong> Their half - you're threatening to score</li>
+            <li><strong>End Zone:</strong> The promised land! Get the ball here = touchdown</li>
+          </ul>
+
+          <h3>The Markings</h3>
+          <ul>
+            <li><strong>Hash Marks:</strong> Short lines at each yard marking where the ball is placed</li>
+            <li><strong>Sidelines:</strong> Out of bounds - step on the white and you're out</li>
+            <li><strong>Goal Line:</strong> The line you must cross for a touchdown</li>
+            <li><strong>Goal Posts:</strong> Yellow uprights at the back of each end zone (18.5 feet wide)</li>
+          </ul>
+
+          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>🎯 Field Position Matters</h4>
+            <p>Starting at your own 20 = Long way to go. Starting at opponent's 40 = Already in field goal range! Coaches obsess over field position because it determines probability of scoring.</p>
+          </div>
+        `
+      },
+      'quarterback-101': {
+        title: 'Quarterback 101',
+        content: `
+          <h2>The Quarterback: Field General 🎯</h2>
+          <p>The QB is the most important player on the field - here's why and what they do!</p>
+
+          <h3>What Does the Quarterback Do?</h3>
+          <p>The quarterback is the leader of the offense. They receive the play call from coaches, adjust it at the line based on what the defense is showing, take the snap, and either hand off the ball, throw a pass, or run with it themselves.</p>
+
+          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>💡 Every Play Starts Here</h4>
+            <p>The center snaps the ball between their legs to the QB, who stands directly behind them. This starts every offensive play!</p>
+          </div>
+
+          <h3>QB Responsibilities</h3>
+          <ul>
+            <li><strong>Read the Defense:</strong> Identify what coverage/blitz is coming before the snap</li>
+            <li><strong>Call Audibles:</strong> Change the play at the line if needed ("Omaha! Omaha!")</li>
+            <li><strong>Execute the Play:</strong> Hand off, throw accurately, or scramble when needed</li>
+            <li><strong>Protect the Football:</strong> Don't throw interceptions or fumble - ever</li>
+            <li><strong>Lead the Team:</strong> Communicate, motivate, command respect</li>
+          </ul>
+
+          <h3>Types of Quarterbacks</h3>
+          <ul>
+            <li><strong>Pocket Passer:</strong> Stays protected behind offensive line, throws with precision (Tom Brady, Peyton Manning)</li>
+            <li><strong>Dual Threat:</strong> Can throw AND run effectively (Lamar Jackson, Josh Allen)</li>
+            <li><strong>Scrambler:</strong> Extends plays with legs when pocket breaks down (Patrick Mahomes, Russell Wilson)</li>
+            <li><strong>Game Manager:</strong> Won't lose the game, relies on running game and defense (Trent Dilfer style)</li>
+          </ul>
+
+          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>🎯 Why QBs Get Paid</h4>
+            <p>Elite QBs can carry teams. They process information instantly, make split-second decisions under pressure, and deliver accurate throws with 300-pound defenders bearing down. It's the hardest job in sports - that's why great QBs make $40-50M per year!</p>
+          </div>
+
+          <h3>QB Stats to Know</h3>
+          <ul>
+            <li><strong>Completion %:</strong> How many passes they complete vs. attempt (65%+ is good)</li>
+            <li><strong>Yards per Attempt:</strong> How far they throw on average (7.5+ is elite)</li>
+            <li><strong>TD/INT Ratio:</strong> Touchdowns vs. Interceptions (want way more TDs!)</li>
+            <li><strong>Passer Rating:</strong> Overall efficiency score (100+ is excellent, 158.3 is perfect)</li>
+          </ul>
+        `
+      },
+      'timeouts-and-clock': {
+        title: 'Timeouts & Clock Management',
+        content: `
+          <h2>Mastering Time: The Chess Match ⏱️</h2>
+          <p>Great teams don't just move the ball - they control the clock. Here's how time management wins games!</p>
+
+          <h3>How the Game Clock Works</h3>
+          <p>Each game has four 15-minute quarters (60 minutes total). But the clock doesn't run continuously - it stops for incomplete passes, out of bounds, penalties, timeouts, scores, and more. This is why games take 3+ hours!</p>
+
+          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>⏰ When the Clock Stops</h4>
+            <p><strong>Incomplete pass</strong> (ball hits ground)<br/>
+            <strong>Player runs out of bounds</strong><br/>
+            <strong>Penalty</strong><br/>
+            <strong>Timeout called</strong><br/>
+            <strong>Score or turnover</strong><br/>
+            <strong>Injury</strong><br/>
+            <strong>Two-minute warning</strong> (automatic in each half)</p>
+          </div>
+
+          <h3>Timeouts: Your Most Valuable Resource</h3>
+          <p>Each team gets <strong>3 timeouts per half</strong>. Once you use them, they're gone until halftime (then you get 3 more for the second half). Coaches must decide: Save them for the end? Or use them early to avoid delay penalties or bad plays?</p>
+
+          <h3>Strategic Uses for Timeouts</h3>
+          <ul>
+            <li><strong>Stop the Clock:</strong> Preserve time when trailing late in the game</li>
+            <li><strong>Ice the Kicker:</strong> Call timeout right before opponent's field goal to make them think/stress</li>
+            <li><strong>Avoid Penalty:</strong> Can't get play off in time? Timeout prevents delay of game</li>
+            <li><strong>Adjust Strategy:</strong> See something confusing? Regroup with a timeout</li>
+          </ul>
+
+          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>🚨 The Two-Minute Warning</h4>
+            <p>At exactly 2:00 left in each half, the ref stops play for a "two-minute warning." This is an automatic timeout that gives both teams a chance to strategize for the final push.</p>
+          </div>
+
+          <h3>Clock Management Strategy</h3>
+          <p><strong>When Winning:</strong> Run the ball (clock keeps running), take your time at the line, use all 40 seconds of play clock. Bleed that clock!</p>
+          <p><strong>When Losing:</strong> Throw passes (incomplete stops clock), get out of bounds, spike the ball, use timeouts wisely. Every second matters!</p>
+
+          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>🎯 Why This Wins Championships</h4>
+            <p>Poor clock management loses games. Great QBs/coaches know exactly when to hurry, when to slow down, and when to burn a timeout. Watch how elite teams operate in the final 2 minutes - it's poetry!</p>
+          </div>
+
+          <h3>Play Clock vs. Game Clock</h3>
+          <ul>
+            <li><strong>Game Clock:</strong> The official time remaining in the quarter/game</li>
+            <li><strong>Play Clock:</strong> 40 seconds (or 25 after certain stoppages) to snap the ball or get a delay penalty</li>
           </ul>
         `
       }
