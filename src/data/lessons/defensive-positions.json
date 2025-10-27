@@ -1,14 +1,23 @@
 {
-  "id": "defensive-positions", 
+  "id": "defensive-positions",
   "title": "Defensive Positions Explained",
+  "subtitle": "The 11 Players Stopping the Offense",
   "description": "Learn about defensive positions and how they stop the offense",
   "duration": 115,
   "difficulty": "beginner",
-  "category": "positions", 
+  "category": "positions",
   "thumb": "/images/lessons/defensive-positions.jpg",
   "videoUrl": "/videos/lessons/defensive-positions.mp4",
   "prerequisites": ["offensive-positions"],
   "topics": ["defense", "positions", "linebacker", "cornerback", "safety"],
+  "preview": {
+    "What you'll learn": [
+      "What DL, LB, CB, and S positions do",
+      "The three levels of defense",
+      "How defenders cover and tackle"
+    ],
+    "Key concepts": ["defensive line", "linebacker", "cornerback", "safety", "coverage"]
+  },
   "content": {
     "sections": [
       {

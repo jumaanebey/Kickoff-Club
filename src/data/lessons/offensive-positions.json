@@ -1,6 +1,7 @@
 {
   "id": "offensive-positions",
   "title": "Offensive Positions Explained",
+  "subtitle": "Meet the Players Trying to Score",
   "description": "Learn about the key offensive positions and what each player does",
   "duration": 120,
   "difficulty": "beginner",
@@ -9,6 +10,14 @@
   "videoUrl": "/videos/lessons/offensive-positions.mp4",
   "prerequisites": ["field-layout-basics"],
   "topics": ["offense", "positions", "quarterback", "running-back", "wide-receiver"],
+  "preview": {
+    "What you'll learn": [
+      "What the QB, RB, WR, TE, and OL do",
+      "How each position works together",
+      "Why certain positions handle the ball"
+    ],
+    "Key concepts": ["quarterback", "running back", "receiver", "offensive line"]
+  },
   "content": {
     "sections": [
       {

@@ -1,14 +1,23 @@
 {
   "id": "nfl-seasons-playoffs",
-  "title": "football Season & Playoff Structure", 
+  "title": "NFL Season & Playoff Structure",
+  "subtitle": "From September to Super Bowl Sunday",
   "description": "Learn how the football season works and how teams make the playoffs",
   "duration": 140,
   "difficulty": "intermediate",
   "category": "basic-rules",
-  "thumb": "/images/lessons/playoffs.jpg", 
+  "thumb": "/images/lessons/playoffs.jpg",
   "videoUrl": "/videos/lessons/playoffs.mp4",
   "prerequisites": ["how-downs-work"],
   "topics": ["season", "playoffs", "super-bowl", "schedule", "standings"],
+  "preview": {
+    "What you'll learn": [
+      "How the 17-game regular season works",
+      "Which 14 teams make the playoffs (and how)",
+      "The path from Wild Card to Super Bowl"
+    ],
+    "Key concepts": ["regular season", "playoffs", "wild card", "Super Bowl"]
+  },
   "content": {
     "sections": [
       {
