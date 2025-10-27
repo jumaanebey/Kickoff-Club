@@ -16,12 +16,16 @@ function Nav() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <div className="flex-shrink-0 flex items-center">
+            <button
+              onClick={() => handleNavigate('/')}
+              className="flex-shrink-0 flex items-center hover:opacity-80 transition-opacity duration-200"
+              aria-label="Go to home page"
+            >
               <div className="w-8 h-8 bg-gradient-to-br from-accent-400 to-accent-600 rounded-xl flex items-center justify-center mr-3">
                 <span className="text-white font-bold text-lg">⚡</span>
               </div>
               <span className="font-display font-bold text-xl text-secondary-100">Kickoff Club</span>
-            </div>
+            </button>
           </div>
 
           {/* Desktop Navigation */}
@@ -37,22 +41,24 @@ function Nav() {
               >
                 Home
               </button>
-              <button 
+              <button
                 onClick={() => handleNavigate('/platform')}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
                   currentPath === '/platform' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
                 }`}
               >
-                Platform
+                Lessons
               </button>
+              {/* Video Lessons - Hidden for now
               <button
                 onClick={() => handleNavigate('/lessons')}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 hover:bg-primary-50 ${
                   currentPath === '/lessons' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600'
                 }`}
               >
-                Lessons
+                Video Lessons
               </button>
+              */}
               {/* Learning Tracks - Hidden for now
               <button
                 onClick={() => handleNavigate('/tracks')}
@@ -149,16 +155,18 @@ function Nav() {
                   currentPath === '/platform' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600 hover:bg-primary-50'
                 }`}
               >
-                Platform
+                Lessons
               </button>
+              {/* Video Lessons - Hidden for now
               <button
                 onClick={() => {navigate('/lessons'); setIsMenuOpen(false)}}
                 className={`w-full text-left px-3 py-2 rounded-xl text-base font-medium transition-all duration-200 ${
                   currentPath === '/lessons' ? 'text-accent-600 bg-primary-50' : 'text-secondary-100 hover:text-accent-600 hover:bg-primary-50'
                 }`}
               >
-                Lessons
+                Video Lessons
               </button>
+              */}
               {/* Learning Tracks - Hidden for now
               <button
                 onClick={() => {navigate('/tracks'); setIsMenuOpen(false)}}

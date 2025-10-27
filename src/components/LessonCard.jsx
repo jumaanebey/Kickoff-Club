@@ -18,7 +18,7 @@ export default function LessonCard({ lesson, onClick }) {
       {/* Video Thumbnail */}
       <div className="relative overflow-hidden rounded-xl mb-4">
         <img
-          src={lesson.thumb}
+          src={lesson.thumbnailUrl || lesson.thumb || '/assets/thumb-scoring.jpg'}
           alt={`${lesson.title} - Football lesson thumbnail`}
           className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
         />

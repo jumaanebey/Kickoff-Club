@@ -43,9 +43,9 @@ export default function Home({ adaptiveSettings }) {
 
   function goToLessons() {
     const startTime = performance.now()
-    trackEvent('navigation', { destination: 'lessons', source: 'home_cta' })
+    trackEvent('navigation', { destination: 'platform', source: 'home_cta' })
     recordInteraction('lessons_navigation', performance.now() - startTime)
-    navigate('/lessons')
+    navigate('/platform')
   }
   
   // Track page view with user context
