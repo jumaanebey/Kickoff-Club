@@ -3,6 +3,7 @@ import { AppProvider } from './context/AppContext'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
 import ErrorBoundary from './components/ErrorBoundary'
+import { initializeStorageProtection } from './utils/storageProtection'
 
 // Import pages directly
 import Home from './pages/Home'
@@ -97,6 +98,11 @@ function SimpleRouter() {
 }
 
 export default function App() {
+  // Initialize storage protection on app startup
+  useEffect(() => {
+    initializeStorageProtection()
+  }, [])
+
   return (
     <ErrorBoundary>
       <RouterProvider>
