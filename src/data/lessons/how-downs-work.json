@@ -11,11 +11,12 @@
   "badges": ["downs-starter"],
   "preview": {
     "What you'll learn": [
-      "Why teams get exactly 4 chances",
+      "The goal of football (big picture first!)",
+      "Why 'down' is called a down",
       "How to read '1st & 10', '3rd & 2'",
-      "What happens on 4th down"
+      "The critical 4th down decision"
     ],
-    "Key concepts": ["downs", "first down", "down & distance", "punt"]
+    "Key concepts": ["downs", "first down", "down & distance", "punt", "end zone"]
   },
   "script": {
     "hook": "Want to know why teams always say '3rd and long'? Ninety seconds — you'll get it.",
@@ -63,6 +64,19 @@
       {
         "id": "q1",
         "type": "multiple-choice",
+        "question": "What is the main goal of football?",
+        "options": [
+          "Get the ball into the opponent's end zone to score points",
+          "Complete as many passes as possible",
+          "Keep the ball away from the other team",
+          "Run more plays than the opponent"
+        ],
+        "correct": 0,
+        "explanation": "Perfect! The goal of football is simple: get the ball into the opponent's end zone to score points. Everything else - the downs, the plays, the strategy - exists to help teams do this."
+      },
+      {
+        "id": "q2",
+        "type": "multiple-choice",
         "question": "What does '1st & 10' mean?",
         "options": [
           "It's the first quarter and 10 minutes left",
@@ -74,7 +88,7 @@
         "explanation": "Exactly right! '1st & 10' means it's first down and the team needs to gain 10 yards within their 4 attempts to earn a new set of downs."
       },
       {
-        "id": "q2",
+        "id": "q3",
         "type": "multiple-choice",
         "question": "How many attempts does a team get to move the ball 10 yards?",
         "options": [
@@ -87,7 +101,7 @@
         "explanation": "Teams get exactly 4 downs (attempts) to move the ball 10 yards. If they succeed, they get a new set of 4 downs to move another 10 yards."
       },
       {
-        "id": "q3",
+        "id": "q4",
         "type": "multiple-choice",
         "question": "It's '4th & 3' at your own 20-yard line. What do most teams do?",
         "options": [
@@ -100,7 +114,7 @@
         "explanation": "Most teams punt on 4th down from deep in their own territory. Punting gives the ball to the opponent but pins them far away from scoring position."
       },
       {
-        "id": "q4",
+        "id": "q5",
         "type": "multiple-choice",
         "question": "A team gains 7 yards on 1st down. What's the next down?",
         "options": [
@@ -117,15 +131,19 @@
   "keyTerms": [
     {
       "term": "Down",
-      "definition": "One of the 4 attempts a team gets to advance the ball 10 yards"
+      "definition": "One attempt (play) to move the ball forward. Called a 'down' because it's the moment when the ball touches down on the field. Teams get 4 downs to advance 10 yards."
     },
     {
-      "term": "First Down", 
-      "definition": "When a team successfully moves 10+ yards and gets a new set of 4 downs"
+      "term": "End Zone",
+      "definition": "The special scoring area at each end of the field. Getting the ball here = touchdown!"
+    },
+    {
+      "term": "First Down",
+      "definition": "When a team successfully moves 10+ yards and gets a fresh set of 4 downs to go another 10 yards"
     },
     {
       "term": "Punt",
-      "definition": "Kicking the ball away on 4th down to avoid turning it over"
+      "definition": "Kicking the ball away on 4th down to push the opponent back, away from scoring position"
     }
   ],
   "videoUrl": "/assets/lessons/how-downs-work.mp4",

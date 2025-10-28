@@ -47,36 +47,75 @@ const SimplePlatform = () => {
       'how-downs-work': {
         title: 'How Downs Work',
         content: `
-          <h2>Understanding Downs: The Heart of Football 🏈</h2>
-          <p>If you understand downs, you understand football. It's that simple - and that important!</p>
+          <h2>Start Here: Understanding Football's Core System 🏈</h2>
 
-          <h3>What Are Downs?</h3>
-          <p>A "down" is simply an attempt to move the ball forward. Every time the offense starts a play, that's one down. The offense gets <strong>4 downs (attempts) to move the ball 10 yards forward</strong>.</p>
-
-          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>💡 The Simple Rule</h4>
-            <p><strong>4 chances to go 10 yards.</strong> If you succeed, you get 4 more chances. If you fail after 4 tries, the other team gets the ball.</p>
+          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>⚡ First, The Big Picture</h4>
+            <p><strong>The goal of football is simple:</strong> Get the ball into the opponent's end zone to score points. That's it!</p>
+            <p>Everything in football - every rule, every play - exists to help one team move the ball <strong>down the field towards that end zone</strong>, while the other team tries to stop them.</p>
           </div>
 
-          <h3>How It Works</h3>
+          <h3>The Down System: Football's Genius Design</h3>
+          <p>Here's how the game makes this happen. The team with the ball (the offense) gets <strong>4 attempts to move the ball 10 yards</strong> closer to the end zone. Each attempt is called a "down."</p>
+
+          <p><strong>Why is it called a "down"?</strong> Because it's the moment when the ball touches <em>down</em> on the field during a play. Each play = one down.</p>
+
+          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>💡 The Golden Rule</h4>
+            <p><strong>4 downs to gain 10 yards.</strong></p>
+            <ul style="margin: 8px 0;">
+              <li>✅ <strong>Succeed?</strong> You get 4 more downs to go another 10 yards.</li>
+              <li>❌ <strong>Fail?</strong> The other team gets the ball right where you left off.</li>
+            </ul>
+            <p>Think of the field as divided into 10-yard chunks. Each time you conquer a chunk, you unlock the next one. You get 4 attempts per chunk.</p>
+          </div>
+
+          <h3>How It Actually Works: A Real Example</h3>
+          <p>Let's watch a drive unfold:</p>
+
           <ul>
-            <li><strong>1st Down:</strong> You have 10 yards to go. If you gain 3 yards, now it's 2nd down and 7 yards to go.</li>
-            <li><strong>2nd Down:</strong> If you gain 5 more yards, now it's 3rd down and 2 yards to go.</li>
-            <li><strong>3rd Down:</strong> This is crucial! If you don't get those 2 yards, you face 4th down.</li>
-            <li><strong>4th Down:</strong> Most teams punt (kick the ball away) to give the opponent bad field position instead of risking turnover.</li>
+            <li><strong>1st & 10:</strong> First down, 10 yards to go towards the end zone. The team runs the ball and gains 3 yards. Progress!</li>
+            <li><strong>2nd & 7:</strong> Second down, now they need 7 more yards (10 - 3 = 7). They throw a short pass and get 4 yards.</li>
+            <li><strong>3rd & 3:</strong> Third down, 3 yards left to get that first down. <strong>This is crunch time!</strong> One more play before the big 4th down decision.</li>
+            <li><strong>The Result:</strong> They throw a pass and get 5 yards - more than enough! The chains reset to <strong>1st & 10</strong> again, and the journey continues.</li>
           </ul>
 
           <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🎯 Why This Matters</h4>
-            <p>Downs create drama! "3rd and long" (needing many yards) is tense. "4th and inches" (needing less than a yard) means big decisions. This rhythm makes every play meaningful.</p>
+            <h4>🎯 Why This Creates Drama</h4>
+            <p>The down system builds natural tension:</p>
+            <ul>
+              <li><strong>"3rd and long"</strong> (needing 7+ yards) = Pressure is on, must make something happen</li>
+              <li><strong>"4th and inches"</strong> (needing less than a yard) = Huge decision time</li>
+              <li><strong>"3rd and manageable"</strong> (2-4 yards) = Very doable, but still must execute</li>
+            </ul>
+            <p>Every down matters. Every yard counts. That's what makes football so compelling!</p>
           </div>
 
-          <h3>What You'll Hear</h3>
+          <h3>Fourth Down: The Big Decision</h3>
+          <p>When you reach 4th down and haven't made your 10 yards yet, teams face a critical choice:</p>
+
+          <p><strong>Option 1: Go For It</strong><br/>
+          Try to get those final yards and earn another set of downs. But if you fail, the other team gets the ball right here - which could put them in scoring position. Teams usually only do this when desperate or when it's inches to go.</p>
+
+          <p><strong>Option 2: Punt</strong> (Most Common)<br/>
+          Kick the ball as far down the field as you can to push the other team back, away from scoring position. Sure, you're giving up possession, but you're making them start way back on their own side. It's playing defense with your offense.</p>
+
+          <p><strong>Option 3: Field Goal</strong><br/>
+          If you're close to the end zone (usually within 35-40 yards), you can try to kick the ball through the yellow goalposts for 3 points. Closer than 40 yards? Almost automatic. Farther than 50? Coin flip.</p>
+
+          <h3>Common Terms You'll Hear</h3>
           <ul>
-            <li><strong>"1st and 10"</strong> - First down, 10 yards to go</li>
-            <li><strong>"3rd and long"</strong> - Third down, lots of yards needed (usually 7+)</li>
-            <li><strong>"4th and goal"</strong> - Fourth down at the goal line</li>
+            <li><strong>"1st and 10"</strong> - First down, 10 yards to go (fresh set of downs)</li>
+            <li><strong>"3rd and long"</strong> - Third down with lots of yards needed (7+)</li>
+            <li><strong>"4th and goal"</strong> - Fourth down with the end zone in reach</li>
+            <li><strong>"4th and short"</strong> - Fourth down with 2 or fewer yards needed</li>
           </ul>
+
+          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
+            <h4>🏆 You Now Understand the Heartbeat of Football</h4>
+            <p>Remember: <strong>4 downs to gain 10 yards</strong>. Make it, you get 4 more. Don't make it, the other team gets the ball.</p>
+            <p>Every play you watch, every decision you see, comes back to this simple system. You've just unlocked the code to understanding football!</p>
+          </div>
         `
       },
       'scoring-touchdowns': {
