@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { AdaptiveAssessment, assessmentConfig, getUnlockedTiers, canAccessTier, getTierProgress } from '../data/assessmentTest'
 import { useApp } from '../context/AppContext'
 import { getCurrentUser, updateUserProgress } from '../utils/userAccountSystem'
+import { getCheckoutUrl } from '../config/whop'
 
 export default function ProFootballAssessment({ onComplete }) {
   // Context with error handling
@@ -45,18 +46,23 @@ export default function ProFootballAssessment({ onComplete }) {
       const currentUser = getCurrentUser()
       setUser(currentUser)
 
-      // Unlock all tiers - allow users to take any test
-      setUnlockedTiers(['beginner', 'intermediate', 'advanced', 'expert'])
+      // Only unlock all tiers if user has purchased
+      if (state?.user?.hasPurchased) {
+        setUnlockedTiers(['beginner', 'intermediate', 'advanced', 'expert'])
+      } else {
+        // Free users only get beginner tier
+        setUnlockedTiers(['beginner'])
+      }
       setTierProgress(null) // Remove progress tracking
     } catch (error) {
       console.error('Error initializing assessment:', error)
       setError('Failed to initialize assessment. Please refresh the page.')
-      // Still allow all tiers as fallback
-      setUnlockedTiers(['beginner', 'intermediate', 'advanced', 'expert'])
+      // Fallback to beginner only
+      setUnlockedTiers(['beginner'])
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [state?.user?.hasPurchased])
 
   useEffect(() => {
     let interval
@@ -335,39 +341,55 @@ export default function ProFootballAssessment({ onComplete }) {
               <button
                 key={mode}
                 onClick={() => {
+                  if (!isUnlocked) {
+                    // Locked tier - open Whop checkout
+                    window.open(getCheckoutUrl(), '_blank')
+                    return
+                  }
                   setSelectedMode(mode)
                   startAssessment(mode)
                 }}
-                className={`p-6 rounded-2xl border-2 text-center transition-all duration-300 transform hover:scale-[1.02] bg-gradient-to-br ${levelColors[mode]} hover:shadow-xl cursor-pointer`}
+                className={`p-6 rounded-2xl border-2 text-center transition-all duration-300 transform hover:scale-[1.02] bg-gradient-to-br ${
+                  isUnlocked ? levelColors[mode] : 'from-gray-100 to-gray-200 border-gray-300'
+                } hover:shadow-xl cursor-pointer ${!isUnlocked ? 'opacity-75' : ''}`}
               >
                 <div className="mb-4">
                   <div className="text-4xl mb-3">
-                    {levelEmojis[mode]}
+                    {isUnlocked ? levelEmojis[mode] : '🔒'}
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-secondary-100">
                     {config.name.replace(' Assessment', '')}
+                    {!isUnlocked && <span className="ml-2 text-purple-600">🔒</span>}
                   </h3>
                   <div className="text-sm mb-3 text-secondary-200">
                     {config.totalQuestions} questions • {Math.round(config.timeLimit / 60)} minutes
                   </div>
                 </div>
 
-                <div className="text-sm mb-4 px-3 py-2 rounded-lg bg-white/60 text-secondary-200">
-                  {mode === 'beginner' ? 'Perfect starting point!' :
-                   mode === 'intermediate' ? 'Ready for more challenge?' :
-                   mode === 'advanced' ? 'Test your knowledge!' :
-                   'Prove your expertise!'}
-                </div>
+                {isUnlocked ? (
+                  <>
+                    <div className="text-sm mb-4 px-3 py-2 rounded-lg bg-white/60 text-secondary-200">
+                      {mode === 'beginner' ? 'Perfect starting point!' :
+                       mode === 'intermediate' ? 'Ready for more challenge?' :
+                       mode === 'advanced' ? 'Test your knowledge!' :
+                       'Prove your expertise!'}
+                    </div>
 
-                <div className="text-xs space-y-1 text-secondary-300">
-                  <div>Need {config.passingScore || 70}% to pass</div>
-                </div>
+                    <div className="text-xs space-y-1 text-secondary-300">
+                      <div>Need {config.passingScore || 70}% to pass</div>
+                    </div>
 
-                {mode !== 'beginner' && (
-                  <div className="mt-3 text-xs text-accent-600 font-medium bg-accent-50 px-2 py-1 rounded-full">
-                    {mode === 'intermediate' ? 'Try Beginner first' :
-                     mode === 'advanced' ? 'Recommended: Complete Intermediate' :
-                     'Recommended: Complete Advanced'}
+                    {mode !== 'beginner' && (
+                      <div className="mt-3 text-xs text-accent-600 font-medium bg-accent-50 px-2 py-1 rounded-full">
+                        {mode === 'intermediate' ? 'Try Beginner first' :
+                         mode === 'advanced' ? 'Recommended: Complete Intermediate' :
+                         'Recommended: Complete Advanced'}
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="text-sm mb-4 px-3 py-2 rounded-lg bg-purple-100 text-purple-700 font-medium">
+                    Unlock with premium access - $24
                   </div>
                 )}
               </button>
