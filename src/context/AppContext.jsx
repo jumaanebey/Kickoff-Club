@@ -1,6 +1,7 @@
 // Centralized state management with performance optimizations
 import React, { createContext, useContext, useReducer, useMemo, useCallback, useEffect } from 'react'
 import { loadProgress, saveProgress, checkBadgeProgress } from '../utils/progressTracker'
+import { hasPremiumAccess, checkWhopRedirect, setPurchaseStatus } from '../utils/purchaseVerification'
 
 const AppContext = createContext()
 
@@ -165,7 +166,21 @@ export const AppProvider = ({ children }) => {
         const progress = loadProgress()
         dispatch({ type: 'LOAD_PROGRESS_SUCCESS', payload: progress })
         dispatch({ type: 'START_SESSION' })
-        
+
+        // Check for Whop redirect (user just purchased)
+        const justPurchased = checkWhopRedirect()
+        if (justPurchased) {
+          console.log('🎉 Welcome! Premium access activated.')
+        }
+
+        // Load purchase status from localStorage
+        const purchased = hasPremiumAccess()
+        dispatch({ type: 'SET_PURCHASE_STATUS', payload: purchased })
+
+        if (purchased) {
+          console.log('✅ Premium access verified from storage')
+        }
+
         // Check for accessibility preferences
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
         if (prefersReducedMotion) {
@@ -301,6 +316,17 @@ export const AppProvider = ({ children }) => {
     
     removeNotification: (id) => {
       dispatch({ type: 'REMOVE_NOTIFICATION', payload: id })
+    },
+
+    verifyPurchase: () => {
+      const purchased = hasPremiumAccess()
+      dispatch({ type: 'SET_PURCHASE_STATUS', payload: purchased })
+      return purchased
+    },
+
+    setPurchase: (purchased) => {
+      setPurchaseStatus(purchased)
+      dispatch({ type: 'SET_PURCHASE_STATUS', payload: purchased })
     }
   }), [state.user.progress])
 

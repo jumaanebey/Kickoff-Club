@@ -2,6 +2,7 @@ import React, { useState, useEffect, createContext, useContext } from 'react'
 import { AppProvider } from './context/AppContext'
 import Nav from './components/Nav'
 import Footer from './components/Footer'
+import AdminPanel from './components/AdminPanel'
 import ErrorBoundary from './components/ErrorBoundary'
 import { initializeStorageProtection } from './utils/storageProtection'
 
@@ -113,6 +114,7 @@ export default function App() {
               <SimpleRouter />
             </main>
             <Footer />
+            <AdminPanel />
           </div>
         </AppProvider>
       </RouterProvider>

@@ -1,9 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { getCheckoutUrl, WHOP_CONFIG } from '../config/whop'
+import { useApp } from '../context/AppContext'
 
 const PremiumPaywall = ({ lessonTitle }) => {
+  const { actions } = useApp()
+  const [verifying, setVerifying] = useState(false)
+  const [verificationMessage, setVerificationMessage] = useState('')
+
   const handleUnlockClick = () => {
     window.open(getCheckoutUrl(), '_blank')
+  }
+
+  const handleVerifyPurchase = () => {
+    setVerifying(true)
+    setVerificationMessage('')
+
+    // Wait a moment for better UX
+    setTimeout(() => {
+      const purchased = actions.verifyPurchase()
+
+      if (purchased) {
+        setVerificationMessage('✅ Premium access verified! Refreshing...')
+        setTimeout(() => {
+          window.location.reload()
+        }, 1000)
+      } else {
+        setVerificationMessage('❌ No purchase found. Complete checkout first, then click here.')
+        setVerifying(false)
+      }
+    }, 500)
   }
 
   return (
@@ -86,11 +111,36 @@ const PremiumPaywall = ({ lessonTitle }) => {
       </div>
 
       <div style={{ marginTop: '24px', fontSize: '14px', opacity: 0.7 }}>
-        Already purchased? <a href="#" style={{ color: 'white', textDecoration: 'underline' }} onClick={(e) => {
-          e.preventDefault()
-          alert('Please refresh the page after completing your purchase.')
-        }}>Click here</a> to refresh
+        Already purchased? <button
+          onClick={handleVerifyPurchase}
+          disabled={verifying}
+          style={{
+            background: 'none',
+            border: 'none',
+            color: 'white',
+            textDecoration: 'underline',
+            cursor: verifying ? 'wait' : 'pointer',
+            fontSize: '14px',
+            padding: 0
+          }}
+        >
+          {verifying ? 'Verifying...' : 'Click here to verify'}
+        </button>
       </div>
+
+      {verificationMessage && (
+        <div style={{
+          marginTop: '16px',
+          padding: '12px',
+          borderRadius: '8px',
+          background: verificationMessage.includes('✅') ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)',
+          color: 'white',
+          fontSize: '14px',
+          fontWeight: '500'
+        }}>
+          {verificationMessage}
+        </div>
+      )}
     </div>
   )
 }
