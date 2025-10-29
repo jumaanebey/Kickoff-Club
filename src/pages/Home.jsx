@@ -96,7 +96,7 @@ export default function Home({ adaptiveSettings }) {
             </div>
 
             <p className="text-secondary-200 mb-6">
-              10 video lessons to take you from confused to confident
+              Start with 3 free lessons • Unlock all 10 for $24 lifetime access
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

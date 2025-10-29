@@ -65,7 +65,7 @@ function Hero({ onStart, navigate }) {
 
               <div className="flex items-center">
                 <span className="text-warning-500 mr-1">✨</span>
-                <span>Free • 10 lessons • Easy to follow</span>
+                <span>3 free lessons • $24 for all 10 • Lifetime access</span>
               </div>
             </div>
           </div>
