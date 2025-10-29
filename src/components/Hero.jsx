@@ -97,8 +97,8 @@ function Hero({ onStart, navigate }) {
 
               {/* Floating elements */}
 
-              <div className="absolute -top-6 -left-8 bg-green-500 text-white rounded-xl p-3 shadow-lg transform -rotate-12 animate-wiggle">
-                <span className="text-sm font-bold">Quick & Easy</span>
+              <div className="absolute -top-6 left-0 sm:-left-8 bg-green-500 text-white rounded-xl p-2 sm:p-3 shadow-lg transform -rotate-12 animate-wiggle">
+                <span className="text-xs sm:text-sm font-bold">Quick & Easy</span>
               </div>
             </div>
           </div>

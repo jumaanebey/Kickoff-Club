@@ -35,16 +35,16 @@ const PremiumPaywall = ({ lessonTitle }) => {
     <div style={{
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
       borderRadius: '12px',
-      padding: '48px 24px',
+      padding: '32px 16px',
       textAlign: 'center',
       color: 'white',
       maxWidth: '600px',
-      margin: '40px auto'
+      margin: '20px auto'
     }}>
-      <div style={{ fontSize: '48px', marginBottom: '16px' }}>🔒</div>
+      <div style={{ fontSize: 'clamp(36px, 10vw, 48px)', marginBottom: '16px' }}>🔒</div>
 
       <h2 style={{
-        fontSize: '28px',
+        fontSize: 'clamp(20px, 5vw, 28px)',
         fontWeight: 'bold',
         marginBottom: '12px',
         color: 'white'
@@ -53,10 +53,11 @@ const PremiumPaywall = ({ lessonTitle }) => {
       </h2>
 
       <p style={{
-        fontSize: '18px',
-        marginBottom: '24px',
+        fontSize: 'clamp(14px, 3.5vw, 18px)',
+        marginBottom: '20px',
         opacity: 0.9,
-        lineHeight: 1.6
+        lineHeight: 1.6,
+        padding: '0 8px'
       }}>
         "{lessonTitle}" is a premium lesson. Unlock all 10 lessons for lifetime access.
       </p>
@@ -86,13 +87,15 @@ const PremiumPaywall = ({ lessonTitle }) => {
           color: '#667eea',
           border: 'none',
           borderRadius: '8px',
-          padding: '16px 48px',
-          fontSize: '18px',
+          padding: '14px 24px',
+          fontSize: 'clamp(15px, 3.5vw, 18px)',
           fontWeight: 'bold',
           cursor: 'pointer',
           boxShadow: '0 4px 14px 0 rgba(0, 0, 0, 0.1)',
           transition: 'all 0.2s ease',
-          marginBottom: '12px'
+          marginBottom: '12px',
+          width: '100%',
+          maxWidth: '320px'
         }}
         onMouseEnter={(e) => {
           e.target.style.transform = 'translateY(-2px)'
