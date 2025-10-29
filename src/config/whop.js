@@ -1,7 +1,7 @@
 // Whop Configuration
 export const WHOP_CONFIG = {
   // Your Whop checkout URL
-  checkoutUrl: 'https://whop.com/kickoff-club-master-football-in-1-hour/kickoff-club-lifetime-access/',
+  checkoutUrl: 'https://whop.com/kickoff-club-master-football',
 
   // Product details
   productName: 'Kickoff Club - Lifetime Access',
