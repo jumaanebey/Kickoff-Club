@@ -722,41 +722,40 @@ const SimplePlatform = () => {
                     </div>
                   )}
 
-                    <div className="flex flex-wrap gap-3">
-                      {lesson.hasVideo && (
-                        <button
-                          onClick={() => navigate(`/lesson/${lesson.id}`)}
-                          aria-label={`Watch video lesson about ${lesson.title}`}
-                          className="px-6 py-2 bg-blush-500 text-white rounded-xl hover:bg-blush-600 transition-all duration-200 transform hover:scale-105 font-medium shadow-sm"
-                        >
-                          🎥 Watch Video
-                        </button>
-                      )}
+                  <div className="flex flex-wrap gap-3">
+                    {lesson.hasVideo && (
+                      <button
+                        onClick={() => navigate(`/lesson/${lesson.id}`)}
+                        aria-label={`Watch video lesson about ${lesson.title}`}
+                        className="px-6 py-2 bg-blush-500 text-white rounded-xl hover:bg-blush-600 transition-all duration-200 transform hover:scale-105 font-medium shadow-sm"
+                      >
+                        🎥 Watch Video
+                      </button>
+                    )}
+                    <button
+                      onClick={() => setSelectedLesson(lesson.id)}
+                      aria-label={`Read article about ${lesson.title}`}
+                      className="px-6 py-2 bg-white border-2 border-blush-300 text-blush-600 rounded-xl hover:bg-blush-50 hover:border-blush-400 transition-all duration-200 font-medium"
+                    >
+                      📖 Read Instead
+                    </button>
+                    {lesson.isPremium && !state.user.hasPurchased ? (
                       <button
                         onClick={() => setSelectedLesson(lesson.id)}
-                        aria-label={`Read article about ${lesson.title}`}
-                        className="px-6 py-2 bg-white border-2 border-blush-300 text-blush-600 rounded-xl hover:bg-blush-50 hover:border-blush-400 transition-all duration-200 font-medium"
+                        aria-label={`Unlock ${lesson.title} to take quiz`}
+                        className="px-6 py-2 bg-white border-2 border-purple-300 text-purple-600 rounded-xl hover:bg-purple-50 hover:border-purple-400 transition-all duration-200 font-medium"
                       >
-                        📖 Read Instead
+                        🔒 Quiz Locked
                       </button>
-                      {lesson.isPremium && !state.user.hasPurchased ? (
-                        <button
-                          onClick={() => setSelectedLesson(lesson.id)}
-                          aria-label={`Unlock ${lesson.title} to take quiz`}
-                          className="px-6 py-2 bg-white border-2 border-purple-300 text-purple-600 rounded-xl hover:bg-purple-50 hover:border-purple-400 transition-all duration-200 font-medium"
-                        >
-                          🔒 Quiz Locked
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => setQuizLessonId(lesson.id)}
-                          aria-label={`Take quiz for ${lesson.title}`}
-                          className="px-6 py-2 bg-white border-2 border-accent-300 text-accent-600 rounded-xl hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 font-medium"
-                        >
-                          📝 Take Quiz
-                        </button>
-                      )}
-                    </div>
+                    ) : (
+                      <button
+                        onClick={() => setQuizLessonId(lesson.id)}
+                        aria-label={`Take quiz for ${lesson.title}`}
+                        className="px-6 py-2 bg-white border-2 border-accent-300 text-accent-600 rounded-xl hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 font-medium"
+                      >
+                        📝 Take Quiz
+                      </button>
+                    )}
                   </div>
 
                   {/* Large lesson icon on the right */}
