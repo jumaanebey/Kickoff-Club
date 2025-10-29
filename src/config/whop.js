@@ -3,9 +3,9 @@ export const WHOP_CONFIG = {
   // Your Whop checkout URL with redirect
   checkoutUrl: 'https://whop.com/kickoff-club-master-football',
 
-  // Whop API Configuration
-  companyId: 'YOUR_COMPANY_ID', // Get from Whop dashboard
-  planId: 'YOUR_PLAN_ID', // Get from Whop dashboard
+  // Whop API Configuration (for reference only)
+  companyId: 'biz_lBLiYG00mYjgmd', // Your company ID from URL
+  planId: 'prod_FBKXhWTc5LUc1', // Your product ID
 
   // Product details
   productName: 'Kickoff Club - Lifetime Access',
