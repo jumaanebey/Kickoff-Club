@@ -1,7 +1,11 @@
 // Whop Configuration
 export const WHOP_CONFIG = {
-  // Your Whop checkout URL
+  // Your Whop checkout URL with redirect
   checkoutUrl: 'https://whop.com/kickoff-club-master-football',
+
+  // Whop API Configuration
+  companyId: 'YOUR_COMPANY_ID', // Get from Whop dashboard
+  planId: 'YOUR_PLAN_ID', // Get from Whop dashboard
 
   // Product details
   productName: 'Kickoff Club - Lifetime Access',
@@ -42,7 +46,9 @@ export const hasLessonAccess = (lessonId, userHasPurchased = false) => {
   return userHasPurchased
 }
 
-// Get the Whop checkout URL
+// Get the Whop checkout URL with redirect
 export const getCheckoutUrl = () => {
-  return WHOP_CONFIG.checkoutUrl
+  const baseUrl = WHOP_CONFIG.checkoutUrl
+  const redirectUrl = encodeURIComponent(`${window.location.origin}/platform?whop_success=true`)
+  return `${baseUrl}?redirect_url=${redirectUrl}`
 }

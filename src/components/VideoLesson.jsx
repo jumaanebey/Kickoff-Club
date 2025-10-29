@@ -34,9 +34,25 @@ const VideoLesson = ({ lessonId, onComplete }) => {
         setVideoLoading(true)
         setVideoError(null)
 
-        const response = await fetch(
-          `/api/video-url?videoId=${lessonId}&hasPurchased=${hasPurchased}`
-        )
+        // Get membership ID and email for server-side verification
+        const membershipId = localStorage.getItem('kickoff-club-membership-id')
+        const userEmail = localStorage.getItem('kickoff-club-user-email')
+
+        // Build query parameters
+        const params = new URLSearchParams({
+          videoId: lessonId,
+          hasPurchased: hasPurchased.toString()
+        })
+
+        // Add membership ID for server-side verification if available
+        if (membershipId) {
+          params.append('membershipId', membershipId)
+        }
+        if (userEmail) {
+          params.append('email', userEmail)
+        }
+
+        const response = await fetch(`/api/video-url?${params.toString()}`)
 
         if (!response.ok) {
           throw new Error('Failed to load video')

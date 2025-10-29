@@ -24,19 +24,56 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
-  const { videoId, hasPurchased } = req.query
+  const { videoId, hasPurchased, membershipId, email } = req.query
 
   // Validate videoId
   if (!videoId) {
     return res.status(400).json({ error: 'Video ID is required' })
   }
 
-  // Check if lesson is premium and user hasn't purchased
+  // Check if lesson is premium
   const isPremium = !FREE_LESSONS.includes(videoId)
-  const userHasPurchased = hasPurchased === 'true'
 
-  if (isPremium && !userHasPurchased) {
-    return res.status(403).json({ error: 'Premium access required' })
+  // If it's a free lesson, allow access
+  if (!isPremium) {
+    // Continue to generate signed URL below
+  } else {
+    // Premium lesson - verify purchase
+    let accessGranted = false
+
+    // Method 1: Server-side verification with Whop API (most secure)
+    if (membershipId && process.env.WHOP_API_KEY) {
+      try {
+        const response = await fetch(
+          `https://api.whop.com/v2/memberships/${membershipId}`,
+          {
+            headers: {
+              'Authorization': `Bearer ${process.env.WHOP_API_KEY}`,
+              'Content-Type': 'application/json'
+            }
+          }
+        )
+
+        if (response.ok) {
+          const data = await response.json()
+          accessGranted = data.valid && data.product === process.env.WHOP_PRODUCT_ID
+          console.log(`✅ Verified membership ${membershipId}: ${accessGranted}`)
+        }
+      } catch (error) {
+        console.error('Error verifying membership:', error)
+      }
+    }
+
+    // Method 2: Fallback to client-side flag (less secure, for MVP)
+    if (!accessGranted && hasPurchased === 'true') {
+      console.warn('⚠️ Using client-side purchase flag - server verification not available')
+      accessGranted = true
+    }
+
+    // Deny access if not verified
+    if (!accessGranted) {
+      return res.status(403).json({ error: 'Premium access required' })
+    }
   }
 
   try {
