@@ -35,6 +35,22 @@ export const lessons = {
 // Flatten all lessons into a single array for easier access
 export const allLessons = Object.values(lessons).flat()
 
+// Define which lessons are premium
+const PREMIUM_LESSONS = [
+  'quarterback-101',
+  'offensive-positions',
+  'defensive-positions',
+  'special-teams-basics',
+  'timeouts-and-clock',
+  'understanding-penalties',
+  'nfl-seasons-playoffs'
+]
+
+// Add isPremium flag to each lesson
+allLessons.forEach(lesson => {
+  lesson.isPremium = PREMIUM_LESSONS.includes(lesson.id)
+})
+
 // Get lesson by ID
 export const getLessonById = (id) => {
   return allLessons.find(lesson => lesson.id === id)

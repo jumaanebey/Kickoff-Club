@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useApp } from '../context/AppContext'
 import ShareButtons from './ShareButtons'
+import PremiumPaywall from './PremiumPaywall'
+import { isPremiumLesson } from '../config/whop'
 
 const VideoLesson = ({ lessonId, onComplete }) => {
   const { state, actions } = useApp()
@@ -10,6 +12,10 @@ const VideoLesson = ({ lessonId, onComplete }) => {
   const [quizCompleted, setQuizCompleted] = useState(false)
   const [helpfulFeedback, setHelpfulFeedback] = useState(null)
   const [videoLoading, setVideoLoading] = useState(true)
+
+  // Check if this is a premium lesson and user hasn't purchased
+  const isLessonPremium = isPremiumLesson(lessonId)
+  const hasPurchased = state.user.hasPurchased
 
   // Load animation preference from localStorage
   useEffect(() => {
@@ -268,6 +274,15 @@ const VideoLesson = ({ lessonId, onComplete }) => {
         }
       }
     }
+  }
+
+  // Show paywall if lesson is premium and user hasn't purchased
+  if (isLessonPremium && !hasPurchased) {
+    return (
+      <div className="max-w-4xl mx-auto p-6">
+        <PremiumPaywall lessonTitle={lesson.title} />
+      </div>
+    )
   }
 
   return (

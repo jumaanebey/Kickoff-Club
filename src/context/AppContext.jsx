@@ -9,7 +9,8 @@ const initialState = {
   user: {
     progress: null,
     loading: true,
-    lastSync: null
+    lastSync: null,
+    hasPurchased: false  // Track Whop purchase status
   },
   ui: {
     theme: 'light',
@@ -134,7 +135,16 @@ const appReducer = (state, action) => {
           notifications: state.ui.notifications.filter(n => n.id !== action.payload)
         }
       }
-      
+
+    case 'SET_PURCHASE_STATUS':
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          hasPurchased: action.payload
+        }
+      }
+
     default:
       return state
   }
