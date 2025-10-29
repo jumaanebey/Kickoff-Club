@@ -1,24 +1,46 @@
 <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background Circle -->
-  <circle cx="200" cy="200" r="200" fill="#cde7d9"/>
+  <!-- Soft gradient background (matching your site) -->
+  <defs>
+    <linearGradient id="bgGradProfile" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fffbfa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="logoGradProfile" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ebaf47;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d49d39;stop-opacity:1" />
+    </linearGradient>
+    <filter id="blurProfile">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="20"/>
+    </filter>
+  </defs>
 
-  <!-- Inner Navy Circle -->
-  <circle cx="200" cy="200" r="160" fill="#0b2545"/>
+  <!-- Background -->
+  <rect width="400" height="400" fill="url(#bgGradProfile)"/>
 
-  <!-- Football Design -->
-  <rect x="190" y="140" width="20" height="120" rx="4" fill="#e6b85c"/>
-  <rect x="170" y="165" width="60" height="8" rx="3" fill="#e6b85c"/>
-  <rect x="170" y="195" width="60" height="8" rx="3" fill="#e6b85c"/>
-  <rect x="170" y="225" width="60" height="8" rx="3" fill="#e6b85c"/>
+  <!-- Decorative blurred circles -->
+  <circle cx="80" cy="80" r="60" fill="#cde7d9" opacity="0.4" filter="url(#blurProfile)"/>
+  <circle cx="320" cy="120" r="70" fill="#f5d7a3" opacity="0.4" filter="url(#blurProfile)"/>
+  <circle cx="100" cy="320" r="50" fill="#f9d1c8" opacity="0.4" filter="url(#blurProfile)"/>
 
-  <!-- KC Letters -->
-  <text x="200" y="110" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#fce8e4" text-anchor="middle">KC</text>
+  <!-- Main Lightning Bolt Logo (centered, large) -->
+  <rect x="150" y="150" width="100" height="100" rx="20" fill="url(#logoGradProfile)" filter="drop-shadow(0 8px 16px rgba(0,0,0,0.1))"/>
+  <text x="200" y="218" font-family="Arial, sans-serif" font-size="64" fill="#ffffff" text-anchor="middle">⚡</text>
 
-  <!-- Accent Circle -->
-  <circle cx="280" cy="120" r="15" fill="#ff9aa2"/>
-  <circle cx="280" cy="120" r="8" fill="#0b2545"/>
+  <!-- Brand Name -->
+  <text x="200" y="300" font-family="Inter, Arial, sans-serif" font-size="36" font-weight="800" fill="#0b2545" text-anchor="middle">
+    Kickoff Club
+  </text>
 
-  <!-- Bottom Text -->
-  <text x="200" y="310" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#cde7d9" text-anchor="middle">Kickoff</text>
-  <text x="200" y="345" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#cde7d9" text-anchor="middle">Club</text>
+  <!-- Tagline with gradient (matching hero purple gradient) -->
+  <defs>
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9333ea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ec4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9333ea;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <text x="200" y="335" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="600" fill="url(#textGrad)" text-anchor="middle">
+    Love the vibe. Learn the game.
+  </text>
 </svg>

@@ -1,43 +1,106 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Navy Background -->
-  <rect width="1200" height="630" fill="#0b2545"/>
+  <!-- Soft Blush Background with Gradient -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fffbfa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:1" />
+    </linearGradient>
+    <filter id="blur1">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="40"/>
+    </filter>
+  </defs>
 
-  <!-- Decorative Football Watermark -->
-  <circle cx="950" cy="500" r="180" fill="#0b2545" opacity="0.3" stroke="#cde7d9" stroke-width="3"/>
-  <rect x="930" y="400" width="40" height="200" rx="5" fill="#e6b85c" opacity="0.2"/>
-  <rect x="900" y="440" width="100" height="10" rx="3" fill="#e6b85c" opacity="0.2"/>
-  <rect x="900" y="490" width="100" height="10" rx="3" fill="#e6b85c" opacity="0.2"/>
-  <rect x="900" y="540" width="100" height="10" rx="3" fill="#e6b85c" opacity="0.2"/>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
 
-  <!-- Logo (simplified) -->
-  <circle cx="100" cy="80" r="50" fill="#cde7d9"/>
-  <circle cx="100" cy="80" r="35" fill="#e6b85c"/>
-  <rect x="95" y="65" width="10" height="30" rx="2" fill="#0b2545"/>
-  <rect x="88" y="72" width="24" height="4" rx="1" fill="#0b2545"/>
-  <rect x="88" y="82" width="24" height="4" rx="1" fill="#0b2545"/>
-  <rect x="88" y="92" width="24" height="4" rx="1" fill="#0b2545"/>
+  <!-- Animated Blurred Circles (like your hero section) -->
+  <circle cx="200" cy="100" r="80" fill="#cde7d9" opacity="0.3" filter="url(#blur1)"/>
+  <circle cx="1000" cy="200" r="120" fill="#f5d7a3" opacity="0.3" filter="url(#blur1)"/>
+  <circle cx="300" cy="500" r="100" fill="#f9d1c8" opacity="0.3" filter="url(#blur1)"/>
 
-  <!-- Main Headline -->
-  <text x="100" y="280" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="bold" fill="#FFFFFF">
+  <!-- Logo (⚡ in gradient box like your nav) -->
+  <rect x="80" y="60" width="60" height="60" rx="12" fill="url(#logoGrad)"/>
+  <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#ebaf47;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#d49d39;stop-opacity:1" />
+  </linearGradient>
+  <text x="110" y="103" font-family="Arial, sans-serif" font-size="36" fill="#ffffff" text-anchor="middle">⚡</text>
+
+  <!-- Brand Name -->
+  <text x="160" y="103" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="bold" fill="#0b2545">
+    Kickoff Club
+  </text>
+
+  <!-- New Fan Badge (like your hero) -->
+  <rect x="80" y="160" width="200" height="40" rx="20" fill="url(#badgeGrad)"/>
+  <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" style="stop-color:#faebd1;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#e8f0e6;stop-opacity:1" />
+  </linearGradient>
+  <text x="110" y="187" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#d49d39">⚡</text>
+  <text x="130" y="187" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#d49d39">New Fan? Start Here</text>
+
+  <!-- Main Headline with Purple Gradient (matching your hero) -->
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#9333ea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ec4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9333ea;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <text x="80" y="290" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800" fill="url(#purpleGrad)">
     Love the vibe.
   </text>
-  <text x="100" y="370" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="bold" fill="#FFFFFF">
+  <text x="80" y="370" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800" fill="#0b2545">
     Learn the game.
   </text>
 
-  <!-- Subheading -->
-  <text x="100" y="440" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="600" fill="#cde7d9">
-    Master Football Fundamentals in 2 Hours
+  <!-- Subtitle -->
+  <text x="80" y="430" font-family="Inter, Arial, sans-serif" font-size="24" fill="#091f3d" opacity="0.8">
+    Football explained simply - no judgment, no gatekeeping.
   </text>
 
-  <!-- CTA Button -->
-  <rect x="100" y="490" width="350" height="80" rx="12" fill="#e6b85c"/>
-  <text x="275" y="545" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="bold" fill="#0b2545" text-anchor="middle">
-    Start Learning →
+  <!-- CTA Button (styled like your primary button) -->
+  <rect x="80" y="480" width="320" height="70" rx="12" fill="#0b2545"/>
+  <text x="240" y="527" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="600" fill="#ffffff" text-anchor="middle">
+    Start Learning Now ✨
   </text>
 
-  <!-- Footer Info -->
-  <text x="100" y="600" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#fce8e4">
-    $24 • Lifetime Access • 10 Video Lessons
+  <!-- Trust Indicators (matching your hero) -->
+  <circle cx="95" cy="585" r="16" fill="#ebaf47" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="125" cy="585" r="16" fill="#98d4b6" stroke="#ffffff" stroke-width="2"/>
+  <circle cx="155" cy="585" r="16" fill="#f5baac" stroke="#ffffff" stroke-width="2"/>
+
+  <text x="180" y="592" font-family="Inter, Arial, sans-serif" font-size="16" fill="#071934" opacity="0.7">
+    3 free lessons • $24 for all 10 • Lifetime access
+  </text>
+
+  <!-- Right Side: Video Preview Card (like your hero) -->
+  <rect x="700" y="140" width="420" height="380" rx="24" fill="#ffffff" filter="drop-shadow(0 20px 40px rgba(0,0,0,0.1))"/>
+
+  <!-- Inner gradient box -->
+  <rect x="720" y="160" width="380" height="340" rx="16" fill="url(#videoGrad)"/>
+  <linearGradient id="videoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#e8f0e6;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#faebd1;stop-opacity:1" />
+  </linearGradient>
+
+  <!-- Football Icon -->
+  <circle cx="910" cy="290" r="40" fill="#ffffff" filter="drop-shadow(0 4px 8px rgba(0,0,0,0.1))"/>
+  <text x="910" y="305" font-family="Arial, sans-serif" font-size="48" text-anchor="middle">🏈</text>
+
+  <!-- Text below icon -->
+  <text x="910" y="365" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" fill="#0b2545" text-anchor="middle">
+    Video Lessons
+  </text>
+  <text x="910" y="395" font-family="Inter, Arial, sans-serif" font-size="16" fill="#091f3d" text-anchor="middle" opacity="0.7">
+    Quick & Easy to Learn
+  </text>
+
+  <!-- Quick & Easy Badge (green, rotated) -->
+  <rect x="670" y="110" width="130" height="45" rx="8" fill="#22c55e" transform="rotate(-12 735 132.5)"/>
+  <text x="735" y="140" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle" transform="rotate(-12 735 140)">
+    Quick & Easy
   </text>
 </svg>
