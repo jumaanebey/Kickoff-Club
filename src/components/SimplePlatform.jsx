@@ -4,6 +4,7 @@ import { useSimpleRouter } from '../App'
 import { allLessons } from '../data/lessonsIndex'
 import { isPremiumLesson } from '../config/whop'
 import LessonQuiz from './LessonQuiz'
+import PremiumPaywall from './PremiumPaywall'
 
 // Lesson icons mapping
 const lessonIcons = {
@@ -599,19 +600,39 @@ const SimplePlatform = () => {
 
   if (selectedLesson) {
     const lesson = getLessonContent(selectedLesson)
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blush-50 to-sage-50">
-        <div className="max-w-4xl mx-auto p-6">
-          <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-blush-200 p-10">
-            <button 
+    const isLessonPremium = isPremiumLesson(selectedLesson)
+    const hasPurchased = state.user.hasPurchased
+
+    // Show paywall if lesson is premium and user hasn't purchased
+    if (isLessonPremium && !hasPurchased) {
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-blush-50 to-sage-50">
+          <div className="max-w-4xl mx-auto p-6">
+            <button
               onClick={() => setSelectedLesson(null)}
               className="flex items-center text-blush-600 hover:text-blush-700 mb-8 font-medium transition-colors duration-200"
             >
               ← Back to Library
             </button>
-            
+            <PremiumPaywall lessonTitle={lesson.title} />
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blush-50 to-sage-50">
+        <div className="max-w-4xl mx-auto p-6">
+          <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-blush-200 p-10">
+            <button
+              onClick={() => setSelectedLesson(null)}
+              className="flex items-center text-blush-600 hover:text-blush-700 mb-8 font-medium transition-colors duration-200"
+            >
+              ← Back to Library
+            </button>
+
             <div className="prose prose-lg max-w-none prose-headings:text-secondary-100 prose-p:text-secondary-200 prose-li:text-secondary-200 prose-strong:text-secondary-100" dangerouslySetInnerHTML={{ __html: lesson.content }} />
-            
+
             <div className="border-t border-blush-100 mt-10 pt-8 text-center">
               <p className="text-secondary-200 mb-4">Nice work reading through this! 🎉</p>
               <button
@@ -717,13 +738,23 @@ const SimplePlatform = () => {
                       >
                         📖 Read Instead
                       </button>
-                      <button
-                        onClick={() => setQuizLessonId(lesson.id)}
-                        aria-label={`Take quiz for ${lesson.title}`}
-                        className="px-6 py-2 bg-white border-2 border-accent-300 text-accent-600 rounded-xl hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 font-medium"
-                      >
-                        📝 Take Quiz
-                      </button>
+                      {lesson.isPremium && !state.user.hasPurchased ? (
+                        <button
+                          onClick={() => setSelectedLesson(lesson.id)}
+                          aria-label={`Unlock ${lesson.title} to take quiz`}
+                          className="px-6 py-2 bg-white border-2 border-purple-300 text-purple-600 rounded-xl hover:bg-purple-50 hover:border-purple-400 transition-all duration-200 font-medium"
+                        >
+                          🔒 Quiz Locked
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => setQuizLessonId(lesson.id)}
+                          aria-label={`Take quiz for ${lesson.title}`}
+                          className="px-6 py-2 bg-white border-2 border-accent-300 text-accent-600 rounded-xl hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 font-medium"
+                        >
+                          📝 Take Quiz
+                        </button>
+                      )}
                     </div>
                   </div>
 
