@@ -12,6 +12,8 @@ const VideoLesson = ({ lessonId, onComplete }) => {
   const [quizCompleted, setQuizCompleted] = useState(false)
   const [helpfulFeedback, setHelpfulFeedback] = useState(null)
   const [videoLoading, setVideoLoading] = useState(true)
+  const [signedVideoUrl, setSignedVideoUrl] = useState(null)
+  const [videoError, setVideoError] = useState(null)
 
   // Check if this is a premium lesson and user hasn't purchased
   const isLessonPremium = isPremiumLesson(lessonId)
@@ -24,6 +26,34 @@ const VideoLesson = ({ lessonId, onComplete }) => {
       setAnimationsEnabled(JSON.parse(saved))
     }
   }, [])
+
+  // Fetch signed video URL from API
+  useEffect(() => {
+    const fetchVideoUrl = async () => {
+      try {
+        setVideoLoading(true)
+        setVideoError(null)
+
+        const response = await fetch(
+          `/api/video-url?videoId=${lessonId}&hasPurchased=${hasPurchased}`
+        )
+
+        if (!response.ok) {
+          throw new Error('Failed to load video')
+        }
+
+        const data = await response.json()
+        setSignedVideoUrl(data.url)
+      } catch (error) {
+        console.error('Error fetching video URL:', error)
+        setVideoError('Failed to load video. Please try again.')
+      } finally {
+        setVideoLoading(false)
+      }
+    }
+
+    fetchVideoUrl()
+  }, [lessonId, hasPurchased])
 
   const toggleAnimations = () => {
     const newValue = !animationsEnabled
@@ -335,28 +365,50 @@ const VideoLesson = ({ lessonId, onComplete }) => {
         <div className="p-6">
           <div className="aspect-video bg-gray-900 rounded-lg relative overflow-hidden mb-6">
             {/* Loading Spinner */}
-            {videoLoading && (
+            {(videoLoading || !signedVideoUrl) && !videoError && (
               <div className="absolute inset-0 flex items-center justify-center bg-gray-900 z-10">
                 <div className="text-center">
                   <div className="inline-block w-12 h-12 border-4 border-blush-500 border-t-transparent rounded-full animate-spin mb-3"></div>
-                  <p className="text-white text-sm">Loading video...</p>
+                  <p className="text-white text-sm">Loading secure video...</p>
+                </div>
+              </div>
+            )}
+
+            {/* Error State */}
+            {videoError && (
+              <div className="absolute inset-0 flex items-center justify-center bg-gray-900 z-10">
+                <div className="text-center text-white p-6">
+                  <div className="text-4xl mb-4">⚠️</div>
+                  <p className="text-lg mb-2">Failed to load video</p>
+                  <p className="text-sm text-gray-400">{videoError}</p>
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="mt-4 px-4 py-2 bg-blush-500 text-white rounded-lg hover:bg-blush-600"
+                  >
+                    Retry
+                  </button>
                 </div>
               </div>
             )}
 
             {/* Real HTML5 Video Player */}
-            <video
-              controls
-              className="w-full h-full"
-              onEnded={handleVideoComplete}
-              onLoadStart={() => setVideoLoading(true)}
-              onCanPlay={() => setVideoLoading(false)}
-              onError={() => setVideoLoading(false)}
-              src={lesson.videoUrl}
-              aria-label={`Video lesson: ${lesson.title}`}
-            >
-              Your browser does not support the video tag.
-            </video>
+            {signedVideoUrl && !videoError && (
+              <video
+                controls
+                className="w-full h-full"
+                onEnded={handleVideoComplete}
+                onCanPlay={() => setVideoLoading(false)}
+                onError={(e) => {
+                  console.error('Video playback error:', e)
+                  setVideoError('Video playback failed')
+                  setVideoLoading(false)
+                }}
+                src={signedVideoUrl}
+                aria-label={`Video lesson: ${lesson.title}`}
+              >
+                Your browser does not support the video tag.
+              </video>
+            )}
 
             {videoWatched && (
               <div className="absolute top-4 right-4">
