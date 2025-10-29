@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useApp } from '../context/AppContext'
 import { useSimpleRouter } from '../App'
 import { allLessons } from '../data/lessonsIndex'
+import { isPremiumLesson } from '../config/whop'
 import LessonQuiz from './LessonQuiz'
 
 // Lesson icons mapping
@@ -35,7 +36,8 @@ const SimplePlatform = () => {
     read: state.user?.progress?.lessons?.read?.includes(lesson.id) || false,
     hasVideo: true,
     difficulty: lesson.difficulty,
-    duration: lesson.duration
+    duration: lesson.duration,
+    isPremium: isPremiumLesson(lesson.id)
   }))
 
   const completedCount = lessons.filter(l => l.completed).length
@@ -668,7 +670,14 @@ const SimplePlatform = () => {
                     )}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-secondary-100 mb-2">{lesson.title}</h3>
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="text-xl font-semibold text-secondary-100">{lesson.title}</h3>
+                      {lesson.isPremium && !state.user.hasPurchased && (
+                        <span className="px-2 py-1 text-xs font-semibold bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 rounded-full border border-purple-200">
+                          🔒 Premium
+                        </span>
+                      )}
+                    </div>
                     <p className="text-secondary-200 mb-3">
                       {lesson.completed && '✨ You nailed this one! • '}
                       {!lesson.completed && lesson.viewed && '📺 Video watched • '}
