@@ -113,7 +113,7 @@ export const getPurchaseInfo = () => {
   return {
     hasPurchased: hasPremiumAccess(),
     purchaseDate: getPurchaseDate(),
-    daysOwnedage: getPurchaseDate()
+    daysOwned: getPurchaseDate()
       ? Math.floor((new Date() - getPurchaseDate()) / (1000 * 60 * 60 * 24))
       : null
   }
