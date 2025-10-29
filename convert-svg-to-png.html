@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SVG to PNG Converter - Kickoff Club</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #0b2545;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #cde7d9;
+            color: #0b2545;
+        }
+        #preview {
+            margin-top: 20px;
+            border: 2px solid #cde7d9;
+            padding: 20px;
+            background: #fafafa;
+        }
+        .success {
+            color: #22c55e;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Kickoff Club - SVG to PNG Converter</h1>
+        <p>Convert your brand assets to PNG format for social media</p>
+
+        <h3>OG Image (1200x630px)</h3>
+        <button onclick="convertSVG('og-image', 1200, 630)">Convert OG Image to PNG</button>
+
+        <h3>Profile Picture (400x400px)</h3>
+        <button onclick="convertSVG('social-profile', 400, 400)">Convert Profile to PNG</button>
+
+        <h3>Logo (500x500px)</h3>
+        <button onclick="convertSVG('logo', 500, 500)">Convert Logo to PNG</button>
+
+        <div id="preview"></div>
+    </div>
+
+    <script>
+        async function convertSVG(filename, width, height) {
+            const preview = document.getElementById('preview');
+            preview.innerHTML = `<p>Loading ${filename}.svg...</p>`;
+
+            try {
+                // Fetch the SVG file
+                const response = await fetch(`/public/${filename}.svg`);
+                const svgText = await response.text();
+
+                // Create an image from SVG
+                const img = new Image();
+                const svg = new Blob([svgText], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(svg);
+
+                img.onload = function() {
+                    // Create canvas
+                    const canvas = document.createElement('canvas');
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+
+                    // Draw image on canvas
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Convert to PNG
+                    canvas.toBlob(function(blob) {
+                        // Create download link
+                        const link = document.createElement('a');
+                        link.download = `${filename}.png`;
+                        link.href = URL.createObjectURL(blob);
+                        link.click();
+
+                        // Show preview
+                        const previewImg = document.createElement('img');
+                        previewImg.src = URL.createObjectURL(blob);
+                        previewImg.style.maxWidth = '100%';
+                        preview.innerHTML = '<p class="success">✅ Downloaded! Check your Downloads folder.</p>';
+                        preview.appendChild(previewImg);
+
+                        URL.revokeObjectURL(url);
+                    });
+                };
+
+                img.src = url;
+            } catch (error) {
+                preview.innerHTML = `<p style="color: red;">Error: ${error.message}</p>
+                <p>Make sure the SVG files are in the /public/ folder.</p>`;
+            }
+        }
+
+        // Instructions
+        const instructions = `
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Make sure you're running the dev server (npm run dev)</li>
+                <li>Click the buttons above to convert SVG to PNG</li>
+                <li>Files will download automatically</li>
+                <li>Upload PNG files to your social media platforms</li>
+            </ol>
+        `;
+        document.querySelector('.container').innerHTML += instructions;
+    </script>
+</body>
+</html>

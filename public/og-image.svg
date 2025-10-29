@@ -1,0 +1,43 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Navy Background -->
+  <rect width="1200" height="630" fill="#0b2545"/>
+
+  <!-- Decorative Football Watermark -->
+  <circle cx="950" cy="500" r="180" fill="#0b2545" opacity="0.3" stroke="#cde7d9" stroke-width="3"/>
+  <rect x="930" y="400" width="40" height="200" rx="5" fill="#e6b85c" opacity="0.2"/>
+  <rect x="900" y="440" width="100" height="10" rx="3" fill="#e6b85c" opacity="0.2"/>
+  <rect x="900" y="490" width="100" height="10" rx="3" fill="#e6b85c" opacity="0.2"/>
+  <rect x="900" y="540" width="100" height="10" rx="3" fill="#e6b85c" opacity="0.2"/>
+
+  <!-- Logo (simplified) -->
+  <circle cx="100" cy="80" r="50" fill="#cde7d9"/>
+  <circle cx="100" cy="80" r="35" fill="#e6b85c"/>
+  <rect x="95" y="65" width="10" height="30" rx="2" fill="#0b2545"/>
+  <rect x="88" y="72" width="24" height="4" rx="1" fill="#0b2545"/>
+  <rect x="88" y="82" width="24" height="4" rx="1" fill="#0b2545"/>
+  <rect x="88" y="92" width="24" height="4" rx="1" fill="#0b2545"/>
+
+  <!-- Main Headline -->
+  <text x="100" y="280" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="bold" fill="#FFFFFF">
+    Love the vibe.
+  </text>
+  <text x="100" y="370" font-family="Arial, Helvetica, sans-serif" font-size="80" font-weight="bold" fill="#FFFFFF">
+    Learn the game.
+  </text>
+
+  <!-- Subheading -->
+  <text x="100" y="440" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="600" fill="#cde7d9">
+    Master Football Fundamentals in 2 Hours
+  </text>
+
+  <!-- CTA Button -->
+  <rect x="100" y="490" width="350" height="80" rx="12" fill="#e6b85c"/>
+  <text x="275" y="545" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="bold" fill="#0b2545" text-anchor="middle">
+    Start Learning →
+  </text>
+
+  <!-- Footer Info -->
+  <text x="100" y="600" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#fce8e4">
+    $24 • Lifetime Access • 10 Video Lessons
+  </text>
+</svg>
