@@ -679,20 +679,20 @@ const SimplePlatform = () => {
                 </div>
 
                 <div className="flex items-center relative">
-                  <div className="mr-6">
+                  <div className="mr-3 sm:mr-6">
                     {lesson.completed ? (
-                      <div className="w-14 h-14 bg-gradient-to-r from-sage-400 to-blush-400 text-white rounded-full flex items-center justify-center text-lg shadow-lg">
+                      <div className="w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-r from-sage-400 to-blush-400 text-white rounded-full flex items-center justify-center text-base sm:text-lg shadow-lg flex-shrink-0">
                         ✨
                       </div>
                     ) : (
-                      <div className="w-14 h-14 bg-gradient-to-r from-blush-100 to-sage-100 text-blush-600 rounded-full flex items-center justify-center text-lg font-bold border-2 border-blush-200">
+                      <div className="w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-r from-blush-100 to-sage-100 text-blush-600 rounded-full flex items-center justify-center text-base sm:text-lg font-bold border-2 border-blush-200 flex-shrink-0">
                         {index + 1}
                       </div>
                     )}
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <h3 className="text-xl font-semibold text-secondary-100">{lesson.title}</h3>
+                      <h3 className="text-base sm:text-xl font-semibold text-secondary-100">{lesson.title}</h3>
                       {lesson.isPremium && !state.user.hasPurchased && (
                         <span className="px-2 py-1 text-xs font-semibold bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 rounded-full border border-purple-200">
                           🔒 Premium
