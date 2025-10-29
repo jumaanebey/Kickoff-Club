@@ -679,7 +679,7 @@ const SimplePlatform = () => {
                 </div>
 
                 <div className="relative">
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex items-center gap-2 mb-1">
                     {lesson.completed ? (
                       <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-sage-400 to-blush-400 text-white rounded-full flex items-center justify-center text-sm sm:text-base shadow-lg flex-shrink-0">
                         ✨
@@ -690,35 +690,37 @@ const SimplePlatform = () => {
                       </div>
                     )}
                     <h3 className="text-base sm:text-xl font-semibold text-secondary-100">{lesson.title}</h3>
-                    {lesson.isPremium && !state.user.hasPurchased && (
-                      <span className="px-2 py-1 text-xs font-semibold bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 rounded-full border border-purple-200">
-                        🔒 Premium
-                      </span>
-                    )}
                   </div>
 
-                  <div className="flex-1">
-                    <p className="text-secondary-200 mb-3">
-                      {lesson.completed && '✨ You nailed this one! • '}
-                      {!lesson.completed && lesson.viewed && '📺 Video watched • '}
-                      {!lesson.completed && lesson.read && '📖 Article read • '}
-                      {lesson.subtitle}
-                    </p>
+                  {lesson.isPremium && !state.user.hasPurchased && (
+                    <div className="ml-10 sm:ml-12 mb-2">
+                      <span className="inline-block px-2 py-0.5 text-xs font-semibold bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 rounded border border-purple-200">
+                        🔒 Premium
+                      </span>
+                    </div>
+                  )}
 
-                    {/* What you'll learn */}
-                    {lesson.preview && lesson.preview["What you'll learn"] && (
-                      <div className="mb-4 p-4 bg-primary-50/50 rounded-lg border border-primary-100">
-                        <p className="text-xs font-semibold text-accent-600 mb-3">What you'll learn:</p>
-                        <ul className="space-y-2">
-                          {lesson.preview["What you'll learn"].map((item, idx) => (
-                            <li key={idx} className="text-sm text-secondary-200 flex items-start leading-relaxed">
-                              <span className="text-accent-500 mr-2">•</span>
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                  <p className="text-sm text-secondary-200 mb-3">
+                    {lesson.completed && '✨ You nailed this one! • '}
+                    {!lesson.completed && lesson.viewed && '📺 Video watched • '}
+                    {!lesson.completed && lesson.read && '📖 Article read • '}
+                    {lesson.subtitle}
+                  </p>
+
+                  {/* What you'll learn */}
+                  {lesson.preview && lesson.preview["What you'll learn"] && (
+                    <div className="mb-4 p-4 bg-primary-50/50 rounded-lg border border-primary-100">
+                      <p className="text-xs font-semibold text-accent-600 mb-3">What you'll learn:</p>
+                      <ul className="space-y-2">
+                        {lesson.preview["What you'll learn"].map((item, idx) => (
+                          <li key={idx} className="text-sm text-secondary-200 flex items-start leading-relaxed">
+                            <span className="text-accent-500 mr-2">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
 
                     <div className="flex flex-wrap gap-3">
                       {lesson.hasVideo && (
