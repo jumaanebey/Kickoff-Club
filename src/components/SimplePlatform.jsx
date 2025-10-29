@@ -678,27 +678,26 @@ const SimplePlatform = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center relative">
-                  <div className="mr-3 sm:mr-6">
+                <div className="relative">
+                  <div className="flex items-center gap-2 mb-2">
                     {lesson.completed ? (
-                      <div className="w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-r from-sage-400 to-blush-400 text-white rounded-full flex items-center justify-center text-base sm:text-lg shadow-lg flex-shrink-0">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-sage-400 to-blush-400 text-white rounded-full flex items-center justify-center text-sm sm:text-base shadow-lg flex-shrink-0">
                         ✨
                       </div>
                     ) : (
-                      <div className="w-10 h-10 sm:w-14 sm:h-14 bg-gradient-to-r from-blush-100 to-sage-100 text-blush-600 rounded-full flex items-center justify-center text-base sm:text-lg font-bold border-2 border-blush-200 flex-shrink-0">
+                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blush-100 to-sage-100 text-blush-600 rounded-full flex items-center justify-center text-sm sm:text-base font-bold border-2 border-blush-200 flex-shrink-0">
                         {index + 1}
                       </div>
                     )}
+                    <h3 className="text-base sm:text-xl font-semibold text-secondary-100">{lesson.title}</h3>
+                    {lesson.isPremium && !state.user.hasPurchased && (
+                      <span className="px-2 py-1 text-xs font-semibold bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 rounded-full border border-purple-200">
+                        🔒 Premium
+                      </span>
+                    )}
                   </div>
+
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <h3 className="text-base sm:text-xl font-semibold text-secondary-100">{lesson.title}</h3>
-                      {lesson.isPremium && !state.user.hasPurchased && (
-                        <span className="px-2 py-1 text-xs font-semibold bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 rounded-full border border-purple-200">
-                          🔒 Premium
-                        </span>
-                      )}
-                    </div>
                     <p className="text-secondary-200 mb-3">
                       {lesson.completed && '✨ You nailed this one! • '}
                       {!lesson.completed && lesson.viewed && '📺 Video watched • '}
@@ -708,11 +707,11 @@ const SimplePlatform = () => {
 
                     {/* What you'll learn */}
                     {lesson.preview && lesson.preview["What you'll learn"] && (
-                      <div className="mb-4 p-3 bg-primary-50/50 rounded-lg border border-primary-100">
-                        <p className="text-xs font-semibold text-accent-600 mb-2">What you'll learn:</p>
-                        <ul className="space-y-1">
+                      <div className="mb-4 p-4 bg-primary-50/50 rounded-lg border border-primary-100">
+                        <p className="text-xs font-semibold text-accent-600 mb-3">What you'll learn:</p>
+                        <ul className="space-y-2">
                           {lesson.preview["What you'll learn"].map((item, idx) => (
-                            <li key={idx} className="text-sm text-secondary-200 flex items-start">
+                            <li key={idx} className="text-sm text-secondary-200 flex items-start leading-relaxed">
                               <span className="text-accent-500 mr-2">•</span>
                               <span>{item}</span>
                             </li>
