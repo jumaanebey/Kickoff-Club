@@ -95,12 +95,12 @@
     Video Lessons
   </text>
   <text x="910" y="395" font-family="Inter, Arial, sans-serif" font-size="16" fill="#091f3d" text-anchor="middle" opacity="0.7">
-    Quick & Easy to Learn
+    Quick &amp; Easy to Learn
   </text>
 
   <!-- Quick & Easy Badge (green, rotated) -->
   <rect x="670" y="110" width="130" height="45" rx="8" fill="#22c55e" transform="rotate(-12 735 132.5)"/>
   <text x="735" y="140" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle" transform="rotate(-12 735 140)">
-    Quick & Easy
+    Quick &amp; Easy
   </text>
 </svg>
