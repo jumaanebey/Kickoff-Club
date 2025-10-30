@@ -33,33 +33,35 @@ const PremiumPaywall = ({ lessonTitle }) => {
 
   return (
     <div style={{
-      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-      borderRadius: '12px',
-      padding: '32px 16px',
+      background: 'linear-gradient(135deg, #9333ea 0%, #ec4899 100%)',
+      borderRadius: '24px',
+      padding: '40px 24px',
       textAlign: 'center',
       color: 'white',
-      maxWidth: '600px',
-      margin: '20px auto'
+      maxWidth: '700px',
+      margin: '20px auto',
+      boxShadow: '0 20px 60px rgba(147, 51, 234, 0.3)'
     }}>
-      <div style={{ fontSize: 'clamp(36px, 10vw, 48px)', marginBottom: '16px' }}>🔒</div>
+      <div style={{ fontSize: 'clamp(48px, 12vw, 64px)', marginBottom: '24px' }}>🔒</div>
 
       <h2 style={{
-        fontSize: 'clamp(20px, 5vw, 28px)',
-        fontWeight: 'bold',
-        marginBottom: '12px',
+        fontSize: 'clamp(24px, 6vw, 36px)',
+        fontWeight: '800',
+        marginBottom: '16px',
         color: 'white'
       }}>
-        Premium Lesson
+        Unlock "{lessonTitle}"
       </h2>
 
       <p style={{
-        fontSize: 'clamp(14px, 3.5vw, 18px)',
-        marginBottom: '20px',
-        opacity: 0.9,
+        fontSize: 'clamp(16px, 4vw, 20px)',
+        marginBottom: '24px',
+        opacity: 0.95,
         lineHeight: 1.6,
-        padding: '0 8px'
+        padding: '0 12px',
+        fontWeight: '500'
       }}>
-        "{lessonTitle}" is a premium lesson. Unlock all 10 lessons for lifetime access.
+        Get instant access to all 10 lessons + quizzes + lifetime updates for just $24
       </p>
 
       <div style={{
@@ -109,8 +111,19 @@ const PremiumPaywall = ({ lessonTitle }) => {
         Unlock All Lessons - ${WHOP_CONFIG.price}
       </button>
 
-      <div style={{ fontSize: '14px', opacity: 0.8 }}>
-        One-time payment • Lifetime access • 30-day money-back guarantee
+      <div style={{ fontSize: '14px', opacity: 0.9, marginTop: '12px' }}>
+        ✨ One-time payment • 💎 Lifetime access • 🔄 30-day guarantee
+      </div>
+
+      <div style={{
+        marginTop: '20px',
+        padding: '16px',
+        background: 'rgba(255, 255, 255, 0.15)',
+        borderRadius: '12px',
+        fontSize: '14px'
+      }}>
+        <p style={{ marginBottom: '8px', fontWeight: '600' }}>💡 Value Comparison:</p>
+        <p style={{ opacity: 0.9 }}>📺 Netflix: $16/month • ☕ Starbucks: $6/drink • 🏈 Kickoff Club: $24 forever</p>
       </div>
 
       <div style={{ marginTop: '24px', fontSize: '14px', opacity: 0.7 }}>

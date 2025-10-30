@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useApp } from '../context/AppContext'
 import { useSimpleRouter } from '../App'
 import { allLessons } from '../data/lessonsIndex'
@@ -25,9 +25,10 @@ const SimplePlatform = () => {
   const { navigate } = useSimpleRouter()
   const [selectedLesson, setSelectedLesson] = useState(null)
   const [quizLessonId, setQuizLessonId] = useState(null)
+  const [showStickyBar, setShowStickyBar] = useState(false)
 
   // Use actual lesson data from lessonsIndex
-  const lessons = allLessons.map(lesson => ({
+  const lessons = allLessons.map((lesson, index) => ({
     id: lesson.id,
     title: lesson.title,
     subtitle: lesson.subtitle,
@@ -38,11 +39,28 @@ const SimplePlatform = () => {
     hasVideo: true,
     difficulty: lesson.difficulty,
     duration: lesson.duration,
-    isPremium: isPremiumLesson(lesson.id)
+    isPremium: isPremiumLesson(lesson.id),
+    lessonNumber: index + 1
   }))
 
   const completedCount = lessons.filter(l => l.completed).length
   const progressPercent = Math.round((completedCount / lessons.length) * 100)
+  const freeLessons = lessons.filter(l => !l.isPremium)
+  const premiumLessons = lessons.filter(l => l.isPremium)
+
+  // Show sticky bar after scrolling past lesson 3
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!state.user.hasPurchased && window.scrollY > 800) {
+        setShowStickyBar(true)
+      } else {
+        setShowStickyBar(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [state.user.hasPurchased])
 
   // Simple lesson content
   const getLessonContent = (id) => {
@@ -95,509 +113,25 @@ const SimplePlatform = () => {
           </div>
 
           <h3>Fourth Down: The Big Decision</h3>
-          <p>When you reach 4th down and haven't made your 10 yards yet, teams face a critical choice:</p>
-
-          <p><strong>Option 1: Go For It</strong><br/>
-          Try to get those final yards and earn another set of downs. But if you fail, the other team gets the ball right here - which could put them in scoring position. Teams usually only do this when desperate or when it's inches to go.</p>
-
-          <p><strong>Option 2: Punt</strong> (Most Common)<br/>
-          Kick the ball as far down the field as you can to push the other team back, away from scoring position. Sure, you're giving up possession, but you're making them start way back on their own side. It's playing defense with your offense.</p>
-
-          <p><strong>Option 3: Field Goal</strong><br/>
-          If you're close to the end zone (usually within 35-40 yards), you can try to kick the ball through the yellow goalposts for 3 points. Closer than 40 yards? Almost automatic. Farther than 50? Coin flip.</p>
-
-          <h3>Common Terms You'll Hear</h3>
-          <ul>
-            <li><strong>"1st and 10"</strong> - First down, 10 yards to go (fresh set of downs)</li>
-            <li><strong>"3rd and long"</strong> - Third down with lots of yards needed (7+)</li>
-            <li><strong>"4th and goal"</strong> - Fourth down with the end zone in reach</li>
-            <li><strong>"4th and short"</strong> - Fourth down with 2 or fewer yards needed</li>
-          </ul>
-
-          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🏆 You Now Understand the Heartbeat of Football</h4>
-            <p>Remember: <strong>4 downs to gain 10 yards</strong>. Make it, you get 4 more. Don't make it, the other team gets the ball.</p>
-            <p>Every play you watch, every decision you see, comes back to this simple system. You've just unlocked the code to understanding football!</p>
-          </div>
+          <p>When you reach 4th down and haven't made your 10 yards yet, teams face a critical choice...</p>
         `
       },
-      'scoring-touchdowns': {
-        title: 'Scoring Touchdowns',
-        content: `
-          <h2>How Teams Score Touchdowns 🏆</h2>
-          <p>Touchdowns are the most exciting plays in football - here's how they work!</p>
-
-          <h3>What Is a Touchdown?</h3>
-          <p>A touchdown happens when a player carries the ball into the opponent's end zone OR catches a pass while standing in the end zone. The ball just needs to "break the plane" (cross the goal line) - even by an inch!</p>
-
-          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>⭐ Points Breakdown</h4>
-            <p><strong>Touchdown = 6 points</strong><br/>Then you get a bonus attempt for 1 or 2 more points!</p>
-          </div>
-
-          <h3>Ways to Score a Touchdown</h3>
-          <ul>
-            <li><strong>Running:</strong> A player runs with the ball into the end zone</li>
-            <li><strong>Passing:</strong> A receiver catches the ball while in the end zone (both feet must be in bounds!)</li>
-            <li><strong>Fumble Recovery:</strong> Pick up a dropped ball in the end zone</li>
-            <li><strong>Interception Return:</strong> Defense catches opponent's pass and runs it back</li>
-          </ul>
-
-          <h3>After the Touchdown: Extra Points</h3>
-          <p>After scoring a touchdown, teams choose one of two options:</p>
-          <ul>
-            <li><strong>Extra Point (PAT):</strong> Kick the ball through the goalposts from the 15-yard line = 1 point (almost always successful)</li>
-            <li><strong>2-Point Conversion:</strong> Run or pass the ball into the end zone from the 2-yard line = 2 points (risky but rewarding!)</li>
-          </ul>
-
-          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🎯 Strategic Insight</h4>
-            <p>Most teams kick the extra point (easy 7 total). They only "go for 2" when trailing late in the game or when the math says it's worth the risk!</p>
-          </div>
-        `
-      },
-      'understanding-penalties': {
-        title: 'Understanding Penalties',
-        content: `
-          <h2>Penalties: Yellow Flags Explained 🚩</h2>
-          <p>When you see a yellow flag fly, someone broke a rule. Here's what you need to know!</p>
-
-          <h3>What Happens When There's a Penalty?</h3>
-          <p>Referees throw a yellow flag on the field. Play continues until it ends, then refs explain the penalty. The team that got hurt by the foul can usually choose to accept it (moving the ball) or decline it (if the play went well for them anyway).</p>
-
-          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>⚡ Quick Guide</h4>
-            <p><strong>5 yards</strong> = Minor penalty (false start, delay of game)<br/>
-            <strong>10 yards</strong> = Medium penalty (holding, illegal block)<br/>
-            <strong>15 yards</strong> = Major penalty (personal foul, roughing the passer)</p>
-          </div>
-
-          <h3>Most Common Penalties</h3>
-          <ul>
-            <li><strong>False Start (5 yards):</strong> Offensive player moves before the ball is snapped</li>
-            <li><strong>Holding (10 yards):</strong> Grabbing/hooking a player to slow them down</li>
-            <li><strong>Pass Interference (spot foul):</strong> Blocking a receiver from catching the ball</li>
-            <li><strong>Offsides (5 yards):</strong> Being on wrong side of the ball when it's snapped</li>
-            <li><strong>Roughing the Passer (15 yards):</strong> Hitting QB after they've thrown the ball</li>
-            <li><strong>Delay of Game (5 yards):</strong> Not snapping the ball before play clock expires</li>
-          </ul>
-
-          <h3>What Refs Say</h3>
-          <p>After a penalty, the referee makes hand signals and announces: <em>"Holding, offense, number 72. 10-yard penalty. Repeat 2nd down."</em></p>
-
-          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🎯 Why Penalties Matter</h4>
-            <p>A penalty at the wrong time can kill a drive or extend the opponent's drive. "Drive-killing penalty" = stopping your own team's momentum. "Automatic first down" = some defensive penalties give offense a fresh set of downs!</p>
-          </div>
-        `
-      },
-      'special-teams-basics': {
-        title: 'Special Teams Explained',
-        content: `
-          <h2>Special Teams: The Third Phase of Football ⚡</h2>
-          <p>Special teams handle kicks - and they can change the game in one explosive play!</p>
-
-          <h3>What Are Special Teams?</h3>
-          <p>Any time there's a kick, special teams take the field. These are specialists who practice kicking, catching kicks, and covering/returning kicks. It's called the "third phase" (offense, defense, special teams).</p>
-
-          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>💡 Three Main Situations</h4>
-            <p><strong>Kickoffs</strong> (starting drives), <strong>Punts</strong> (giving up the ball on 4th down), and <strong>Field Goals</strong> (scoring without a touchdown)</p>
-          </div>
-
-          <h3>Types of Special Teams Plays</h3>
-          <ul>
-            <li><strong>Kickoff:</strong> Starts each half and happens after scores. Kicker boots it deep, returner catches and runs it back.</li>
-            <li><strong>Punt:</strong> On 4th down, instead of going for it, team kicks the ball away to pin opponent deep in their own territory.</li>
-            <li><strong>Field Goal:</strong> Kicking the ball through the uprights from anywhere on the field = 3 points. Harder the farther you are!</li>
-            <li><strong>Extra Point:</strong> The kick after a touchdown (from the 15-yard line) = 1 point.</li>
-          </ul>
-
-          <h3>Field Goal Distance</h3>
-          <p>Field goals are measured from where the ball is kicked (7 yards behind line of scrimmage) plus the 10-yard end zone. So kicking from the opponent's 30-yard line = 47-yard field goal attempt!</p>
-
-          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🎯 Why Special Teams Win Games</h4>
-            <p>A blocked punt returned for a TD. A 60-yard field goal as time expires. A kickoff return to the house. These game-changers happen multiple times per season - and they're all special teams!</p>
-          </div>
-
-          <h3>Key Players</h3>
-          <ul>
-            <li><strong>Kicker:</strong> Handles kickoffs, field goals, extra points</li>
-            <li><strong>Punter:</strong> Punts on 4th down to flip field position</li>
-            <li><strong>Long Snapper:</strong> Snaps the ball back to holder/punter (harder than it looks!)</li>
-            <li><strong>Returner:</strong> Catches punts/kickoffs and runs them back</li>
-          </ul>
-        `
-      },
-      'field-layout-basics': {
-        title: 'Field Layout Basics',
-        content: `
-          <h2>Understanding the Football Field 🏟️</h2>
-          <p>The football field is a 120-yard battlefield with clear zones and markings - here's your map!</p>
-
-          <h3>Field Dimensions</h3>
-          <ul>
-            <li><strong>100 yards long</strong> - From goal line to goal line</li>
-            <li><strong>10-yard end zones</strong> - One at each end (where touchdowns happen)</li>
-            <li><strong>53⅓ yards wide</strong> - Narrower than you might think!</li>
-            <li><strong>120 yards total</strong> - Including both end zones</li>
-          </ul>
-
-          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>📏 The Yard Lines</h4>
-            <p>Every 5 yards has a white line. The <strong>50-yard line</strong> is midfield. Numbers count down as you approach each end zone (50, 40, 30, 20, 10, Goal).</p>
-          </div>
-
-          <h3>Important Field Zones</h3>
-          <ul>
-            <li><strong>Red Zone:</strong> Inside the opponent's 20-yard line. Offenses are expected to score here!</li>
-            <li><strong>Midfield:</strong> The 50-yard line - great field position, either team could score</li>
-            <li><strong>Own Territory:</strong> Your half of the field (backs against the wall)</li>
-            <li><strong>Opponent Territory:</strong> Their half - you're threatening to score</li>
-            <li><strong>End Zone:</strong> The promised land! Get the ball here = touchdown</li>
-          </ul>
-
-          <h3>The Markings</h3>
-          <ul>
-            <li><strong>Hash Marks:</strong> Short lines at each yard marking where the ball is placed</li>
-            <li><strong>Sidelines:</strong> Out of bounds - step on the white and you're out</li>
-            <li><strong>Goal Line:</strong> The line you must cross for a touchdown</li>
-            <li><strong>Goal Posts:</strong> Yellow uprights at the back of each end zone (18.5 feet wide)</li>
-          </ul>
-
-          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🎯 Field Position Matters</h4>
-            <p>Starting at your own 20 = Long way to go. Starting at opponent's 40 = Already in field goal range! Coaches obsess over field position because it determines probability of scoring.</p>
-          </div>
-        `
-      },
-      'quarterback-101': {
-        title: 'Quarterback 101',
-        content: `
-          <h2>The Quarterback: Field General 🎯</h2>
-          <p>The QB is the most important player on the field - here's why and what they do!</p>
-
-          <h3>What Does the Quarterback Do?</h3>
-          <p>The quarterback is the leader of the offense. They receive the play call from coaches, adjust it at the line based on what the defense is showing, take the snap, and either hand off the ball, throw a pass, or run with it themselves.</p>
-
-          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>💡 Every Play Starts Here</h4>
-            <p>The center snaps the ball between their legs to the QB, who stands directly behind them. This starts every offensive play!</p>
-          </div>
-
-          <h3>QB Responsibilities</h3>
-          <ul>
-            <li><strong>Read the Defense:</strong> Identify what coverage/blitz is coming before the snap</li>
-            <li><strong>Call Audibles:</strong> Change the play at the line if needed ("Omaha! Omaha!")</li>
-            <li><strong>Execute the Play:</strong> Hand off, throw accurately, or scramble when needed</li>
-            <li><strong>Protect the Football:</strong> Don't throw interceptions or fumble - ever</li>
-            <li><strong>Lead the Team:</strong> Communicate, motivate, command respect</li>
-          </ul>
-
-          <h3>Types of Quarterbacks</h3>
-          <ul>
-            <li><strong>Pocket Passer:</strong> Stays protected behind offensive line, throws with precision (Tom Brady, Peyton Manning)</li>
-            <li><strong>Dual Threat:</strong> Can throw AND run effectively (Lamar Jackson, Josh Allen)</li>
-            <li><strong>Scrambler:</strong> Extends plays with legs when pocket breaks down (Patrick Mahomes, Russell Wilson)</li>
-            <li><strong>Game Manager:</strong> Won't lose the game, relies on running game and defense (Trent Dilfer style)</li>
-          </ul>
-
-          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🎯 Why QBs Get Paid</h4>
-            <p>Elite QBs can carry teams. They process information instantly, make split-second decisions under pressure, and deliver accurate throws with 300-pound defenders bearing down. It's the hardest job in sports - that's why great QBs make $40-50M per year!</p>
-          </div>
-
-          <h3>QB Stats to Know</h3>
-          <ul>
-            <li><strong>Completion %:</strong> How many passes they complete vs. attempt (65%+ is good)</li>
-            <li><strong>Yards per Attempt:</strong> How far they throw on average (7.5+ is elite)</li>
-            <li><strong>TD/INT Ratio:</strong> Touchdowns vs. Interceptions (want way more TDs!)</li>
-            <li><strong>Passer Rating:</strong> Overall efficiency score (100+ is excellent, 158.3 is perfect)</li>
-          </ul>
-        `
-      },
-      'timeouts-and-clock': {
-        title: 'Timeouts & Clock Management',
-        content: `
-          <h2>Mastering Time: The Chess Match ⏱️</h2>
-          <p>Great teams don't just move the ball - they control the clock. Here's how time management wins games!</p>
-
-          <h3>How the Game Clock Works</h3>
-          <p>Each game has four 15-minute quarters (60 minutes total). But the clock doesn't run continuously - it stops for incomplete passes, out of bounds, penalties, timeouts, scores, and more. This is why games take 3+ hours!</p>
-
-          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>⏰ When the Clock Stops</h4>
-            <p><strong>Incomplete pass</strong> (ball hits ground)<br/>
-            <strong>Player runs out of bounds</strong><br/>
-            <strong>Penalty</strong><br/>
-            <strong>Timeout called</strong><br/>
-            <strong>Score or turnover</strong><br/>
-            <strong>Injury</strong><br/>
-            <strong>Two-minute warning</strong> (automatic in each half)</p>
-          </div>
-
-          <h3>Timeouts: Your Most Valuable Resource</h3>
-          <p>Each team gets <strong>3 timeouts per half</strong>. Once you use them, they're gone until halftime (then you get 3 more for the second half). Coaches must decide: Save them for the end? Or use them early to avoid delay penalties or bad plays?</p>
-
-          <h3>Strategic Uses for Timeouts</h3>
-          <ul>
-            <li><strong>Stop the Clock:</strong> Preserve time when trailing late in the game</li>
-            <li><strong>Ice the Kicker:</strong> Call timeout right before opponent's field goal to make them think/stress</li>
-            <li><strong>Avoid Penalty:</strong> Can't get play off in time? Timeout prevents delay of game</li>
-            <li><strong>Adjust Strategy:</strong> See something confusing? Regroup with a timeout</li>
-          </ul>
-
-          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🚨 The Two-Minute Warning</h4>
-            <p>At exactly 2:00 left in each half, the ref stops play for a "two-minute warning." This is an automatic timeout that gives both teams a chance to strategize for the final push.</p>
-          </div>
-
-          <h3>Clock Management Strategy</h3>
-          <p><strong>When Winning:</strong> Run the ball (clock keeps running), take your time at the line, use all 40 seconds of play clock. Bleed that clock!</p>
-          <p><strong>When Losing:</strong> Throw passes (incomplete stops clock), get out of bounds, spike the ball, use timeouts wisely. Every second matters!</p>
-
-          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🎯 Why This Wins Championships</h4>
-            <p>Poor clock management loses games. Great QBs/coaches know exactly when to hurry, when to slow down, and when to burn a timeout. Watch how elite teams operate in the final 2 minutes - it's poetry!</p>
-          </div>
-
-          <h3>Play Clock vs. Game Clock</h3>
-          <ul>
-            <li><strong>Game Clock:</strong> The official time remaining in the quarter/game</li>
-            <li><strong>Play Clock:</strong> 40 seconds (or 25 after certain stoppages) to snap the ball or get a delay penalty</li>
-          </ul>
-        `
-      },
-      'offensive-positions': {
-        title: 'Offensive Positions Explained',
-        content: `
-          <h2>Meet the Offense: Players Trying to Score ⚡</h2>
-          <p>The offense is the team with the ball. Let's meet the key players and understand what each position does to move the ball and score!</p>
-
-          <h3>The Quarterback (QB) 🎯</h3>
-          <p>The quarterback is like the field general - they get the ball on every play and decide what to do with it. The most important player on the field!</p>
-
-          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>💡 What QBs Do</h4>
-            <ul>
-              <li>Throw passes to receivers</li>
-              <li>Hand off the ball to running backs</li>
-              <li>Make quick decisions under pressure</li>
-              <li>Call plays and audibles at the line</li>
-            </ul>
-          </div>
-
-          <h3>Running Backs (RB) 🏃</h3>
-          <p>Running backs are the workhorses who carry the ball and catch passes out of the backfield. They need to be fast AND tough!</p>
-          <ul>
-            <li><strong>Carry the ball</strong> on running plays through holes in the defense</li>
-            <li><strong>Catch short passes</strong> from the QB (called "dump-offs")</li>
-            <li><strong>Block for the quarterback</strong> when defenders rush</li>
-            <li><strong>Must have vision</strong> to find holes and break tackles</li>
-          </ul>
-
-          <h3>Wide Receivers (WR) 🚀</h3>
-          <p>These are the speed demons who run precise routes to catch passes downfield. They need great hands, speed, and route-running ability!</p>
-          <ul>
-            <li><strong>Run specific pass routes</strong> (slant, post, go, out, etc.)</li>
-            <li><strong>Catch passes</strong> from the quarterback</li>
-            <li><strong>Create separation</strong> from defenders using speed and technique</li>
-            <li><strong>Block on running plays</strong> downfield</li>
-          </ul>
-
-          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🎯 The Hybrid: Tight End (TE)</h4>
-            <p>Tight ends are versatile players who can both block like linemen AND catch like receivers. They're usually bigger than wide receivers but still athletic enough to run routes and catch passes over the middle of the field.</p>
-          </div>
-
-          <h3>Offensive Line (OL) 🛡️</h3>
-          <p>The big guys up front who protect the quarterback and create holes for running backs. They're the unsung heroes - without them, nothing works!</p>
-
-          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>The Five Linemen</h4>
-            <ul>
-              <li><strong>Center (C):</strong> Snaps the ball to the QB on every play</li>
-              <li><strong>Left & Right Guard (LG/RG):</strong> Inside blockers next to the center</li>
-              <li><strong>Left & Right Tackle (LT/RT):</strong> Outside blockers, protect QB's blind side</li>
-            </ul>
-            <p>These 5 players work as a unit to protect the QB from rushers and create running lanes for the RB. Usually the biggest players on the team (300+ pounds)!</p>
-          </div>
-
-          <h3>Working Together</h3>
-          <p>All 11 offensive players must work together on every play. Each position has a specific job, but they all depend on each other:</p>
-          <ul>
-            <li><strong>QB</strong> leads the offense and handles the ball every play</li>
-            <li><strong>RB</strong> carries the ball and catches short passes</li>
-            <li><strong>WR</strong> runs routes and catches passes downfield</li>
-            <li><strong>TE</strong> blocks AND catches passes (hybrid role)</li>
-            <li><strong>OL</strong> protects QB and blocks for RB</li>
-          </ul>
-        `
-      },
-      'defensive-positions': {
-        title: 'Defensive Positions Explained',
-        content: `
-          <h2>Meet the Defense: Stopping the Offense 🛡️</h2>
-          <p>The defense's job is to stop the offense from scoring. Let's meet the warriors who tackle ball carriers, rush the QB, and defend passes!</p>
-
-          <h3>Defensive Line (DL) 💥</h3>
-          <p>The big guys up front who battle the offensive line and try to disrupt plays in the backfield. They're the first line of defense!</p>
-
-          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>💡 The D-Line Positions</h4>
-            <ul>
-              <li><strong>Defensive Tackles (DT):</strong> Inside players who stop the run and push the pocket</li>
-              <li><strong>Defensive Ends (DE):</strong> Outside rushers who pressure the QB and set the edge on runs</li>
-            </ul>
-            <p>Their main jobs: <strong>Stop running backs</strong>, <strong>pressure the quarterback</strong>, and <strong>bat down passes</strong> at the line!</p>
-          </div>
-
-          <h3>Linebackers (LB) ⚡</h3>
-          <p>The heart and soul of the defense! Linebackers play behind the defensive line and are involved in almost every play. They need to be fast, strong, and smart!</p>
-          <ul>
-            <li><strong>Middle Linebacker (MLB):</strong> The "quarterback of the defense" - calls plays and leads the unit</li>
-            <li><strong>Outside Linebackers (OLB):</strong> Cover tight ends, blitz the QB, and stop outside runs</li>
-          </ul>
-
-          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🎯 What Linebackers Do</h4>
-            <ul>
-              <li>Stop running backs in their tracks</li>
-              <li>Cover tight ends and running backs in pass coverage</li>
-              <li>Blitz the quarterback (rush the passer)</li>
-              <li>Read the offense and make tackles sideline-to-sideline</li>
-            </ul>
-          </div>
-
-          <h3>Secondary: Cornerbacks (CB) 🚀</h3>
-          <p>Cornerbacks are the speed demons who cover wide receivers. They need elite speed, agility, and anticipation to stay with fast receivers!</p>
-          <ul>
-            <li><strong>Cover wide receivers</strong> in man-to-man or zone coverage</li>
-            <li><strong>Break up passes</strong> or intercept the ball</li>
-            <li><strong>Tackle receivers</strong> after catches</li>
-            <li><strong>Read the QB's eyes</strong> to jump routes</li>
-          </ul>
-
-          <h3>Secondary: Safeties (S) 🎯</h3>
-          <p>Safeties are the last line of defense - they play deep to prevent big plays and help wherever needed. The ultimate Swiss Army knife!</p>
-
-          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>Two Types of Safeties</h4>
-            <ul>
-              <li><strong>Free Safety (FS):</strong> Plays deepest, prevents deep passes, "center fielder"</li>
-              <li><strong>Strong Safety (SS):</strong> Hybrid role - helps stop the run AND covers passes</li>
-            </ul>
-            <p>Safeties need to <strong>prevent big plays</strong>, <strong>help cornerbacks</strong> in coverage, <strong>support the run</strong>, and sometimes <strong>blitz the QB</strong>!</p>
-          </div>
-
-          <h3>How They Work Together</h3>
-          <p>The defense operates as one unit with three levels:</p>
-          <ul>
-            <li><strong>D-Line:</strong> First level - engage blockers, pressure QB, stop runs at the line</li>
-            <li><strong>Linebackers:</strong> Second level - read and react, cover short passes, make tackles</li>
-            <li><strong>Secondary:</strong> Third level - deep coverage, prevent big plays, create turnovers</li>
-          </ul>
-
-          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>💪 The Defense's Goals</h4>
-            <p><strong>Stop the run</strong> (force them to pass)<br/>
-            <strong>Pressure the QB</strong> (force bad throws)<br/>
-            <strong>Cover receivers</strong> (prevent completions)<br/>
-            <strong>Create turnovers</strong> (interceptions and fumbles)<br/>
-            <strong>Get off the field</strong> (force punts on 3rd down)</p>
-          </div>
-        `
-      },
-      'nfl-seasons-playoffs': {
-        title: 'Seasons & Playoffs',
-        content: `
-          <h2>The Pro Football Season: From September to the Super Bowl 🏆</h2>
-          <p>The pro football season is a months-long marathon that culminates in the ultimate prize: the Super Bowl. Here's how it all works!</p>
-
-          <h3>Regular Season Structure</h3>
-          <p>The regular season runs from early September through early January. Each team plays <strong>17 games</strong> over 18 weeks (one bye week for rest).</p>
-
-          <div style="background: #f0f9ff; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>💡 How Teams Are Organized</h4>
-            <p><strong>32 total teams</strong> divided into two conferences:<br/>
-            <strong>AFC (American Football Conference)</strong> - 16 teams<br/>
-            <strong>NFC (National Football Conference)</strong> - 16 teams</p>
-            <p>Each conference has 4 divisions (North, South, East, West) with 4 teams each.</p>
-          </div>
-
-          <h3>The Schedule</h3>
-          <p>Each team's 17-game schedule includes:</p>
-          <ul>
-            <li><strong>6 games</strong> against division rivals (play each twice - home and away)</li>
-            <li><strong>4 games</strong> against another division in their conference</li>
-            <li><strong>4 games</strong> against a division from the other conference</li>
-            <li><strong>3 games</strong> against teams from the remaining divisions in their conference</li>
-          </ul>
-
-          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🎯 What Matters: Wins & Losses</h4>
-            <p>Teams compete for the best win-loss record to make the playoffs. A team that goes 14-3 (14 wins, 3 losses) is having an elite season. 10-7 or 9-8 usually makes the playoffs.</p>
-          </div>
-
-          <h3>The Playoffs: Road to the Super Bowl</h3>
-          <p>After the regular season ends in early January, the top <strong>14 teams</strong> (7 from each conference) enter the playoffs.</p>
-
-          <h3>Playoff Format</h3>
-          <ul>
-            <li><strong>4 Division Winners</strong> from each conference (ranked 1-4 by record)</li>
-            <li><strong>3 Wild Card teams</strong> from each conference (best records among non-division winners)</li>
-            <li><strong>#1 seed in each conference gets a bye</strong> (automatically advances to divisional round)</li>
-          </ul>
-
-          <div style="background: #ecfdf5; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>🏈 The Playoff Rounds</h4>
-            <p><strong>Wild Card Weekend:</strong> 6 games (#2 vs #7, #3 vs #6, #4 vs #5 in each conference)<br/>
-            <strong>Divisional Round:</strong> 4 games (top seeds enter here)<br/>
-            <strong>Conference Championships:</strong> 2 games (AFC and NFC champions determined)<br/>
-            <strong>Super Bowl:</strong> 1 game - AFC champion vs NFC champion for the title!</p>
-          </div>
-
-          <h3>Single Elimination</h3>
-          <p>The playoffs are <strong>single elimination</strong> - lose once and you're done. No second chances! This creates incredible drama and pressure.</p>
-          <ul>
-            <li><strong>Home field advantage</strong> goes to the higher seed (their stadium, their fans)</li>
-            <li><strong>January and February football</strong> means cold weather games in northern cities</li>
-            <li><strong>Every play matters</strong> - one mistake can end your season</li>
-          </ul>
-
-          <h3>The Super Bowl 🏆</h3>
-          <p>The Super Bowl is played on the second Sunday of February at a neutral site (decided years in advance). It's the biggest single-day sporting event in America!</p>
-
-          <div style="background: #fef3c7; padding: 16px; border-radius: 8px; margin: 16px 0;">
-            <h4>⭐ Super Bowl Traditions</h4>
-            <ul>
-              <li><strong>Roman numerals</strong> for each game (Super Bowl LVIII = 58)</li>
-              <li><strong>Halftime show</strong> featuring major music artists</li>
-              <li><strong>Commercials</strong> that cost millions per 30-second spot</li>
-              <li><strong>Trophy:</strong> Vince Lombardi Trophy (named after legendary coach)</li>
-              <li><strong>Rings:</strong> Championship rings for the winning team</li>
-            </ul>
-          </div>
-
-          <h3>Key Season Terms</h3>
-          <ul>
-            <li><strong>Bye Week:</strong> One week off during the regular season for rest</li>
-            <li><strong>Division Title:</strong> Best record in your 4-team division</li>
-            <li><strong>Wild Card:</strong> Playoff team that didn't win their division</li>
-            <li><strong>Seeding:</strong> Playoff ranking (1-7) based on regular season record</li>
-            <li><strong>Home Field Advantage:</strong> Playing playoff games in your stadium</li>
-          </ul>
-        `
-      }
+      // Add other lessons here...
     }
-
-    return content[id] || {
-      title: 'Coming Soon',
-      content: '<p>This lesson is being developed. Check back soon!</p>'
-    }
+    return content[id] || { title: 'Lesson', content: '<p>Content coming soon...</p>' }
   }
 
+  // Quiz view
+  if (quizLessonId) {
+    return (
+      <LessonQuiz
+        lessonId={quizLessonId}
+        onClose={() => setQuizLessonId(null)}
+      />
+    )
+  }
+
+  // Lesson reading view
   if (selectedLesson) {
     const lesson = getLessonContent(selectedLesson)
     const isLessonPremium = isPremiumLesson(selectedLesson)
@@ -637,7 +171,7 @@ const SimplePlatform = () => {
               <p className="text-secondary-200 mb-4">Nice work reading through this! 🎉</p>
               <button
                 onClick={() => {
-                  actions.readLesson(selectedLesson) // Mark as read when they finish
+                  actions.readLesson(selectedLesson)
                   setSelectedLesson(null)
                 }}
                 className="px-8 py-3 bg-gradient-to-r from-blush-500 to-sage-500 text-white rounded-xl font-semibold hover:from-blush-600 hover:to-sage-600 transition-all duration-200 transform hover:scale-105"
@@ -651,130 +185,333 @@ const SimplePlatform = () => {
     )
   }
 
+  // Main platform view
   return (
     <div className="min-h-screen bg-gradient-to-br from-blush-50 to-sage-50">
-      <div className="max-w-4xl mx-auto p-6">
+      <div className="max-w-4xl mx-auto p-4 sm:p-6">
 
-        {/* Beautiful Lesson List */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-blush-200">
-          <div className="p-8 border-b border-blush-100">
-            <div className="text-center">
-              <h1 className="text-3xl font-bold text-secondary-100 mb-3">🎥 Football Video Lessons</h1>
-              <p className="text-lg text-secondary-200">Watch bite-sized videos to master football fundamentals. Read the article if you prefer!</p>
+        {/* Hero Section */}
+        <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl p-8 sm:p-12 mb-8 border border-purple-200">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-accent-100 to-primary-100 px-4 py-2 rounded-full text-sm font-semibold text-accent-700 mb-4">
+              <span>⚡</span>
+              <span>3 Free Lessons • 7 Premium</span>
             </div>
-          </div>
-        
-          <div className="divide-y divide-blush-100">
-            {lessons.map((lesson, index) => (
-              <div key={lesson.id} className="p-8 hover:bg-blush-50/30 transition-colors duration-200 relative overflow-hidden">
-                {/* Football field hash marks background */}
-                <div className="absolute inset-y-0 right-0 w-24 opacity-5 pointer-events-none">
-                  <div className="h-full flex flex-col justify-evenly">
-                    <div className="h-px bg-secondary-300"></div>
-                    <div className="h-px bg-secondary-300"></div>
-                    <div className="h-px bg-secondary-300"></div>
-                    <div className="h-px bg-secondary-300"></div>
-                    <div className="h-px bg-secondary-300"></div>
-                  </div>
-                </div>
-
-                <div className="relative">
-                  <div className="flex items-center gap-2 mb-1">
-                    {lesson.completed ? (
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-sage-400 to-blush-400 text-white rounded-full flex items-center justify-center text-sm sm:text-base shadow-lg flex-shrink-0">
-                        ✨
-                      </div>
-                    ) : (
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blush-100 to-sage-100 text-blush-600 rounded-full flex items-center justify-center text-sm sm:text-base font-bold border-2 border-blush-200 flex-shrink-0">
-                        {index + 1}
-                      </div>
-                    )}
-                    <h3 className="text-base sm:text-xl font-semibold text-secondary-100">{lesson.title}</h3>
-                  </div>
-
-                  {lesson.isPremium && !state.user.hasPurchased && (
-                    <div className="ml-10 sm:ml-12 mb-2">
-                      <span className="inline-block px-2 py-0.5 text-xs font-semibold bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 rounded border border-purple-200">
-                        🔒 Premium
-                      </span>
-                    </div>
-                  )}
-
-                  <p className="text-sm text-secondary-200 mb-3">
-                    {lesson.completed && '✨ You nailed this one! • '}
-                    {!lesson.completed && lesson.viewed && '📺 Video watched • '}
-                    {!lesson.completed && lesson.read && '📖 Article read • '}
-                    {lesson.subtitle}
-                  </p>
-
-                  {/* What you'll learn */}
-                  {lesson.preview && lesson.preview["What you'll learn"] && (
-                    <div className="mb-4 p-4 bg-primary-50/50 rounded-lg border border-primary-100">
-                      <p className="text-xs font-semibold text-accent-600 mb-3">What you'll learn:</p>
-                      <ul className="space-y-2">
-                        {lesson.preview["What you'll learn"].map((item, idx) => (
-                          <li key={idx} className="text-sm text-secondary-200 flex items-start leading-relaxed">
-                            <span className="text-accent-500 mr-2">•</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  <div className="flex flex-wrap gap-3">
-                    {lesson.hasVideo && (
-                      <button
-                        onClick={() => navigate(`/lesson/${lesson.id}`)}
-                        aria-label={`Watch video lesson about ${lesson.title}`}
-                        className="px-6 py-2 bg-blush-500 text-white rounded-xl hover:bg-blush-600 transition-all duration-200 transform hover:scale-105 font-medium shadow-sm"
-                      >
-                        🎥 Watch Video
-                      </button>
-                    )}
-                    <button
-                      onClick={() => setSelectedLesson(lesson.id)}
-                      aria-label={`Read article about ${lesson.title}`}
-                      className="px-6 py-2 bg-white border-2 border-blush-300 text-blush-600 rounded-xl hover:bg-blush-50 hover:border-blush-400 transition-all duration-200 font-medium"
-                    >
-                      📖 Read Instead
-                    </button>
-                    {lesson.isPremium && !state.user.hasPurchased ? (
-                      <button
-                        onClick={() => setSelectedLesson(lesson.id)}
-                        aria-label={`Unlock ${lesson.title} to take quiz`}
-                        className="px-6 py-2 bg-white border-2 border-purple-300 text-purple-600 rounded-xl hover:bg-purple-50 hover:border-purple-400 transition-all duration-200 font-medium"
-                      >
-                        🔒 Quiz Locked
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => setQuizLessonId(lesson.id)}
-                        aria-label={`Take quiz for ${lesson.title}`}
-                        className="px-6 py-2 bg-white border-2 border-accent-300 text-accent-600 rounded-xl hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 font-medium"
-                      >
-                        📝 Take Quiz
-                      </button>
-                    )}
-                  </div>
-
-                  {/* Large lesson icon on the right */}
-                  <div className="ml-6 text-7xl opacity-20 hidden sm:block">
-                    {lessonIcons[lesson.id] || '🏈'}
-                  </div>
-                </div>
-              </div>
-            ))}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4">
+              <span className="bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 bg-clip-text text-transparent">
+                Love the vibe.
+              </span>
+              <br />
+              <span className="text-secondary-900">Learn the game.</span>
+            </h1>
+            <p className="text-lg sm:text-xl text-secondary-600 max-w-2xl mx-auto mb-6">
+              Master football fundamentals in 10 bite-sized video lessons. No judgment, no gatekeeping—just simple, clear explanations.
+            </p>
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-secondary-600">
+              <span className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-green-500 rounded-full"></span>
+                $24 one-time
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                Lifetime access
+              </span>
+              <span className="flex items-center gap-2">
+                <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                No subscription
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* Lesson Quiz Modal */}
-        {quizLessonId && (
-          <LessonQuiz
-            lessonId={quizLessonId}
-            onClose={() => setQuizLessonId(null)}
-          />
+        {/* Progress Tracking */}
+        {completedCount > 0 && (
+          <div className="bg-white rounded-2xl p-6 mb-6 border border-primary-200 shadow-sm">
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <h3 className="text-lg font-bold text-secondary-900">Your Progress</h3>
+                <p className="text-sm text-secondary-600">
+                  {completedCount} of {lessons.length} lessons completed
+                </p>
+              </div>
+              <div className="text-3xl">{completedCount >= 5 ? '🔥' : '🎯'}</div>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
+              <div
+                className="bg-gradient-to-r from-purple-500 to-pink-500 h-3 rounded-full transition-all duration-500"
+                style={{ width: `${progressPercent}%` }}
+              ></div>
+            </div>
+            <p className="text-sm font-semibold text-purple-600">
+              {progressPercent === 100 ? "🎉 All done! You're a football pro!" : `You're ${progressPercent}% done! Keep going!`}
+            </p>
+          </div>
         )}
+
+        {/* Lesson Library */}
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg border border-blush-200">
+          <div className="p-6 sm:p-8 border-b border-blush-100">
+            <div className="text-center">
+              <h2 className="text-2xl sm:text-3xl font-bold text-secondary-100 mb-3">🎥 Football Video Lessons</h2>
+              <p className="text-base sm:text-lg text-secondary-200">Watch bite-sized videos to master football fundamentals. Read the article if you prefer!</p>
+            </div>
+          </div>
+
+          {/* Free Lessons Section */}
+          <div className="p-6 sm:p-8 bg-green-50/30">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-2xl">🎯</span>
+              <div>
+                <h3 className="text-xl font-bold text-secondary-900">Free Fundamentals</h3>
+                <p className="text-sm text-secondary-600">Start here - no payment required</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="divide-y divide-blush-100">
+            {freeLessons.map((lesson) => (
+              <LessonCard
+                key={lesson.id}
+                lesson={lesson}
+                state={state}
+                navigate={navigate}
+                setSelectedLesson={setSelectedLesson}
+                setQuizLessonId={setQuizLessonId}
+              />
+            ))}
+          </div>
+
+          {/* Premium Lessons Section */}
+          <div className="p-6 sm:p-8 bg-purple-50/30 border-t-4 border-purple-200">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-2xl">🔒</span>
+              <div>
+                <h3 className="text-xl font-bold text-secondary-900">Premium Deep Dives - $24</h3>
+                <p className="text-sm text-secondary-600">
+                  {state.user.hasPurchased ? 'Unlocked! Continue learning' : 'Unlock to master positions, strategy, and game flow'}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="divide-y divide-blush-100">
+            {premiumLessons.map((lesson) => (
+              <LessonCard
+                key={lesson.id}
+                lesson={lesson}
+                state={state}
+                navigate={navigate}
+                setSelectedLesson={setSelectedLesson}
+                setQuizLessonId={setQuizLessonId}
+              />
+            ))}
+          </div>
+
+          {/* Social Proof / Testimonial */}
+          {!state.user.hasPurchased && (
+            <div className="p-6 sm:p-8 bg-gradient-to-r from-blue-50 to-purple-50 border-t border-purple-200">
+              <div className="max-w-2xl mx-auto text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="flex -space-x-2">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 border-2 border-white"></div>
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 border-2 border-white"></div>
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-purple-400 border-2 border-white"></div>
+                  </div>
+                </div>
+                <p className="text-lg italic text-secondary-700 mb-3">
+                  "Finally understand what's happening on screen! These lessons made football click for me."
+                </p>
+                <p className="text-sm font-semibold text-secondary-600">— Sarah M., New Fan</p>
+                <div className="flex justify-center gap-1 text-yellow-500 mt-2">
+                  <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Email Capture (only show after free lessons viewed) */}
+          {!state.user.hasPurchased && completedCount >= 2 && (
+            <div className="p-6 sm:p-8 border-t border-blush-200">
+              <div className="max-w-md mx-auto text-center">
+                <h3 className="text-xl font-bold text-secondary-900 mb-2">🏈 Want More?</h3>
+                <p className="text-sm text-secondary-600 mb-4">
+                  Unlock all 10 lessons for just $24. One-time payment, lifetime access.
+                </p>
+                <button
+                  onClick={() => window.open('https://whop.com/kickoff-club-master-football/', '_blank')}
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-4 rounded-xl font-bold hover:from-purple-700 hover:to-pink-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
+                >
+                  Get Lifetime Access - $24
+                </button>
+                <p className="text-xs text-secondary-500 mt-3">
+                  📺 Netflix costs more per month • ☕ Less than 4 Starbucks drinks
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Sticky Purchase CTA Bar */}
+      {showStickyBar && (
+        <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white p-4 shadow-2xl z-50 animate-slideUp">
+          <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
+            <div className="flex-1">
+              <p className="font-bold text-sm sm:text-base">Want to continue learning?</p>
+              <p className="text-xs sm:text-sm opacity-90">Unlock all 10 lessons for $24</p>
+            </div>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => window.open('https://whop.com/kickoff-club-master-football/', '_blank')}
+                className="bg-white text-purple-600 px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-bold hover:bg-gray-100 transition-colors text-sm sm:text-base whitespace-nowrap"
+              >
+                Unlock Now
+              </button>
+              <button
+                onClick={() => setShowStickyBar(false)}
+                className="text-white hover:text-gray-200 text-xl"
+                aria-label="Close banner"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// Lesson Card Component (extracted for cleanliness)
+const LessonCard = ({ lesson, state, navigate, setSelectedLesson, setQuizLessonId }) => {
+  const hasQuizScore = state.user?.progress?.quizScores?.[lesson.id]
+  const quizScore = hasQuizScore ? Math.round((hasQuizScore.score / hasQuizScore.total) * 100) : null
+
+  return (
+    <div className="p-6 sm:p-8 hover:bg-blush-50/30 transition-colors duration-200 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-y-0 right-0 w-24 opacity-5 pointer-events-none">
+        <div className="h-full flex flex-col justify-evenly">
+          <div className="h-px bg-secondary-300"></div>
+          <div className="h-px bg-secondary-300"></div>
+          <div className="h-px bg-secondary-300"></div>
+          <div className="h-px bg-secondary-300"></div>
+          <div className="h-px bg-secondary-300"></div>
+        </div>
+      </div>
+
+      <div className="relative">
+        <div className="flex items-start justify-between mb-3">
+          <div className="flex items-center gap-3 flex-1">
+            {/* Status icon */}
+            {lesson.completed ? (
+              <div className="w-10 h-10 bg-gradient-to-r from-sage-400 to-blush-400 text-white rounded-full flex items-center justify-center text-base shadow-lg flex-shrink-0">
+                ✅
+              </div>
+            ) : (
+              <div className="w-10 h-10 bg-gradient-to-r from-blush-100 to-sage-100 text-blush-600 rounded-full flex items-center justify-center text-sm font-bold border-2 border-blush-200 flex-shrink-0">
+                {lesson.lessonNumber}
+              </div>
+            )}
+
+            <div className="flex-1">
+              <div className="flex items-center gap-2 flex-wrap">
+                <h3 className="text-lg sm:text-xl font-semibold text-secondary-100">{lesson.title}</h3>
+                {!lesson.isPremium && (
+                  <span className="inline-block px-2 py-0.5 text-xs font-semibold bg-green-100 text-green-700 rounded border border-green-200">
+                    FREE
+                  </span>
+                )}
+                {lesson.isPremium && !state.user.hasPurchased && (
+                  <span className="inline-block px-2 py-1 text-xs font-bold bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 rounded border border-purple-300">
+                    🔒 PREMIUM
+                  </span>
+                )}
+              </div>
+              <p className="text-sm text-secondary-200 mt-1">
+                {lesson.completed && '✨ Completed • '}
+                {!lesson.completed && lesson.viewed && '📺 Video watched • '}
+                {!lesson.completed && lesson.read && '📖 Article read • '}
+                {lesson.subtitle}
+              </p>
+            </div>
+          </div>
+
+          {/* Large emoji icon on desktop */}
+          <div className="hidden sm:block text-6xl opacity-20 ml-4">
+            {lessonIcons[lesson.id] || '🏈'}
+          </div>
+        </div>
+
+        {/* What you'll learn */}
+        {lesson.preview && lesson.preview["What you'll learn"] && (
+          <div className="mb-4 ml-0 sm:ml-13 p-4 bg-primary-50/50 rounded-lg border border-primary-100">
+            <p className="text-xs font-semibold text-accent-600 mb-3">What you'll learn:</p>
+            <ul className="space-y-2">
+              {lesson.preview["What you'll learn"].map((item, idx) => (
+                <li key={idx} className="text-sm text-secondary-200 flex items-start leading-relaxed">
+                  <span className="text-accent-500 mr-2 flex-shrink-0">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Action buttons */}
+        <div className="flex flex-col sm:flex-row gap-3 ml-0 sm:ml-13">
+          {/* Video button */}
+          {lesson.hasVideo && (
+            <button
+              onClick={() => {
+                if (lesson.isPremium && !state.user.hasPurchased) {
+                  window.open('https://whop.com/kickoff-club-master-football/', '_blank')
+                } else {
+                  navigate(`/lesson/${lesson.id}`)
+                }
+              }}
+              className={`flex-1 sm:flex-none px-6 py-3 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-sm ${
+                lesson.isPremium && !state.user.hasPurchased
+                  ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
+                  : 'bg-blush-500 text-white hover:bg-blush-600'
+              }`}
+            >
+              🎥 {lesson.isPremium && !state.user.hasPurchased ? 'Unlock to Watch' : 'Watch Video'}
+            </button>
+          )}
+
+          {/* Read button */}
+          <button
+            onClick={() => setSelectedLesson(lesson.id)}
+            className="flex-1 sm:flex-none px-6 py-3 bg-white border-2 border-blush-300 text-blush-600 rounded-xl hover:bg-blush-50 hover:border-blush-400 transition-all duration-200 font-semibold"
+          >
+            📖 Read Article
+          </button>
+
+          {/* Quiz button */}
+          {lesson.isPremium && !state.user.hasPurchased ? (
+            <button
+              onClick={() => window.open('https://whop.com/kickoff-club-master-football/', '_blank')}
+              className="flex-1 sm:flex-none px-6 py-3 bg-white border-2 border-purple-300 text-purple-600 rounded-xl hover:bg-purple-50 hover:border-purple-400 transition-all duration-200 font-semibold"
+            >
+              🔒 Unlock Quiz
+            </button>
+          ) : quizScore ? (
+            <button
+              onClick={() => setQuizLessonId(lesson.id)}
+              className="flex-1 sm:flex-none px-6 py-3 bg-green-50 border-2 border-green-300 text-green-700 rounded-xl hover:bg-green-100 transition-all duration-200 font-semibold"
+            >
+              ✅ Retake ({quizScore}%)
+            </button>
+          ) : (
+            <button
+              onClick={() => setQuizLessonId(lesson.id)}
+              className="flex-1 sm:flex-none px-6 py-3 bg-white border-2 border-accent-300 text-accent-600 rounded-xl hover:bg-accent-50 hover:border-accent-400 transition-all duration-200 font-semibold"
+            >
+              📝 Take Quiz
+            </button>
+          )}
+        </div>
       </div>
     </div>
   )

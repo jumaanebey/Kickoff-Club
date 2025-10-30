@@ -75,8 +75,13 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="mt-8 text-center text-sm text-white/60">
-            © 2025 Kickoff Club. Made with 💜 for football learners everywhere.
+          <div className="mt-8 text-center">
+            <p className="text-sm text-white/60 mb-2">
+              Built by someone who was tired of not understanding football 🏈
+            </p>
+            <p className="text-xs text-white/50">
+              © 2025 Kickoff Club. No gatekeeping, just learning.
+            </p>
           </div>
         </div>
       </div>
